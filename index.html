@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Manager — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css"> 
+</head>
+
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="12" height="12" rx="3" fill="#47b8c9" />
+            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+          </svg>
+        </div>
+        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item active">
+        <i class="fa fa-home"></i>
+        <span>Dashboard</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="requests.html" class="nav-item">
+        <i class="fa fa-address-book"></i>
+        <span>Requests</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="files.html" class="nav-item">
+        <i class="fa fa-file"></i>
+        <span>Drawings</span>
+      </a>
+      <a href="approvals.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>Approvals</span>
+        <span class="nav-badge urgent">5</span>
+      </a>
+      <a href="simpro.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>simPRO Sync</span>
+      </a>
+      <a href="parts.html" class="nav-item">
+        <i class="fa fa-hourglass-half"></i>
+        <span>Parts</span>
+      </a>
+      <a href="users.html" class="nav-item">
+        <i class="fa fa-users"></i>
+        <span>Team</span>
+      </a>
+
+      <a href="role.html" class="nav-item">
+        <i class="fa fa-user-secret"></i>
+        <span>Role</span>
+      </a>
+      <div class="nav-divider"></div>
+
+      <a href="reports.html" class="nav-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div class="user-info">
+        <span class="user-name">James Doyle</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+
+  </aside>
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- TOP BAR -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <h1 class="page-title">Business Overview</h1>
+        <span class="page-subtitle">Last updated: 2 minutes ago</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-icon" title="Notifications">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+          </svg>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input class="search-input" id="search-input" placeholder="Search by part number, request, or drawing…"
+            type="text">
+        </div>
+        <button class="btn-primary" id="new-req-btn">+ New Request</button>
+      </div>
+    </header>
+    <div class="dashboard-grid">
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ROW 1: ACTION REQUIRED ALERTS -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="alerts-row full-width mb-3">
+        <div class="alert-card urgent clickable" onclick="openModal('alert-overdue')">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-body">
+            <strong>5 requests overdue</strong>
+            <span>Awaiting action for 3+ days — click to review</span>
+          </div>
+          <svg class="alert-arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="alert-card warning clickable" onclick="openModal('alert-sync')">
+          <div class="alert-icon">🔄</div>
+          <div class="alert-body">
+            <strong>3 simPRO sync failures</strong>
+            <span>Part numbers failed to push — retry available</span>
+          </div>
+          <svg class="alert-arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="alert-card info clickable" onclick="openModal('alert-approval')">
+          <div class="alert-icon">✅</div>
+          <div class="alert-body">
+            <strong>5 awaiting your approval</strong>
+            <span>Requests sitting in your queue</span>
+          </div>
+          <svg class="alert-arrow" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+
+      </section>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <div class="full-width mb-3">
+        <div class="row g-3">
+          <div class="col-md-8">
+            <div class="panel">
+              <div class="row">
+                <!-- LEFT: BAR CHART -->
+                <div class="col-md-8 analytics-card large border-right">
+
+                  <h5 class="panel-title panel-header p-0 pb-3 mb-0">Requests by Stage</h5>
+                  <canvas id="stageChart"></canvas>
+                </div>
+
+                <!-- MIDDLE: DONUT -->
+                <div class="col-md-4 analytics-card">
+                  <h5 class="panel-title panel-header p-0 pb-3 mb-1">simPRO Sync Status</h5>
+
+                  <div class="donut-wrap">
+                    <canvas id="syncChart"></canvas>
+                    <div class="donut-center">
+                      <span>Total</span>
+                      <strong>23</strong>
+                    </div>
+                  </div>
+
+                  <div class="legend-list">
+                    <div><span class="dot bg-green"></span> Synced <b>18</b></div>
+                    <div><span class="dot bg-yellow"></span> Pending <b>2</b></div>
+                    <div><span class="dot bg-red"></span> Failed <b>3</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- RIGHT: STATUS LIST -->
+          <div class="col-md-4">
+            <div class="panel analytics-card">
+              <h5 class="panel-title panel-header p-0 pb-3 mb-0">Request Status</h5>
+
+              <div class="status-row">
+                <div class="status-left">
+                  <span class="status-icon bg-green">✓</span>
+                  Draft
+                </div>
+                <span>8</span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-left">
+                  <span class="status-icon bg-blue">→</span>
+                  Submitted
+                </div>
+                <span>4</span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-left">
+                  <span class="status-icon bg-orange">⏱</span>
+                  In Review
+                </div>
+                <span>5</span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-left">
+                  <span class="status-icon bg-purple">✔</span>
+                  Approved
+                </div>
+                <span>3</span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-left">
+                  <span class="status-icon bg-red">↺</span>
+                  Rework
+                </div>
+                <span>2</span>
+              </div>
+
+              <div class="status-row">
+                <div class="status-left">
+                  <span class="status-icon bg-gray">✓</span>
+                  Completed
+                </div>
+                <span>23</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <script>
+        // BAR CHART (REQUEST PIPELINE)
+        new Chart(document.getElementById('stageChart'), {
+          type: 'bar',
+          data: {
+            labels: ['Draft', 'Submitted', 'In Review', 'Approved', 'Rework', 'Completed'],
+            datasets: [{
+              data: [8, 4, 5, 3, 2, 23],
+              borderRadius: 12,
+              backgroundColor: [
+                '#0d6efd', // Draft - Blue
+                '#ffc107', // Submitted - Yellow
+                '#17a2b8', // In Review - Cyan
+                '#28a745', // Approved - Green
+                '#dc3545', // Rework - Red
+                '#6f42c1'  // Completed - Purple
+              ]
+            }]
+          },
+          options: {
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true }
+            }
+          }
+        });
+
+
+        // DONUT (simPRO)
+        new Chart(document.getElementById('syncChart'), {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: [18, 2, 3],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            cutout: '75%',
+            plugins: { legend: { display: false } }
+          }
+        });
+      </script>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ROW 2: WORKFLOW PIPELINE -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="pipeline-row full-width mb-3">
+        <div class="section-header">
+          <h2 class="section-title">Workflow Pipeline</h2>
+          <a href="#" class="section-link">View all requests →</a>
+        </div>
+        <div class="pipeline-stages">
+
+          <div class="stage-card clickable" onclick="openStage('draft')">
+            <div class="stage-top">
+              <span class="stage-label">Draft</span>
+              <span class="stage-count">8</span>
+            </div>
+            <div class="stage-bar">
+              <div class="stage-fill draft" style="width:53%"></div>
+            </div>
+            <div class="stage-items">
+              <div class="stage-item">
+                <span class="item-id">#REQ-041</span>
+                <span class="item-name">Pump Assembly v2</span>
+                <span class="item-owner">SL</span>
+              </div>
+              <div class="stage-item">
+                <span class="item-id">#REQ-040</span>
+                <span class="item-name">Bracket Drawing</span>
+                <span class="item-owner">MD</span>
+              </div>
+              <a href="#" class="stage-more">+6 more</a>
+            </div>
+          </div>
+
+          <div class="stage-arrow">→</div>
+
+          <div class="stage-card clickable" onclick="openStage('submitted')">
+            <div class="stage-top">
+              <span class="stage-label">Submitted</span>
+              <span class="stage-count">4</span>
+            </div>
+            <div class="stage-bar">
+              <div class="stage-fill submitted" style="width:27%"></div>
+            </div>
+            <div class="stage-items">
+              <div class="stage-item">
+                <span class="item-id">#REQ-038</span>
+                <span class="item-name">Pipe Layout Rev C</span>
+                <span class="item-owner">JD</span>
+              </div>
+              <div class="stage-item">
+                <span class="item-id">#REQ-036</span>
+                <span class="item-name">Motor Housing</span>
+                <span class="item-owner">SL</span>
+              </div>
+              <a href="#" class="stage-more">+2 more</a>
+            </div>
+          </div>
+
+          <div class="stage-arrow">→</div>
+
+          <div class="stage-card clickable stuck" onclick="openStage('in-review')">
+            <div class="stage-top">
+              <span class="stage-label">In Review</span>
+              <span class="stage-count">5</span>
+              <span class="stuck-badge">2 Stuck</span>
+            </div>
+            <div class="stage-bar">
+              <div class="stage-fill review" style="width:33%"></div>
+            </div>
+            <div class="stage-items">
+              <div class="stage-item stuck-item">
+                <span class="item-id">#REQ-031 </span>
+                <span class="item-name">Control Panel Layout</span>
+                <span class="item-owner stuck-owner">⏱ 4d</span>
+              </div>
+              <div class="stage-item stuck-item">
+                <span class="item-id">#REQ-029</span>
+                <span class="item-name">Frame Weld Spec</span>
+                <span class="item-owner stuck-owner">⏱ 3d</span>
+              </div>
+              <a href="#" class="stage-more">+3 more</a>
+            </div>
+          </div>
+
+          <div class="stage-arrow">→</div>
+
+          <div class="stage-card clickable" onclick="openStage('approved')">
+            <div class="stage-top">
+              <span class="stage-label">Approved</span>
+              <span class="stage-count">3</span>
+            </div>
+            <div class="stage-bar">
+              <div class="stage-fill approved" style="width:20%"></div>
+            </div>
+            <div class="stage-items">
+              <div class="stage-item">
+                <span class="item-id">#REQ-027</span>
+                <span class="item-name">Gearbox Assembly</span>
+                <span class="item-owner">TK</span>
+              </div>
+              <div class="stage-item">
+                <span class="item-id">#REQ-025</span>
+                <span class="item-name">Cooling System</span>
+                <span class="item-owner">JD</span>
+              </div>
+              <a href="#" class="stage-more">+1 more</a>
+            </div>
+          </div>
+
+          <div class="stage-arrow">→</div>
+
+          <div class="stage-card clickable" onclick="openStage('rework')">
+            <div class="stage-top">
+              <span class="stage-label">Rework</span>
+              <span class="stage-count">3</span>
+            </div>
+            <div class="stage-bar">
+              <div class="stage-fill rework" style="width:13%"></div>
+            </div>
+            <div class="stage-items">
+              <div class="stage-item">
+                <span class="item-id">#REQ-030</span>
+                <span class="item-name">Inlet Pipe Diagram</span>
+                <span class="item-owner">SL</span>
+              </div>
+              <div class="stage-item">
+                <span class="item-id">#REQ-026</span>
+                <span class="item-name">Sensor Mount</span>
+                <span class="item-owner">MD</span>
+              </div>
+
+              <a href="#" class="stage-more">+1 more</a>
+            </div>
+          </div>
+
+          <div class="stage-arrow">→</div>
+
+          <div class="stage-card clickable" onclick="openStage('completed')">
+            <div class="stage-top">
+              <span class="stage-label">Completed</span>
+              <span class="stage-count">23</span>
+            </div>
+            <div class="stage-bar">
+              <div class="stage-fill completed" style="width:100%"></div>
+            </div>
+            <div class="stage-items">
+              <div class="stage-item muted">
+                <span class="item-id">#REQ-024</span>
+                <span class="item-name">Drive Shaft Spec</span>
+                <span class="item-owner">TK</span>
+              </div>
+              <div class="stage-item muted">
+                <span class="item-id">#REQ-023</span>
+                <span class="item-name">Exhaust Cover</span>
+                <span class="item-owner">JD</span>
+              </div>
+              <a href="#" class="stage-more">+21 more</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ROW 3: METRICS STRIP -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="metrics-strip full-width mb-3">
+        <div class="stat-card metric-card clickable" onclick="openModal('metric-total')">
+          <div class="stat-accent-bar"></div>
+          <span class="metric-value">45</span>
+          <span class="metric-label">Total Active Requests</span>
+          <span class="metric-delta positive">↑ 3 this week</span>
+        </div>
+        <div class="stat-card metric-card clickable" onclick="openModal('metric-overdue')">
+          <div class="stat-accent-bar" style="background:#F5A623"></div>
+          <span class="metric-value red">5</span>
+          <span class="metric-label">Overdue</span>
+          <span class="metric-delta negative">↑ 2 from last week</span>
+        </div>
+        <div class="stat-card metric-card clickable" onclick="openModal('metric-avgtime')">
+          <div class="stat-accent-bar" style="background:#4A9EFF"></div>
+          <span class="metric-value">3.2d</span>
+          <span class="metric-label">Avg. Approval Time</span>
+          <span class="metric-delta positive">↓ 0.4d improvement</span>
+        </div>
+        <div class="stat-card metric-card clickable" onclick="openModal('metric-completed')">
+          <div class="stat-accent-bar" style="background:#E74C3C"></div>
+          <span class="metric-value">23</span>
+          <span class="metric-label">Completed (30 days)</span>
+          <span class="metric-delta positive">↑ 5 from prior period</span>
+        </div>
+        <div class="stat-card metric-card clickable" onclick="openModal('metric-sync')">
+          <div class="stat-accent-bar" style="background:#A78BFA"></div>
+          <span class="metric-value orange">3</span>
+          <span class="metric-label">simPRO Sync Failures</span>
+          <span class="metric-delta">Retry available</span>
+        </div>
+      </section>
+      <div class="d-grid dashboard-grid p-0">
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- ROW 4: LEFT COL - Action Required + Recent Activity -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <section class="col-left">
+
+          <!-- ACTION REQUIRED -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Action Required</h3>
+              <span class="panel-badge urgent">5</span>
+            </div>
+            <div class="panel-body">
+              <div class="action-item clickable" onclick="openRequest('REQ-031')">
+                <div class="action-status review">In Review</div>
+                <div class="action-detail">
+                  <span class="action-id">#REQ-031 · P-2031 </span>
+                  <span class="action-name">Control Panel Layout</span>
+                  <span class="action-meta">Waiting on: <strong>Mike D.</strong> · 4 days</span>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn-badge approve"
+                    onclick="event.stopPropagation(); doApprove('REQ-031')">Approve</button>
+                  <button class="btn-badge rework"
+                    onclick="event.stopPropagation(); doRework('REQ-031')">Rework</button>
+                </div>
+              </div>
+              <div class="action-item clickable" onclick="openRequest('REQ-029')">
+                <div class="action-status review">In Review</div>
+                <div class="action-detail">
+                  <span class="action-id">#REQ-029 · P-2031 </span>
+                  <span class="action-name">Frame Weld Specification</span>
+                  <span class="action-meta">Waiting on: <strong>You</strong> · 3 days</span>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn-badge approve"
+                    onclick="event.stopPropagation(); doApprove('REQ-029')">Approve</button>
+                  <button class="btn-badge rework"
+                    onclick="event.stopPropagation(); doRework('REQ-029')">Rework</button>
+                </div>
+              </div>
+              <div class="action-item clickable" onclick="openRequest('REQ-034')">
+                <div class="action-status submitted">Submitted</div>
+                <div class="action-detail">
+                  <span class="action-id">#REQ-034 · P-2031 </span>
+                  <span class="action-name">Safety Valve Drawing Rev 2</span>
+                  <span class="action-meta">Submitted by: <strong>Tom K.</strong> · Today</span>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn-badge approve"
+                    onclick="event.stopPropagation(); doApprove('REQ-034')">Approve</button>
+                  <button class="btn-badge rework"
+                    onclick="event.stopPropagation(); doRework('REQ-034')">Rework</button>
+                </div>
+              </div>
+              <div class="action-item clickable" onclick="openRequest('REQ-030')">
+                <div class="action-status rework-status">Rework</div>
+                <div class="action-detail">
+                  <span class="action-id">#REQ-030 · P-2031 </span>
+                  <span class="action-name">Inlet Pipe Diagram</span>
+                  <span class="action-meta">Returned to: <strong>Sarah L.</strong> · Yesterday</span>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn-badge view" onclick="event.stopPropagation(); openRequest('REQ-030')">View</button>
+                </div>
+              </div>
+              <div class="action-item clickable" onclick="openRequest('REQ-034')">
+                <div class="action-status submitted">Submitted</div>
+                <div class="action-detail">
+                  <span class="action-id">#REQ-034 · P-2031 </span>
+                  <span class="action-name">Safety Valve Drawing Rev 2</span>
+                  <span class="action-meta">Submitted by: <strong>Tom K.</strong> · Today</span>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn-badge approve"
+                    onclick="event.stopPropagation(); doApprove('REQ-034')">Approve</button>
+                  <button class="btn-badge rework"
+                    onclick="event.stopPropagation(); doRework('REQ-034')">Rework</button>
+                </div>
+              </div>
+              <div class="action-item clickable" onclick="openRequest('REQ-038')">
+                <div class="action-status draft-status">Draft</div>
+                <div class="action-detail">
+                  <span class="action-id">#REQ-038 · P-2031 </span>
+                  <span class="action-name">Pipe Layout Rev C</span>
+                  <span class="action-meta">Created by: <strong>James D.</strong> · 2 days ago</span>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn-badge view"
+                    onclick="event.stopPropagation(); openRequest('REQ-038')">Submit</button>
+                </div>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              <a href="#" class="panel-link">View all pending actions →</a>
+            </div>
+          </div>
+
+          <!-- RECENT ACTIVITY -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Recent Activity</h3>
+            </div>
+            <div class="panel-body">
+              <div class="activity-feed">
+                <div class="activity-item clickable" onclick="openRequest('REQ-027')">
+                  <div class="activity-avatar green">TK</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>Tom K.</strong> approved <a href="#">#REQ-027 Gearbox
+                        Assembly</a></span>
+                    <span class="activity-time">10 min ago</span>
+                  </div>
+                  <span class="activity-tag approved-tag">Approved</span>
+                </div>
+                <div class="activity-item clickable" onclick="openRequest('REQ-030')">
+                  <div class="activity-avatar orange">MD</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>Mike D.</strong> sent <a href="#">#REQ-030 Inlet Pipe</a> for
+                      rework</span>
+                    <span class="activity-time">1 hr ago</span>
+                  </div>
+                  <span class="activity-tag rework-tag">Rework</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-avatar blue">SL</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>Sarah L.</strong> uploaded Rev 3 to <a href="#">#REQ-041 Pump
+                        Assembly</a></span>
+                    <span class="activity-time">2 hr ago</span>
+                  </div>
+                  <span class="activity-tag draft-tag">Draft</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-avatar purple">JD</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>James D.</strong> created <a href="#">#REQ-041 Pump Assembly
+                        v2</a></span>
+                    <span class="activity-time">3 hr ago</span>
+                  </div>
+                  <span class="activity-tag draft-tag">New</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-avatar green">SIM</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>simPRO</strong> synced part #P-2041 for <a
+                        href="#">#REQ-025</a></span>
+                    <span class="activity-time">5 hr ago</span>
+                  </div>
+                  <span class="activity-tag sync-tag">Synced</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-avatar blue">SL</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>Sarah L.</strong> uploaded Rev 3 to <a href="#">#REQ-041 Pump
+                        Assembly</a></span>
+                    <span class="activity-time">2 hr ago</span>
+                  </div>
+                  <span class="activity-tag draft-tag">Draft</span>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-avatar red">SIM</div>
+                  <div class="activity-body">
+                    <span class="activity-text"><strong>simPRO</strong> sync FAILED for part #P-2039 on <a
+                        href="#">#REQ-023</a></span>
+                    <span class="activity-time">6 hr ago</span>
+                  </div>
+                  <span class="activity-tag failed-tag">Failed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section> 
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- ROW 4: RIGHT COL - simPRO Sync + Team Load -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <section class="col-right">
+
+          <!-- SIMPRO SYNC STATUS -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">simPRO Sync Status</h3>
+              <a href="#" class="panel-link-sm">View all →</a>
+            </div>
+            <div class="panel-body pt-0">
+              <div class="sync-summary">
+                <div class="sync-stat">
+                  <span class="sync-num green">18</span>
+                  <span class="sync-lbl">Synced</span>
+                </div>
+                <div class="sync-stat">
+                  <span class="sync-num orange">2</span>
+                  <span class="sync-lbl">Pending</span>
+                </div>
+                <div class="sync-stat">
+                  <span class="sync-num red">3</span>
+                  <span class="sync-lbl">Failed</span>
+                </div>
+              </div>
+
+              <div class="sync-list">
+                <div class="sync-row clickable" onclick="openModal('sync-REQ-023')">
+                  <div class="sync-info">
+                    <span class="sync-req">#REQ-023</span>
+                    <span class="sync-part">Part #P-2039 · Exhaust Cover</span>
+                  </div>
+                  <div class="sync-status-col">
+                    <span class="sync-badge failed">Failed</span>
+                    <button class="btn-retry" onclick="event.stopPropagation(); retrySync('REQ-023')">Retry</button>
+                    <a href="#" class="btn-simpro" onclick="event.stopPropagation()">View in simPRO ↗</a>
+                  </div>
+                </div>
+                <div class="sync-row clickable" onclick="openModal('sync-REQ-021')">
+                  <div class="sync-info">
+                    <span class="sync-req">#REQ-021</span>
+                    <span class="sync-part">Part #P-2037 · Control Arm</span>
+                  </div>
+                  <div class="sync-status-col">
+                    <span class="sync-badge failed">Failed</span>
+                    <button class="btn-retry" onclick="event.stopPropagation(); retrySync('REQ-021')">Retry</button>
+                    <a href="#" class="btn-simpro" onclick="event.stopPropagation()">View in simPRO ↗</a>
+                  </div>
+                </div>
+                <div class="sync-row clickable" onclick="openModal('sync-REQ-019')">
+                  <div class="sync-info">
+                    <span class="sync-req">#REQ-019</span>
+                    <span class="sync-part">Part #P-2035 · Mount Bracket</span>
+                  </div>
+                  <div class="sync-status-col">
+                    <span class="sync-badge failed">Failed</span>
+                    <button class="btn-retry" onclick="event.stopPropagation(); retrySync('REQ-019')">Retry</button>
+                    <a href="#" class="btn-simpro" onclick="event.stopPropagation()">View in simPRO ↗</a>
+                  </div>
+                </div>
+                <div class="sync-row">
+                  <div class="sync-info">
+                    <span class="sync-req">#REQ-038</span>
+                    <span class="sync-part">Part #P-2043 · Pipe Layout</span>
+                  </div>
+                  <div class="sync-status-col">
+                    <span class="sync-badge pending">Pending</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- TEAM WORKLOAD -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Team Workload</h3>
+              <a href="#" class="panel-link-sm">Manage team →</a>
+            </div>
+            <div class="panel-body">
+              <div class="team-list">
+                <div class="team-member clickable" onclick="openModal('team-JD')">
+                  <div class="member-avatar purple">JD</div>
+                  <div class="member-info">
+                    <span class="member-name">James Doyle</span>
+                    <span class="member-role">Lead Engineer</span>
+                  </div>
+                  <div class="member-load">
+                    <div class="load-bar">
+                      <div class="load-fill" style="width:72%"></div>
+                    </div>
+                    <span class="load-count">6 active</span>
+                  </div>
+                </div>
+                <div class="team-member clickable" onclick="openModal('team-SL')">
+                  <div class="member-avatar blue">SL</div>
+                  <div class="member-info">
+                    <span class="member-name">Sarah Lennox</span>
+                    <span class="member-role">Designer</span>
+                  </div>
+                  <div class="member-load">
+                    <div class="load-bar">
+                      <div class="load-fill high" style="width:90%"></div>
+                    </div>
+                    <span class="load-count load-high">9 active</span>
+                  </div>
+                </div>
+                <div class="team-member clickable" onclick="openModal('team-MD')">
+                  <div class="member-avatar orange">MD</div>
+                  <div class="member-info">
+                    <span class="member-name">Mike Donovan</span>
+                    <span class="member-role">Reviewer</span>
+                  </div>
+                  <div class="member-load">
+                    <div class="load-bar">
+                      <div class="load-fill" style="width:50%"></div>
+                    </div>
+                    <span class="load-count">4 active</span>
+                  </div>
+                </div>
+                <div class="team-member clickable" onclick="openModal('team-TK')">
+                  <div class="member-avatar green">TK</div>
+                  <div class="member-info">
+                    <span class="member-name">Tom Kovacs</span>
+                    <span class="member-role">Approver</span>
+                  </div>
+                  <div class="member-load">
+                    <div class="load-bar">
+                      <div class="load-fill" style="width:35%"></div>
+                    </div>
+                    <span class="load-count">3 active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UPCOMING DEADLINES -->
+          <div class="panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Upcoming Deadlines</h3>
+            </div>
+            <div class="panel-body">
+              <div class="deadline-list">
+                <div class="deadline-item clickable overdue" onclick="openRequest('REQ-031')">
+                  <div class="deadline-date overdue-date">
+                    <span>Apr</span>
+                    <strong>28</strong>
+                  </div>
+                  <div class="deadline-info">
+                    <span class="deadline-id">#REQ-031 Control Panel Layout</span>
+                    <span class="deadline-status">⏱ Overdue by 3 days</span>
+                  </div>
+                </div>
+                <div class="deadline-item clickable" onclick="openRequest('REQ-029')">
+                  <div class="deadline-date today-date">
+                    <span>May</span>
+                    <strong>01</strong>
+                  </div>
+                  <div class="deadline-info">
+                    <span class="deadline-id">#REQ-029 Frame Weld Spec</span>
+                    <span class="deadline-status today-badge">Due Today</span>
+                  </div>
+                </div>
+                <div class="deadline-item clickable" onclick="openRequest('REQ-038')">
+                  <div class="deadline-date">
+                    <span>May</span>
+                    <strong>03</strong>
+                  </div>
+                  <div class="deadline-info">
+                    <span class="deadline-id">#REQ-038 Pipe Layout Rev C</span>
+                    <span class="deadline-status">2 days away</span>
+                  </div>
+                </div>
+                <div class="deadline-item clickable" onclick="openRequest('REQ-041')">
+                  <div class="deadline-date">
+                    <span>May</span>
+                    <strong>07</strong>
+                  </div>
+                  <div class="deadline-info">
+                    <span class="deadline-id">#REQ-041 Pump Assembly v2</span>
+                    <span class="deadline-status">6 days away</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ROW 5: ALL REQUESTS TABLE -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="full-width mt-2">
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">All Requests</h3>
+            <div class="table-controls">
+              <div class="filter-group">
+                <select class="filter-select" onchange="filterTable(this.value)">
+                  <option>All Statuses</option>
+                  <option>Draft</option>
+                  <option>Submitted</option>
+                  <option>In Review</option>
+                  <option>Approved</option>
+                  <option>Rework</option>
+                  <option>Completed</option>
+                </select>
+                <select class="filter-select">
+                  <option>All Assignees</option>
+                  <option>James Doyle</option>
+                  <option>Sarah Lennox</option>
+                  <option>Mike Donovan</option>
+                  <option>Tom Kovacs</option>
+                </select>
+              </div>
+              <button class="btn-primary small">+ New Request</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Assignee</th>
+                  <th>Part Number</th>
+                  <th>simPRO</th>
+                  <th>Due Date</th>
+                  <th>Last Updated</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-row clickable overdue-row" onclick="openRequest('REQ-031')">
+                  <td class="req-id">#REQ-031</td>
+                  <td class="req-title">Control Panel Layout</td>
+                  <td><span class="status-pill review">In Review</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av orange">MD</span> Mike D.</div>
+                  </td>
+                  <td class="part-num">P-2031</td>
+                  <td><span class="sync-pill synced">Synced</span></td>
+                  <td class="due-date overdue-date-cell">Apr 28 ⚠️</td>
+                  <td class="updated">2 hr ago</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-031')">Open</button>
+                    <button class="btn-xs approve-xs"
+                      onclick="event.stopPropagation(); doApprove('REQ-031')">Approve</button>
+                  </td>
+                </tr>
+                <tr class="table-row clickable overdue-row" onclick="openRequest('REQ-029')">
+                  <td class="req-id">#REQ-029</td>
+                  <td class="req-title">Frame Weld Specification</td>
+                  <td><span class="status-pill review">In Review</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av purple">JD</span> James D.</div>
+                  </td>
+                  <td class="part-num">P-2029</td>
+                  <td><span class="sync-pill pending-sync">Pending</span></td>
+                  <td class="due-date overdue-date-cell">May 01 ⚠️</td>
+                  <td class="updated">1 hr ago</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-029')">Open</button>
+                    <button class="btn-xs approve-xs"
+                      onclick="event.stopPropagation(); doApprove('REQ-029')">Approve</button>
+                  </td>
+                </tr>
+                <tr class="table-row clickable" onclick="openRequest('REQ-041')">
+                  <td class="req-id">#REQ-041</td>
+                  <td class="req-title">Pump Assembly v2</td>
+                  <td><span class="status-pill draft">Draft</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av blue">SL</span> Sarah L.</div>
+                  </td>
+                  <td class="part-num">—</td>
+                  <td><span class="sync-pill no-sync">Not Set</span></td>
+                  <td class="due-date">May 07</td>
+                  <td class="updated">2 hr ago</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-041')">Open</button>
+                  </td>
+                </tr>
+                <tr class="table-row clickable" onclick="openRequest('REQ-038')">
+                  <td class="req-id">#REQ-038</td>
+                  <td class="req-title">Pipe Layout Rev C</td>
+                  <td><span class="status-pill submitted">Submitted</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av purple">JD</span> James D.</div>
+                  </td>
+                  <td class="part-num">P-2043</td>
+                  <td><span class="sync-pill pending-sync">Pending</span></td>
+                  <td class="due-date">May 03</td>
+                  <td class="updated">Yesterday</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-038')">Open</button>
+                    <button class="btn-xs approve-xs"
+                      onclick="event.stopPropagation(); doApprove('REQ-038')">Approve</button>
+                  </td>
+                </tr>
+                <tr class="table-row clickable" onclick="openRequest('REQ-036')">
+                  <td class="req-id">#REQ-036</td>
+                  <td class="req-title">Motor Housing Drawing</td>
+                  <td><span class="status-pill submitted">Submitted</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av blue">SL</span> Sarah L.</div>
+                  </td>
+                  <td class="part-num">P-2042</td>
+                  <td><span class="sync-pill pending-sync">Pending</span></td>
+                  <td class="due-date">May 05</td>
+                  <td class="updated">Yesterday</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-036')">Open</button>
+                  </td>
+                </tr>
+                <tr class="table-row clickable" onclick="openRequest('REQ-030')">
+                  <td class="req-id">#REQ-030</td>
+                  <td class="req-title">Inlet Pipe Diagram</td>
+                  <td><span class="status-pill rework">Rework</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av blue">SL</span> Sarah L.</div>
+                  </td>
+                  <td class="part-num">P-2030</td>
+                  <td><span class="sync-pill failed-sync">Failed</span></td>
+                  <td class="due-date">Apr 29</td>
+                  <td class="updated">Yesterday</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-030')">Open</button>
+                    <button class="btn-xs retry-xs" onclick="event.stopPropagation(); retrySync('REQ-030')">Retry
+                      Sync</button>
+                  </td>
+                </tr>
+                <tr class="table-row clickable" onclick="openRequest('REQ-027')">
+                  <td class="req-id">#REQ-027</td>
+                  <td class="req-title">Gearbox Assembly</td>
+                  <td><span class="status-pill approved-pill">Approved</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av green">TK</span> Tom K.</div>
+                  </td>
+                  <td class="part-num">P-2027</td>
+                  <td><span class="sync-pill synced">Synced</span></td>
+                  <td class="due-date">Apr 30</td>
+                  <td class="updated">10 min ago</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-027')">Open</button>
+                    <a href="#" class="btn-xs simpro-xs" onclick="event.stopPropagation()">simPRO ↗</a>
+                  </td>
+                </tr>
+                <tr class="table-row clickable muted-row" onclick="openRequest('REQ-024')">
+                  <td class="req-id">#REQ-024</td>
+                  <td class="req-title">Drive Shaft Spec</td>
+                  <td><span class="status-pill completed-pill">Completed</span></td>
+                  <td>
+                    <div class="assignee-chip"><span class="chip-av green">TK</span> Tom K.</div>
+                  </td>
+                  <td class="part-num">P-2024</td>
+                  <td><span class="sync-pill synced">Synced</span></td>
+                  <td class="due-date">Apr 25</td>
+                  <td class="updated">Apr 25</td>
+                  <td class="actions-cell">
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-024')">View</button>
+                    <a href="#" class="btn-xs simpro-xs" onclick="event.stopPropagation()">simPRO ↗</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <span class="table-count">Showing 8 of 45 requests</span>
+            <div class="pagination">
+              <button class="page-btn disabled">← Prev</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">Next →</button>
+            </div>
+          </div>
+        </div>
+      </section>  
+    </div><!-- /dashboard-grid -->
+  </main> 
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- REQUEST DETAIL MODAL -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="requestModal" onclick="closeModal()">
+    <div class="modal-panel" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-req-id" id="modalReqId">#REQ-031</span>
+          <h2 class="modal-title" id="modalTitle">Control Panel Layout</h2>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal-status-bar">
+        <div class="workflow-steps">
+          <div class="wf-step done">Draft</div>
+          <div class="wf-arrow">→</div>
+          <div class="wf-step done">Submitted</div>
+          <div class="wf-arrow">→</div>
+          <div class="wf-step active">In Review</div>
+          <div class="wf-arrow">→</div>
+          <div class="wf-step">Approved</div>
+          <div class="wf-arrow">→</div>
+          <div class="wf-step">Completed</div>
+        </div>
+      </div>
+
+      <div class="m-body modal-body">
+        <div class="modal-left">
+
+          <div class="modal-section">
+            <h4>Drawing / Files</h4>
+            <div class="file-list">
+              <div class="file-row">
+                <div class="file-icon">📄</div>
+                <div class="file-info">
+                  <span class="file-name">ControlPanel_Layout_v3.pdf</span>
+                  <span class="file-meta">Rev 3 · Uploaded May 01 · 2.4 MB</span>
+                </div>
+                <div class="file-actions">
+                  <button class="btn-file">View</button>
+                  <button class="btn-file">Download</button>
+                </div>
+              </div>
+              <div class="file-row">
+                <div class="file-icon">📄</div>
+                <div class="file-info">
+                  <span class="file-name">ControlPanel_Layout_v2.pdf</span>
+                  <span class="file-meta">Rev 2 · Uploaded Apr 28 · 2.1 MB</span>
+                </div>
+                <div class="file-actions">
+                  <button class="btn-file">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-section">
+            <h4>Comments</h4>
+            <div class="comment-list">
+              <div class="comment">
+                <div class="comment-avatar orange">MD</div>
+                <div class="comment-body">
+                  <span class="comment-author">Mike Donovan <span class="comment-time">Apr 29 10:22am</span></span>
+                  <p>Dimensions on Section C don't match spec. Please revise before approval.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="comment-avatar blue">SL</div>
+                <div class="comment-body">
+                  <span class="comment-author">Sarah Lennox <span class="comment-time">May 01 8:45am</span></span>
+                  <p>Updated Section C in Rev 3. Please re-review.</p>
+                </div>
+              </div>
+            </div>
+            <div class="comment-input-row">
+              <div class="comment-avatar purple">JD</div>
+              <input class="comment-input" type="text" placeholder="Add a comment…" />
+              <button class="btn-sm-blue">Send</button>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-right">
+
+          <div class="modal-meta-card">
+            <div class="meta-row">
+              <span class="meta-key">Status</span>
+              <span class="meta-val"><span class="status-pill review">In Review</span></span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Assignee</span>
+              <span class="meta-val">
+                <div class="assignee-chip"><span class="chip-av orange">MD</span> Mike Donovan</div>
+              </span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Created by</span>
+              <span class="meta-val">Sarah Lennox</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Due Date</span>
+              <span class="meta-val overdue-date-cell">Apr 28, 2026 ⚠️</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Part Number</span>
+              <span class="meta-val mono">P-2031</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">simPRO Status</span>
+              <span class="meta-val"><span class="sync-pill synced">Synced</span></span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">simPRO Link</span>
+              <span class="meta-val"><a href="#" class="ext-link">View in simPRO ↗</a></span>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn-action approve-btn" onclick="doApprove('REQ-031')">✓ Approve</button>
+            <button class="btn-action rework-btn" onclick="doRework('REQ-031')">↩ Send for Rework</button>
+            <button class="btn-action neutral-btn">← Return to Draft</button>
+          </div>
+
+          <div class="modal-section">
+            <h4>Revision History</h4>
+            <div class="revision-list">
+              <div class="rev-row active-rev">
+                <span class="rev-ver">Rev 3</span>
+                <span class="rev-info">Uploaded May 01 by Sarah L.</span>
+                <span class="rev-current">Current</span>
+              </div>
+              <div class="rev-row">
+                <span class="rev-ver">Rev 2</span>
+                <span class="rev-info">Uploaded Apr 28 by Sarah L.</span>
+                <button class="btn-xs">View</button>
+              </div>
+              <div class="rev-row">
+                <span class="rev-ver">Rev 1</span>
+                <span class="rev-info">Uploaded Apr 25 by Sarah L.</span>
+                <button class="btn-xs">View</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NEW REQUEST MODAL -->
+  <div class="modal-overlay" id="newRequestModal" onclick="closeNewModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+
+      <div class="modal-header p-0 align-items-center m-0">
+        <h5>Create New Request</h5>
+        <button class="modal-close mb-2" onclick="closeNewModal()">✕</button>
+      </div>
+
+      <div class="pt-3">
+        <div class="modal-form-group">
+          <label>Request Title</label>
+          <input class="modal-input" type="text" placeholder="e.g. Pump Assembly Drawing">
+        </div>
+        <div class="modal-form-group">
+          <label>Description</label>
+          <textarea class="modal-textarea" placeholder="Describe the drawing requirements…"></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="modal-form-group">
+            <label>Assignee</label>
+            <select class="modal-select">
+              <option>Jordan M.</option>
+              <option>Sam K.</option>
+              <option>Priya R.</option>
+              <option>Sarah Lennox</option>
+            </select>
+          </div>
+          <div class="modal-form-group">
+            <label>Priority</label>
+            <select class="modal-select">
+              <option>High</option>
+              <option selected>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="modal-form-group">
+            <label>Category</label>
+            <select class="modal-select">
+              <option>Electrical</option>
+              <option>Mechanical</option>
+              <option>Structural</option>
+              <option>Piping</option>
+            </select>
+          </div>
+          <div class="modal-form-group">
+            <label>Due Date</label>
+            <input class="modal-input" type="date">
+          </div>
+        </div>
+        <div class="modal-form-group">
+          <label>Part Number (optional)</label>
+          <input class="modal-input" type="text" placeholder="e.g. P-2045" style="font-family:var(--mono);">
+        </div>
+        <div class="modal-form-group">
+          <label>Attach Drawing File</label>
+          <div class="upload-zone" style="margin-top:0;">
+            <div class="uz-icon"><i class="fa fa-cloud-upload"></i></div>
+            <p>Drop PDF, DWG, DXF or STEP files here</p>
+          </div>
+        </div>
+        <div class="modal-footer-btns">
+          <button class="btn-ghost-sm" onclick="closeModal('newRequestModal')">Cancel</button>
+          <button class="btn-ghost-sm" style="color:var(--theme);border-color:rgba(8,93,106,.3);"
+            onclick="closeModal('newRequestModal');toast('Saved as draft','info')">Save Draft</button>
+          <button class="btn-primary-sm"
+            onclick="closeModal('newRequestModal');toast('✓ Request submitted','success')">Submit Request</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+  <div id="sidebar-overlay"></div>
+  <script src="assets/script.js"></script>
+  <script>
+    let toastTimer;
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show ' + type;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+    }
+
+    function openRequest(id) {
+      document.getElementById('modalReqId').textContent = '#' + id;
+      document.getElementById('requestModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('requestModal').classList.remove('open');
+    }
+
+    function openModal(key) {
+      openRequest(key);
+    }
+
+    function openStage(stage) {
+      showToast('Filtering by stage: ' + stage.replace(/-/g, ' '), 'info');
+    }
+
+    function doApprove(id) {
+      showToast('✓ ' + id + ' approved successfully', 'success');
+      closeModal();
+    }
+
+    function doRework(id) {
+      showToast('↩ ' + id + ' sent for rework', 'warning');
+      closeModal();
+    }
+
+    function retrySync(id) {
+      showToast('🔄 Retrying simPRO sync for ' + id + '…', 'info');
+    }
+
+    function filterTable(val) {
+      showToast('Filtering: ' + val, 'info');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+  <script>
+    document.getElementById('new-req-btn').addEventListener('click', function () {
+      document.getElementById('newRequestModal').classList.add('open');
+    });
+    function closeNewModal() {
+      document.getElementById('newRequestModal').classList.remove('open');
+    }
+    document.querySelectorAll('.btn-primary.small').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('newRequestModal').classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

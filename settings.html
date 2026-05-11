@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Manager — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="12" height="12" rx="3" fill="#47b8c9" />
+            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+          </svg>
+        </div>
+        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa fa-home"></i>
+        <span>Dashboard</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="requests.html" class="nav-item">
+        <i class="fa fa-address-book"></i>
+        <span>Requests</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="files.html" class="nav-item">
+        <i class="fa fa-file"></i>
+        <span>Drawings</span>
+      </a>
+      <a href="approvals.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>Approvals</span>
+        <span class="nav-badge urgent">5</span>
+      </a>
+      <a href="simpro.html" class="nav-item">
+        <i class="fa fa-refresh"></i>
+        <span>simPRO Sync</span>
+      </a>
+      <a href="parts.html" class="nav-item">
+          <i class="fa fa-hourglass-half"></i>
+          <span>Parts</span>
+      </a>
+      <a href="users.html" class="nav-item">
+        <i class="fa fa-users"></i>
+        <span>Team</span>
+      </a>
+
+      <a href="role.html" class="nav-item">
+        <i class="fa fa-user-secret"></i>
+        <span>Role</span>
+      </a>
+      <div class="nav-divider"></div>
+
+      <a href="reports.html" class="nav-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item active">
+        <i class="fa fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div class="user-info">
+        <span class="user-name">James Doyle</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <h1 class="page-title">Settings</h1>
+        <span class="page-subtitle">Manage your workspace configuration</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-ghost" onclick="showToast('Changes discarded', 'warning')">Discard Changes</button>
+        <button class="btn-primary" onclick="showToast('✓ Settings saved', 'success')">Save Changes</button>
+      </div>
+    </header>
+
+    <div class="content-body" style="padding: 20px 22px 80px;min-height:85vh;">
+      <div class="settings-layout">
+
+        <!-- ── SETTINGS NAV ── -->
+        <div class="settings-nav">
+          <div class="settings-nav-head">Configuration</div>
+          <div class="settings-nav-list">
+            <a class="settings-nav-item active" onclick="switchTab('general', this)">
+              <i class="fa fa-sliders"></i> General
+            </a>
+            <a class="settings-nav-item" onclick="switchTab('notifications', this)">
+              <i class="fa fa-bell"></i> Notifications
+            </a>
+            <a class="settings-nav-item" onclick="switchTab('simpro', this)">
+              <i class="fa fa-refresh"></i> simPRO Sync
+            </a>
+            <div class="settings-nav-divider"></div>
+            <a class="settings-nav-item" onclick="switchTab('team', this)">
+              <i class="fa fa-users"></i> Team Members
+            </a>
+            <a class="settings-nav-item" onclick="switchTab('drawings', this)">
+              <i class="fa fa-file"></i> Drawing Defaults
+            </a>
+            <div class="settings-nav-divider"></div>
+            <a class="settings-nav-item" onclick="switchTab('security', this)">
+              <i class="fa fa-lock"></i> Security
+            </a>
+            <a class="settings-nav-item" onclick="switchTab('appearance', this)">
+              <i class="fa fa-paint-brush"></i> Appearance
+            </a>
+          </div>
+        </div>
+
+        <!-- ── SETTINGS CONTENT ── -->
+        <div>
+
+          <!-- ════════════════════════════
+               GENERAL
+          ════════════════════════════ -->
+          <div class="settings-section active" id="tab-general">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Organisation Details</div>
+                  <div class="settings-panel-sub">Basic information about your workspace</div>
+                </div>
+              </div>
+              <div class="settings-panel-body">
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Company Name</div>
+                    <div class="field-hint">Displayed in reports and exports</div>
+                  </div>
+                  <input class="field-input" type="text" value="Exeloo Limited">
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Company Email</div>
+                    <div class="field-hint">Primary contact for system alerts</div>
+                  </div>
+                  <input class="field-input" type="email" value="sales@exeloo.com">
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Timezone</div>
+                    <div class="field-hint">Used for due dates and timestamps</div>
+                  </div>
+                  <select class="field-select">
+                    <option selected>Chatham Islands Territory, New Zealand (GMT+12:45)
+                    </option>
+                    <option>Australia/Sydney (AEDT, UTC+11)</option>
+                    <option>Australia/Melbourne (AEDT, UTC+11)</option>
+                    <option>Australia/Perth (AWST, UTC+8)</option>
+                    <option>UTC</option>
+                  </select>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Date Format</div>
+                    <div class="field-hint">How dates are displayed across the app</div>
+                  </div>
+                  <select class="field-select">
+                    <option selected>DD/MM/YYYY</option>
+                    <option>MM/DD/YYYY</option>
+                    <option>YYYY-MM-DD</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Workflow Preferences</div>
+                  <div class="settings-panel-sub">Control how requests move through the system</div>
+                </div>
+              </div>
+              <div class="settings-panel-body pt-0">
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Require approval before simPRO sync</div>
+                    <div class="toggle-desc">Drawings must reach "Approved" status before part numbers are pushed</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Auto-assign requests by workload</div>
+                    <div class="toggle-desc">New requests are distributed to the team member with the fewest open items
+                    </div>
+                  </div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Require comment when sending for rework</div>
+                    <div class="toggle-desc">Reviewers must leave a note explaining the reason for rework</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Allow requestors to cancel submissions</div>
+                    <div class="toggle-desc">Submitters can retract a request while it is still in "Submitted" stage
+                    </div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="field-row" style="margin-top:10px;">
+                  <div>
+                    <div class="field-label">Overdue threshold</div>
+                    <div class="field-hint">Flag a request as overdue after this many days without progress</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <input class="field-input" type="number" value="3" style="max-width:80px;">
+                    <span style="font-size:12.5px;color:var(--text-secondary);">days</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /tab-general -->
+
+
+          <!-- ════════════════════════════
+               NOTIFICATIONS
+          ════════════════════════════ -->
+          <div class="settings-section" id="tab-notifications">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Email Notifications</div>
+                  <div class="settings-panel-sub">Choose which events trigger email alerts</div>
+                </div>
+              </div>
+              <div class="settings-panel-body">
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">New request submitted</div>
+                    <div class="toggle-desc">Notify admins when a new drawing request is created</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Request assigned to me</div>
+                    <div class="toggle-desc">Notify a team member when a request is assigned to them</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Approval required</div>
+                    <div class="toggle-desc">Remind approvers when a request is sitting in their queue</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Request sent for rework</div>
+                    <div class="toggle-desc">Notify the original submitter when a drawing is returned</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Request overdue</div>
+                    <div class="toggle-desc">Daily digest of overdue items sent to admins</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">simPRO sync failure</div>
+                    <div class="toggle-desc">Immediate alert when a part number fails to push</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Weekly summary report</div>
+                    <div class="toggle-desc">Send a performance digest every Monday morning</div>
+                  </div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Notification Recipients</div>
+                  <div class="settings-panel-sub">Additional email addresses to CC on system alerts</div>
+                </div>
+              </div>
+              <div class="settings-panel-body pt-0">
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">CC Emails</div>
+                    <div class="field-hint">Comma-separated list of addresses to include</div>
+                  </div>
+                  <textarea class="field-textarea"
+                    placeholder="e.g. sales@exeloo.com.au, sales@exeloo.com">sales@exeloo.com.au</textarea>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Digest frequency</div>
+                    <div class="field-hint">How often to send overdue summaries</div>
+                  </div>
+                  <select class="field-select">
+                    <option>Daily at 8:00 AM</option>
+                    <option selected>Daily at 7:00 AM</option>
+                    <option>Twice daily</option>
+                    <option>Weekly (Monday)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /tab-notifications -->
+
+
+          <!-- ════════════════════════════
+               SIMPRO SYNC
+          ════════════════════════════ -->
+          <div class="settings-section" id="tab-simpro">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">simPRO Connection</div>
+                  <div class="settings-panel-sub">API credentials and sync configuration</div>
+                </div>
+                <span class="pill pill-success">● Connected</span>
+              </div>
+              <div class="settings-panel-body">
+                <div class="conn-status">
+                  <span class="conn-dot connected"></span>
+                  <div>
+                    <div class="conn-text">Connected to simPRO</div>
+                    <div class="conn-sub">Last successful sync: Today at 06:30 AM — 18 records pushed</div>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">API Base URL</div>
+                    <div class="field-hint">Your simPRO instance URL</div>
+                  </div>
+                  <input class="field-input mono-input" type="text" value="https://exeloo.simpro.com.au/api/v1.0">
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">API Key</div>
+                    <div class="field-hint">Found under simPRO → Settings → API</div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <input class="field-input mono-input" type="password" value="sk_live_••••••••••••••••••••••••"
+                      style="flex:1;">
+                    <button class="btn-ghost" onclick="showToast('API key revealed', 'info')">Show</button>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Company ID</div>
+                    <div class="field-hint">Your simPRO company identifier</div>
+                  </div>
+                  <input class="field-input mono-input" type="text" value="0" style="max-width:120px;">
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Sync Frequency</div>
+                    <div class="field-hint">How often to push approved drawings</div>
+                  </div>
+                  <select class="field-select">
+                    <option>Every 15 minutes</option>
+                    <option selected>Every 30 minutes</option>
+                    <option>Every hour</option>
+                    <option>Manual only</option>
+                  </select>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Auto-retry on failure</div>
+                    <div class="toggle-desc">Automatically attempt to re-push failed records up to 3 times</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Sync in test mode</div>
+                    <div class="toggle-desc">Validate records without writing to simPRO (sandbox mode)</div>
+                  </div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div style="margin-top:16px;display:flex;gap:10px;">
+                  <button class="btn-primary" onclick="showToast('🔄 Test connection running…', 'info')">Test
+                    Connection</button>
+                  <button class="btn-ghost" onclick="showToast('🔄 Manual sync triggered', 'info')">Sync Now</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Sync Log</div>
+                  <div class="settings-panel-sub">Recent push history</div>
+                </div>
+              </div>
+              <div class="settings-panel-body" style="padding:0;">
+                <table style="width:100%;border-collapse:collapse;">
+                  <thead>
+                    <tr>
+                      <th
+                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
+                        Time</th>
+                      <th
+                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
+                        Records</th>
+                      <th
+                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
+                        Result</th>
+                      <th
+                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
+                        Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);border-bottom:1px solid var(--border);">
+                        Today 06:30</td>
+                      <td style="padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);">18</td>
+                      <td style="padding:11px 16px;border-bottom:1px solid var(--border);"><span
+                          class="pill pill-success">Success</span></td>
+                      <td
+                        style="padding:11px 16px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid var(--border);">
+                        All records pushed</td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);border-bottom:1px solid var(--border);">
+                        Today 06:00</td>
+                      <td style="padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);">3</td>
+                      <td style="padding:11px 16px;border-bottom:1px solid var(--border);"><span
+                          class="pill pill-failed">Failed</span></td>
+                      <td
+                        style="padding:11px 16px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid var(--border);">
+                        P-2031, P-2028, P-2019 — timeout</td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);border-bottom:1px solid var(--border);">
+                        Yesterday 22:30</td>
+                      <td style="padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);">5</td>
+                      <td style="padding:11px 16px;border-bottom:1px solid var(--border);"><span
+                          class="pill pill-success">Success</span></td>
+                      <td
+                        style="padding:11px 16px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid var(--border);">
+                        All records pushed</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);">
+                        May 05 06:30</td>
+                      <td style="padding:11px 16px;font-size:12.5px;">12</td>
+                      <td style="padding:11px 16px;"><span class="pill pill-success">Success</span></td>
+                      <td style="padding:11px 16px;font-size:12px;color:var(--text-secondary);">All records pushed</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div><!-- /tab-simpro -->
+
+
+          <!-- ════════════════════════════
+               TEAM MEMBERS
+          ════════════════════════════ -->
+          <div class="settings-section" id="tab-team">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Team Members</div>
+                  <div class="settings-panel-sub">Manage users and roles</div>
+                </div>
+                <button class="btn-primary" onclick="showToast('Invite sent', 'success')">+ Invite Member</button>
+              </div>
+              <div style="overflow-x:auto;">
+                <table class="member-table">
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Last Active</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:9px;">
+                          <span class="m-avatar av-teal">JD</span>
+                          <div>
+                            <div style="font-weight:600;">James Doyle</div>
+                            <div style="font-size:11px;color:var(--text-secondary);">Administrator</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="font-size:12px;color:var(--text-secondary);">james.doyle@exeloo.com</td>
+                      <td><span class="pill" style="background:rgba(8,93,106,.1);color:var(--theme);">Admin</span></td>
+                      <td><span class="pill pill-success">Active</span></td>
+                      <td style="font-size:12px;color:var(--text-secondary);">Now</td>
+                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;" disabled>You</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:9px;">
+                          <span class="m-avatar av-orange">MD</span>
+                          <div>
+                            <div style="font-weight:600;">Mike Donovan</div>
+                            <div style="font-size:11px;color:var(--text-secondary);">Senior Drafter</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="font-size:12px;color:var(--text-secondary);">m.donovan@exeloo.com</td>
+                      <td><span class="pill pill-blue">Reviewer</span></td>
+                      <td><span class="pill pill-success">Active</span></td>
+                      <td style="font-size:12px;color:var(--text-secondary);">2h ago</td>
+                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
+                          onclick="showToast('Edit Mike Donovan', 'info')">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:9px;">
+                          <span class="m-avatar av-teal">SL</span>
+                          <div>
+                            <div style="font-weight:600;">Sarah Lennox</div>
+                            <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="font-size:12px;color:var(--text-secondary);">s.lennox@exeloo.com</td>
+                      <td><span class="pill pill-gray">Drafter</span></td>
+                      <td><span class="pill pill-success">Active</span></td>
+                      <td style="font-size:12px;color:var(--text-secondary);">Today 8:45</td>
+                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
+                          onclick="showToast('Edit Sarah Lennox', 'info')">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:9px;">
+                          <span class="m-avatar av-purple">JM</span>
+                          <div>
+                            <div style="font-weight:600;">Jordan M.</div>
+                            <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="font-size:12px;color:var(--text-secondary);">jordan.m@exeloo.com</td>
+                      <td><span class="pill pill-gray">Drafter</span></td>
+                      <td><span class="pill pill-success">Active</span></td>
+                      <td style="font-size:12px;color:var(--text-secondary);">Yesterday</td>
+                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
+                          onclick="showToast('Edit Jordan M.', 'info')">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:9px;">
+                          <span class="m-avatar av-green">SK</span>
+                          <div>
+                            <div style="font-weight:600;">Sam K.</div>
+                            <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="font-size:12px;color:var(--text-secondary);">sam.k@exeloo.com</td>
+                      <td><span class="pill pill-gray">Drafter</span></td>
+                      <td><span class="pill pill-success">Active</span></td>
+                      <td style="font-size:12px;color:var(--text-secondary);">May 5</td>
+                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
+                          onclick="showToast('Edit Sam K.', 'info')">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:9px;">
+                          <span class="m-avatar av-red">PR</span>
+                          <div>
+                            <div style="font-weight:600;">Priya R.</div>
+                            <div style="font-size:11px;color:var(--text-secondary);">Junior Drafter</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="font-size:12px;color:var(--text-secondary);">priya.r@exeloo.com</td>
+                      <td><span class="pill pill-gray">Drafter</span></td>
+                      <td><span class="pill pill-pending">Invited</span></td>
+                      <td style="font-size:12px;color:var(--text-secondary);">—</td>
+                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
+                          onclick="showToast('Resent invite to Priya R.', 'success')">Resend</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div><!-- /tab-team -->
+
+
+          <!-- ════════════════════════════
+               DRAWING DEFAULTS
+          ════════════════════════════ -->
+          <div class="settings-section" id="tab-drawings">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Drawing Request Defaults</div>
+                  <div class="settings-panel-sub">Pre-fill values for new drawing requests</div>
+                </div>
+              </div>
+              <div class="settings-panel-body">
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Default Priority</div>
+                    <div class="field-hint">Applied to new requests unless changed</div>
+                  </div>
+                  <select class="field-select" style="max-width:180px;">
+                    <option>High</option>
+                    <option selected>Medium</option>
+                    <option>Low</option>
+                  </select>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Default Due Date Offset</div>
+                    <div class="field-hint">Days from submission until due date is set</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <input class="field-input" type="number" value="5" style="max-width:80px;">
+                    <span style="font-size:12.5px;color:var(--text-secondary);">business days</span>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Drawing Prefix</div>
+                    <div class="field-hint">Auto-prefix for drawing part numbers</div>
+                  </div>
+                  <input class="field-input mono-input" type="text" value="DWG-" style="max-width:120px;">
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Accepted File Types</div>
+                    <div class="field-hint">Allowed formats for drawing uploads</div>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                    <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer;"><input
+                        type="checkbox" checked> PDF</label>
+                    <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer;"><input
+                        type="checkbox" checked> DWG</label>
+                    <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer;"><input
+                        type="checkbox" checked> DXF</label>
+                    <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer;"><input
+                        type="checkbox"> SVG</label>
+                    <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer;"><input
+                        type="checkbox"> PNG</label>
+                    <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer;"><input
+                        type="checkbox"> STEP</label>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Max File Size</div>
+                    <div class="field-hint">Maximum size per uploaded drawing file</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <input class="field-input" type="number" value="50" style="max-width:80px;">
+                    <span style="font-size:12.5px;color:var(--text-secondary);">MB</span>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Revision Label Format</div>
+                    <div class="field-hint">How new revisions are numbered</div>
+                  </div>
+                  <select class="field-select" style="max-width:200px;">
+                    <option>Rev 1, Rev 2, Rev 3…</option>
+                    <option>A, B, C…</option>
+                    <option selected>v1.0, v1.1, v2.0…</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Approval Workflow</div>
+                  <div class="settings-panel-sub">Configure the review and approval chain</div>
+                </div>
+              </div>
+              <div class="settings-panel-body pt-0">
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Two-stage approval</div>
+                    <div class="toggle-desc">Require both a technical review and a final sign-off from an admin</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Allow self-approval</div>
+                    <div class="toggle-desc">Permit the submitter to approve their own drawings (not recommended)</div>
+                  </div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Lock drawing on approval</div>
+                    <div class="toggle-desc">Prevent further edits once a request reaches "Approved"</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /tab-drawings -->
+
+
+          <!-- ════════════════════════════
+               SECURITY
+          ════════════════════════════ -->
+          <div class="settings-section" id="tab-security">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Authentication</div>
+                  <div class="settings-panel-sub">Login and access controls</div>
+                </div>
+              </div>
+              <div class="settings-panel-body">
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Two-factor authentication (2FA)</div>
+                    <div class="toggle-desc">Require all users to verify with an authenticator app on login</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Session timeout</div>
+                    <div class="field-hint">Automatically sign out inactive users after this period</div>
+                  </div>
+                  <select class="field-select" style="max-width:180px;">
+                    <option>8 hours</option>
+                    <option selected>1 month</option>
+                    <option>6 month</option>
+                    <option>1 year</option>
+                    <option>Never</option>
+                  </select>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Password policy</div>
+                    <div class="field-hint">Minimum requirements for user passwords</div>
+                  </div>
+                  <select class="field-select" style="max-width:240px;">
+                    <option>Basic (8+ characters)</option>
+                    <option selected>Strong (8+ chars, mixed case, number)</option>
+                    <option>Custom…</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Audit & Compliance</div>
+                  <div class="settings-panel-sub">Logging and data retention</div>
+                </div>
+              </div>
+              <div class="settings-panel-body pt-0">
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-title">Full audit logging</div>
+                    <div class="toggle-desc">Record every action taken by any user in the system</div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Log retention period</div>
+                    <div class="field-hint">How long activity logs are kept before purging</div>
+                  </div>
+                  <select class="field-select" style="max-width:180px;">
+                    <option>30 days</option>
+                    <option>90 days</option>
+                    <option selected>1 year</option>
+                    <option>Indefinite</option>
+                  </select>
+                </div>
+                <div style="margin-top:10px;">
+                  <button class="btn-ghost" onclick="showToast('Audit log export started', 'info')"><i
+                      class="fa fa-download"></i> Export Audit Log</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="danger-zone">
+              <div class="danger-zone-title">⚠ Danger Zone</div>
+              <div class="danger-zone-desc">These actions are irreversible. Please be absolutely certain before
+                proceeding.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <button class="btn btn-danger" onclick="showToast('All sessions terminated', 'warning')">Sign out all
+                  users</button>
+                <button class="btn btn-danger"
+                  onclick="showToast('Contact support to delete workspace', 'warning')">Delete
+                  Workspace</button>
+              </div>
+            </div>
+
+          </div><!-- /tab-security -->
+
+
+          <!-- ════════════════════════════
+               APPEARANCE
+          ════════════════════════════ -->
+          <div class="settings-section" id="tab-appearance">
+
+            <div class="settings-panel">
+              <div class="settings-panel-head">
+                <div>
+                  <div class="settings-panel-title">Logo &amp; Company Identity</div>
+                  <div class="settings-panel-sub">Shown in the sidebar and on exported reports</div>
+                </div>
+              </div>
+              <div class="settings-panel-body pt-0">
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Company Logo</div>
+                    <div class="field-hint">PNG or SVG, max 1 MB. Recommended: 160×40px</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <div
+                      style="width:100px;height:36px;border:1px dashed var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;background:var(--bg);">
+                      <img src="assets/logo.png" alt="" style="max-width:90px;max-height:30px;object-fit:contain;"
+                        onerror="this.style.display='none';this.nextSibling.style.display='block'">
+                      <span style="font-size:10px;color:var(--text-muted);display:none;">No logo</span>
+                    </div>
+                    <div class="position-relative">
+                      <input type="file" class="fileupload_input">
+                      <button class="btn-ghost" onclick="showToast('Upload logo dialog opened', 'info')">Change
+                        Logo</button>
+                    </div>
+
+                    <button class="btn-ghost" onclick="showToast('Logo removed', 'warning')">Remove</button>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <div>
+                    <div class="field-label">Favicon</div>
+                    <div class="field-hint">32×32px ICO or PNG, shown in browser tab</div>
+                  </div>
+                  <div class="position-relative">
+                    <input type="file" class="fileupload_input">
+                    <button class="btn-ghost w-100" onclick="showToast('Upload favicon dialog opened', 'info')">Upload
+                      Favicon</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /tab-appearance -->
+
+        </div><!-- /settings content -->
+      </div><!-- /settings-layout -->
+    </div><!-- /content-body -->
+
+    <!-- STICKY SAVE BAR -->
+    <div class="save-bar">
+      <span class="save-bar-hint"><i class="fa fa-info-circle"
+          style="margin-right:5px;color:var(--text-muted);"></i>Changes are not saved automatically</span>
+      <div style="display:flex;gap:10px;">
+        <button class="btn-ghost" onclick="showToast('Changes discarded', 'warning')">Discard</button>
+        <button class="btn-primary" onclick="showToast('✓ Settings saved successfully', 'success')">Save</button>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="sidebar-overlay"></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/script.js"></script>
+  <script>
+    // Tab switching
+    function switchTab(id, el) {
+      document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.settings-nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      el.classList.add('active');
+    }
+
+    // Colour swatch picker
+    function pickColor(el) {
+      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+      showToast('Accent colour updated', 'success');
+    }
+
+    // Toast (fallback if assets/script.js doesn't provide one)
+    let toastTimer;
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.className = 'toast show ' + type;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Manager — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .success {
+    background: none;
+    color: black;
+}
+.failed {
+    background: white;
+    color: black;
+}
+.retry {
+    background: none;
+    color: black;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="12" height="12" rx="3" fill="#47b8c9" />
+            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+          </svg>
+        </div>
+        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa fa-home"></i>
+        <span>Dashboard</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="requests.html" class="nav-item">
+        <i class="fa fa-address-book"></i>
+        <span>Requests</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="files.html" class="nav-item">
+        <i class="fa fa-file"></i>
+        <span>Drawings</span>
+      </a>
+      <a href="approvals.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>Approvals</span>
+        <span class="nav-badge urgent">5</span>
+      </a>
+      <a href="simpro.html" class="nav-item active">
+        <i class="fa fa-refresh"></i>
+        <span>simPRO Sync</span>
+      </a>
+      <a href="parts.html" class="nav-item">
+          <i class="fa fa-hourglass-half"></i>
+          <span>Parts</span>
+      </a>
+      <a href="users.html" class="nav-item">
+        <i class="fa fa-users"></i>
+        <span>Team</span>
+      </a>
+
+      <a href="role.html" class="nav-item">
+        <i class="fa fa-user-secret"></i>
+        <span>Role</span>
+      </a>
+      <div class="nav-divider"></div>
+
+      <a href="reports.html" class="nav-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div class="user-info">
+        <span class="user-name">James Doyle</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">  
+    <!-- TOPBAR -->
+    <header class="topbar"> 
+        <div class="topbar-left">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa fa-bars"></i>
+              </button>
+            <h1 class="page-title">simPRO Sync Center</h1>
+            <span class="page-subtitle">
+                Monitor integrations, failures, queue & sync history
+            </span>
+        </div>
+
+        <div class="topbar-right">
+
+            <button class="btn-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                </svg>
+                <span class="notif-dot"></span>
+            </button>
+
+            <div class="search-wrap">
+                <span class="search-icon">⌕</span>
+                <input class="search-input" type="text" placeholder="Search sync logs…">
+            </div>
+
+            
+
+        </div>
+
+    </header>
+
+    <!-- CONTENT -->
+    <div class="sync-content">
+
+        <!-- STATS -->
+        <div class="sync-stats">
+
+            <div class="sync-stat total">
+                <div class="sync-stat-value">248</div>
+                <div class="sync-stat-label">Total Synced</div>
+                <div class="sync-stat-sub">Last 24 hours</div>
+                <i class="fa fa-database sync-stat-icon"></i>
+            </div>
+
+            <div class="sync-stat synced">
+                <div class="sync-stat-value">231</div>
+                <div class="sync-stat-label">Successful</div>
+                <div class="sync-stat-sub">93.1% success rate</div>
+                <i class="fa fa-check-circle sync-stat-icon"></i>
+            </div>
+
+            <div class="sync-stat pending">
+                <div class="sync-stat-value">11</div>
+                <div class="sync-stat-label">Pending Queue</div>
+                <div class="sync-stat-sub">Awaiting push</div>
+                <i class="fa fa-clock-o sync-stat-icon"></i>
+            </div>
+
+            <div class="sync-stat failed">
+                <div class="sync-stat-value">6</div>
+                <div class="sync-stat-label">Failed Syncs</div>
+                <div class="sync-stat-sub">Needs manual retry</div>
+                <i class="fa fa-warning sync-stat-icon"></i>
+            </div>
+
+        </div>
+
+        <!-- GRID -->
+        <div class="sync-grid">
+
+            <!-- LEFT -->
+            <div class="sync-panel">
+
+                <div class="sync-panel-header">
+                    <div class="sync-panel-title">
+                        Live Sync Activity
+                    </div>
+
+                    <button class="tbl-btn success">
+                        <i class="fa fa-refresh"></i> Refresh
+                    </button>
+                </div>
+
+                <div class="sync-panel-body">
+
+                    <div class="live-row">
+
+                        <div class="live-left">
+
+                            <div class="sync-icon icon-green">
+                                <i class="fa fa-check"></i>
+                            </div>
+
+                            <div class="live-info">
+                                <div class="live-title">
+                                    PumpAssembly_v3.pdf synced successfully
+                                </div>
+
+                                <div class="live-meta">
+                                    #REQ-041 • Part: P-2041 • 2 minutes ago
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="sync-pill pill-success">
+                            Synced
+                        </div>
+
+                    </div>
+
+                    <div class="live-row">
+
+                        <div class="live-left">
+
+                            <div class="sync-icon icon-red">
+                                <i class="fa fa-times"></i>
+                            </div>
+
+                            <div class="live-info">
+                                <div class="live-title">
+                                    ControlPanel_Layout_v3.pdf failed
+                                </div>
+
+                                <div class="live-meta">
+                                    simPRO rejected duplicate part number
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="sync-pill pill-failed">
+                            Failed
+                        </div>
+
+                    </div>
+
+                    <div class="live-row">
+
+                        <div class="live-left">
+
+                            <div class="sync-icon icon-orange">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+
+                            <div class="live-info">
+                                <div class="live-title">
+                                    FrameWeldSpec_v2.dwg waiting in queue
+                                </div>
+
+                                <div class="live-meta">
+                                    Pending automatic scheduler push
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="sync-pill pill-pending">
+                            Pending
+                        </div>
+
+                    </div>
+
+                    <div class="live-row">
+
+                        <div class="live-left">
+
+                            <div class="sync-icon icon-green">
+                                <i class="fa fa-check"></i>
+                            </div>
+
+                            <div class="live-info">
+                                <div class="live-title">
+                                    GearboxAssembly_FINAL.pdf synced
+                                </div>
+
+                                <div class="live-meta">
+                                    #REQ-027 • Revision v4.0 • 9 mins ago
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="sync-pill pill-success">
+                            Synced
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="sync-panel">
+
+                <div class="sync-panel-header">
+                    <div class="sync-panel-title">
+                        Failed Queue
+                    </div>
+
+                    <button class="tbl-btn retry">
+                        Retry All
+                    </button>
+                </div>
+
+                <div class="sync-panel-body">
+
+                    <div class="queue-card failed">
+
+                        <div class="queue-top">
+                            <div class="queue-id">#REQ-031</div>
+
+                            <div class="sync-pill pill-failed">
+                                Failed
+                            </div>
+                        </div>
+
+                        <div class="queue-title">
+                            Control Panel Layout
+                        </div>
+
+                        <div class="queue-meta">
+                            <span>Part: P-2031</span>
+                            <span>Duplicate Item Code</span>
+                        </div>
+
+                    </div>
+
+                    <div class="queue-card failed">
+
+                        <div class="queue-top">
+                            <div class="queue-id">#REQ-029</div>
+
+                            <div class="sync-pill pill-failed">
+                                Failed
+                            </div>
+                        </div>
+
+                        <div class="queue-title">
+                            Frame Weld Specification
+                        </div>
+
+                        <div class="queue-meta">
+                            <span>Authentication Expired</span>
+                            <span>3 mins ago</span>
+                        </div>
+
+                    </div>
+
+                    <div class="queue-card pending">
+
+                        <div class="queue-top">
+                            <div class="queue-id">#REQ-044</div>
+
+                            <div class="sync-pill pill-pending">
+                                Pending
+                            </div>
+                        </div>
+
+                        <div class="queue-title">
+                            Pipe Layout Rev D
+                        </div>
+
+                        <div class="queue-meta">
+                            <span>Queued for next cycle</span>
+                            <span>ETA: 4 mins</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="sync-table-wrap">
+
+            <div class="sync-table-toolbar">
+
+                <div class="sync-filter-row">
+                    <button class="sync-chip active">All Logs</button>
+                    <button class="sync-chip">Successful</button>
+                    <button class="sync-chip">Pending</button>
+                    <button class="sync-chip">Failed</button>
+                    <button class="sync-chip">Manual Retry</button>
+                </div>
+
+                <button class="btn-primary" style="padding:8px 14px;font-size:12px;">
+                    <i class="fa fa-download"></i> Export Logs
+                </button>
+
+            </div>
+
+            <table class="sync-table">
+
+                <thead>
+                    <tr>
+                        <th>Request</th>
+                        <th>Part Number</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                        <th>Last Sync</th>
+                        <th>Triggered By</th>
+                        <th>Message</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <div class="req-title">
+                                Pump Assembly v3
+                            </div>
+
+                            <div class="req-sub">
+                                #REQ-041
+                            </div>
+                        </td>
+
+                        <td class="mono">
+                            P-2041
+                        </td>
+
+                        <td>
+                            v3.0
+                        </td>
+
+                        <td>
+                            <span class="sync-pill pill-success">
+                                Synced
+                            </span>
+                        </td>
+
+                        <td>
+                            2 mins ago
+                        </td>
+
+                        <td>
+                            Sarah Lee
+                        </td>
+
+                        <td>
+                            Successfully pushed to simPRO
+                        </td>
+
+                        <td>
+                            <div class="table-actions">
+                                <button class="tbl-btn" onclick="openSyncModal('REQ-041')">
+                                    View
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <div class="req-title">
+                                Control Panel Layout
+                            </div>
+
+                            <div class="req-sub">
+                                #REQ-031
+                            </div>
+                        </td>
+
+                        <td class="mono">
+                            P-2031
+                        </td>
+
+                        <td>
+                            v3.0
+                        </td>
+
+                        <td>
+                            <span class="sync-pill pill-failed">
+                                Failed
+                            </span>
+                        </td>
+
+                        <td>
+                            8 mins ago
+                        </td>
+
+                        <td>
+                            Michael Doe
+                        </td>
+
+                        <td>
+                            Duplicate item code exists
+                        </td>
+
+                        <td>
+
+                            <div class="table-actions">
+
+                                <button class="tbl-btn retry" onclick="retrySync('REQ-031')">
+                                    Retry
+                                </button>
+                            
+                                <button class="tbl-btn" onclick="openSyncModal('REQ-031')">
+                                    Logs
+                                </button>
+                            
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <div class="req-title">
+                                Pipe Layout Rev D
+                            </div>
+
+                            <div class="req-sub">
+                                #REQ-044
+                            </div>
+                        </td>
+
+                        <td class="mono">
+                            P-2044
+                        </td>
+
+                        <td>
+                            v1.2
+                        </td>
+
+                        <td>
+                            <span class="sync-pill pill-pending">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td>
+                            Waiting
+                        </td>
+
+                        <td>
+                            James Doyle
+                        </td>
+
+                        <td>
+                            Queued for automatic sync scheduler
+                        </td>
+
+                        <td>
+
+                            <div class="table-actions">
+                                <button class="tbl-btn retry" onclick="retrySync('REQ-044')">
+                                    Retry
+                                </button>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <div class="req-title">
+                                Gearbox Assembly Final
+                            </div>
+
+                            <div class="req-sub">
+                                #REQ-027
+                            </div>
+                        </td>
+
+                        <td class="mono">
+                            P-2027
+                        </td>
+
+                        <td>
+                            v4.0
+                        </td>
+
+                        <td>
+                            <span class="sync-pill pill-success">
+                                Synced
+                            </span>
+                        </td>
+
+                        <td>
+                            21 mins ago
+                        </td>
+
+                        <td>
+                            Thomas King
+                        </td>
+
+                        <td>
+                            Revision updated successfully
+                        </td>
+
+                        <td>
+
+                            <div class="table-actions">
+                                <button class="tbl-btn" onclick="openSyncModal('REQ-027')">
+                                    View
+                                </button>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- NEW REQUEST MODAL -->
+<div class="modal-overlay" id="newRequestModal" onclick="closeNewModal()">
+<div class="modal" onclick="event.stopPropagation()">
+
+  <div class="modal-header p-0 align-items-center m-0">
+    <h5>Create New Request</h5>
+    <button class="modal-close mb-2" onclick="closeNewModal()">✕</button>
+  </div>
+
+  <div class="pt-3">
+    <div class="modal-form-group">
+      <label>Request Title</label>
+      <input class="modal-input" type="text" placeholder="e.g. Pump Assembly Drawing">
+    </div>
+    <div class="modal-form-group">
+      <label>Description</label>
+      <textarea class="modal-textarea" placeholder="Describe the drawing requirements…"></textarea>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="modal-form-group">
+        <label>Assignee</label>
+        <select class="modal-select">
+          <option>Jordan M.</option><option>Sam K.</option>
+          <option>Priya R.</option><option>Sarah Lennox</option>
+        </select>
+      </div>
+      <div class="modal-form-group">
+        <label>Priority</label>
+        <select class="modal-select">
+          <option>High</option><option selected>Medium</option><option>Low</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="modal-form-group">
+        <label>Category</label>
+        <select class="modal-select">
+          <option>Electrical</option><option>Mechanical</option>
+          <option>Structural</option><option>Piping</option>
+        </select>
+      </div>
+      <div class="modal-form-group">
+        <label>Due Date</label>
+        <input class="modal-input" type="date">
+      </div>
+    </div>
+    <div class="modal-form-group">
+      <label>Part Number (optional)</label>
+      <input class="modal-input" type="text" placeholder="e.g. P-2045" style="font-family:var(--mono);">
+    </div>
+    <div class="modal-form-group">
+      <label>Attach Drawing File</label>
+      <div class="upload-zone" style="margin-top:0;">
+        <div class="uz-icon"><i class="fa fa-cloud-upload"></i></div>
+        <p>Drop PDF, DWG, DXF or STEP files here</p>
+      </div>
+    </div>
+    <div class="modal-footer-btns">
+      <button class="btn-ghost-sm" onclick="closeModal('newRequestModal')">Cancel</button>
+      <button class="btn-ghost-sm" style="color:var(--theme);border-color:rgba(8,93,106,.3);" onclick="closeModal('newRequestModal');toast('Saved as draft','info')">Save Draft</button>
+      <button class="btn-primary-sm" onclick="closeModal('newRequestModal');toast('✓ Request submitted','success')">Submit Request</button>
+    </div>
+
+  </div>
+
+</div>
+</div>
+<!-- SYNC LOG MODAL -->
+<div class="modal-overlay" id="syncLogModal" onclick="closeSyncModal()">
+    <div class="modal sync-log-modal" onclick="event.stopPropagation()">
+
+        <div class="modal-header p-0 align-items-center m-0">
+            <div>
+                <h5 class="mb-1">Sync Details</h5>
+                <div class="sync-log-subtitle">
+                    Complete sync activity and retry history
+                </div>
+            </div>
+
+            <button class="modal-close mb-2" onclick="closeSyncModal()">✕</button>
+        </div>
+
+        <div class="pt-3">
+
+            <!-- TOP INFO -->
+            <div class="sync-log-top">
+
+                <div class="sync-log-box">
+                    <span class="label">Request ID</span>
+                    <strong id="logReqId">#REQ-031</strong>
+                </div>
+
+                <div class="sync-log-box">
+                    <span class="label">Part Number</span>
+                    <strong>P-2031</strong>
+                </div>
+
+                <div class="sync-log-box">
+                    <span class="label">Version</span>
+                    <strong>v3.0</strong>
+                </div>
+
+                <div class="sync-log-box">
+                    <span class="label">Status</span>
+                    <span class="sync-pill pill-failed">Failed</span>
+                </div>
+
+            </div>
+
+            <!-- ERROR SUMMARY -->
+            <div class="sync-error-card">
+                <div class="error-icon">
+                    <i class="fa fa-warning"></i>
+                </div>
+
+                <div>
+                    <div class="error-title">
+                        Duplicate Item Code Found
+                    </div>
+
+                    <div class="error-desc">
+                        simPRO rejected this sync because item code
+                        <strong>P-2031</strong> already exists in the system.
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOG TIMELINE -->
+            <div class="sync-log-timeline">
+
+                <div class="timeline-row success">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            Drawing uploaded successfully
+                        </div>
+
+                        <div class="timeline-time">
+                            10:24 AM • by Michael Doe
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-row info">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            Sync request sent to simPRO API
+                        </div>
+
+                        <div class="timeline-time">
+                            10:25 AM • API Queue
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-row failed">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            Sync failed due to duplicate part number
+                        </div>
+
+                        <div class="timeline-time">
+                            10:26 AM • simPRO Validation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-row retry">
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            Manual retry triggered
+                        </div>
+
+                        <div class="timeline-time">
+                            10:30 AM • Admin Action
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="modal-footer-btns mt-4">
+                <button class="btn-ghost-sm" onclick="closeSyncModal()">
+                    Close
+                </button>
+
+                <button class="btn-ghost-sm"
+                    style="color:#d97706;border-color:rgba(217,119,6,.25);"
+                    onclick="showToast('Retry started for #REQ-031','info')">
+                    <i class="fa fa-refresh"></i> Retry Sync
+                </button>
+
+                <button class="btn-primary-sm"
+                    onclick="showToast('Logs exported successfully','success')">
+                    <i class="fa fa-download"></i> Export Logs
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+<script src="style.js"></script>
+<div id="sidebar-overlay"></div>
+<script src="assets/script.js"></script>
+<script>
+
+    function openSyncModal(id){
+        document.getElementById('syncLogModal').classList.add('open');
+        document.getElementById('logReqId').innerText = '#' + id;
+    }
+    
+    function closeSyncModal(){
+        document.getElementById('syncLogModal').classList.remove('open');
+    }
+    
+    </script>
+<script>
+let toastTimer;
+
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+}
+
+function openRequest(id) {
+  document.getElementById('modalReqId').textContent = '#' + id;
+  document.getElementById('requestModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('requestModal').classList.remove('open');
+}
+
+function openModal(key) {
+  openRequest(key);
+}
+
+function openStage(stage) {
+  showToast('Filtering by stage: ' + stage.replace(/-/g, ' '), 'info');
+}
+
+function doApprove(id) {
+  showToast('✓ ' + id + ' approved successfully', 'success');
+  closeModal();
+}
+
+function doRework(id) {
+  showToast('↩ ' + id + ' sent for rework', 'warning');
+  closeModal();
+}
+
+function retrySync(id) {
+  showToast('🔄 Retrying simPRO sync for ' + id + '…', 'info');
+}
+
+function filterTable(val) {
+  showToast('Filtering: ' + val, 'info');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+<script>
+document.getElementById('new-req-btn').addEventListener('click', function () {
+  document.getElementById('newRequestModal').classList.add('open');
+});
+function closeNewModal() {
+  document.getElementById('newRequestModal').classList.remove('open');
+}
+document.querySelectorAll('.btn-primary.small').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('newRequestModal').classList.add('open');
+  });
+});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Manager — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="12" height="12" rx="3" fill="#47b8c9" />
+            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+          </svg>
+        </div>
+        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa fa-home"></i>
+        <span>Dashboard</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="requests.html" class="nav-item">
+        <i class="fa fa-address-book"></i>
+        <span>Requests</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="files.html" class="nav-item">
+        <i class="fa fa-file"></i>
+        <span>Drawings</span>
+      </a>
+      <a href="approvals.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>Approvals</span>
+        <span class="nav-badge urgent">5</span>
+      </a>
+      <a href="simpro.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>simPRO Sync</span>
+      </a>
+      <a href="parts.html" class="nav-item">
+          <i class="fa fa-hourglass-half"></i>
+          <span>Parts</span>
+      </a>
+      <a href="users.html" class="nav-item">
+        <i class="fa fa-users"></i>
+        <span>Team</span>
+      </a>
+
+      <a href="role.html" class="nav-item active">
+        <i class="fa fa-user-secret"></i>
+        <span>Role</span>
+      </a>
+      <div class="nav-divider"></div>
+
+      <a href="reports.html" class="nav-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div class="user-info">
+        <span class="user-name">James Doyle</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <h1 class="page-title">Role & Permission Management</h1>
+
+        <span class="page-subtitle">
+          Configure access control, approval rights & system visibility
+        </span>
+      </div>
+
+      <div class="topbar-right">
+
+        <button class="btn-icon">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+          </svg>
+
+          <span class="notif-dot"></span>
+        </button>
+        <!-- BUTTON -->
+        <button type="button" class="btn-primary" data-modal="role">
+
+          <i class="fa fa-plus"></i>
+          Create Role
+
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- CONTENT -->
+    <div class="role-content">
+
+      <!-- STATS -->
+      <div class="role-stats">
+
+        <div class="role-stat stat-theme">
+          <div class="role-stat-value">8</div>
+          <div class="role-stat-label">Active Roles</div>
+          <div class="role-stat-sub">Configured in system</div>
+          <i class="fa fa-user-secret role-stat-icon"></i>
+        </div>
+
+        <div class="role-stat stat-green">
+          <div class="role-stat-value">42</div>
+          <div class="role-stat-label">Assigned Users</div>
+          <div class="role-stat-sub">Mapped with permissions</div>
+          <i class="fa fa-users role-stat-icon"></i>
+        </div>
+
+        <div class="role-stat stat-orange">
+          <div class="role-stat-value">126</div>
+          <div class="role-stat-label">Permissions</div>
+          <div class="role-stat-sub">Across all modules</div>
+          <i class="fa fa-shield role-stat-icon"></i>
+        </div>
+
+        <div class="role-stat stat-red">
+          <div class="role-stat-value">4</div>
+          <div class="role-stat-label">Restricted Modules</div>
+          <div class="role-stat-sub">Admin-only access</div>
+          <i class="fa fa-lock role-stat-icon"></i>
+        </div>
+
+      </div>
+
+      <!-- LAYOUT -->
+      <div class="role-layout">
+
+        <!-- SIDEBAR -->
+        <div class="role-sidebar">
+
+          <div class="role-side-header">
+            <div class="role-side-title">
+              System Roles
+            </div>
+          </div>
+
+          <div class="role-list">
+
+            <div class="role-item active">
+
+              <div class="role-top">
+                <div class="role-name">
+                  Administrator
+                </div>
+
+                <div class="role-users">
+                  5 Users
+                </div>
+              </div>
+
+              <div class="role-desc">
+                Full system access with role & workflow control.
+              </div>
+
+            </div>
+
+            <div class="role-item">
+
+              <div class="role-top">
+                <div class="role-name">
+                  Approval Manager
+                </div>
+
+                <div class="role-users">
+                  7 Users
+                </div>
+              </div>
+
+              <div class="role-desc">
+                Manage approvals, rework requests & escalations.
+              </div>
+
+            </div>
+
+            <div class="role-item">
+
+              <div class="role-top">
+                <div class="role-name">
+                  Design Engineer
+                </div>
+
+                <div class="role-users">
+                  14 Users
+                </div>
+              </div>
+
+              <div class="role-desc">
+                Create, upload & manage engineering drawings.
+              </div>
+
+            </div>
+
+            <div class="role-item">
+
+              <div class="role-top">
+                <div class="role-name">
+                  QA Reviewer
+                </div>
+
+                <div class="role-users">
+                  9 Users
+                </div>
+              </div>
+
+              <div class="role-desc">
+                Validate documents & perform drawing review.
+              </div>
+
+            </div>
+
+            <div class="role-item">
+
+              <div class="role-top">
+                <div class="role-name">
+                  Viewer
+                </div>
+
+                <div class="role-users">
+                  7 Users
+                </div>
+              </div>
+
+              <div class="role-desc">
+                Read-only access to requests & files.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- MAIN -->
+        <div class="role-main">
+
+          <!-- TOOLBAR -->
+          <div class="role-toolbar">
+
+            <div>
+              <div class="role-title">
+                Administrator Permissions
+              </div>
+
+              <div class="role-subtitle">
+                Full access enabled for all modules & workflow actions
+              </div>
+            </div>
+
+            <button class="btn-primary">
+              <i class="fa fa-save"></i> Save Changes
+            </button>
+
+          </div>
+
+          <!-- TABLE -->
+          <div class="perm-table-wrap">
+
+            <table class="perm-table">
+
+              <thead>
+
+                <tr>
+                  <th width="35%">Module / Permission</th>
+                  <th>Create</th>
+                  <th>View</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                  <th>Approve</th>
+                  <th>Export</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <!-- REQUESTS -->
+                <tr class="perm-group">
+                  <td colspan="7">
+                    Request Management
+                  </td>
+                </tr>
+
+                <tr>
+
+                  <td>
+
+                    <div class="perm-module">
+
+                      <div class="perm-icon">
+                        <i class="fa fa-address-book"></i>
+                      </div>
+
+                      <div class="perm-info">
+                        <div class="perm-name">
+                          Requests
+                        </div>
+
+                        <div class="perm-desc">
+                          Manage engineering requests & workflow
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap">
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap">
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap">
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap">
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap">
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap">
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </td>
+
+                </tr>
+
+                <!-- FILES -->
+                <tr class="perm-group">
+                  <td colspan="7">
+                    Drawing & File Management
+                  </td>
+                </tr>
+
+                <tr>
+
+                  <td>
+
+                    <div class="perm-module">
+
+                      <div class="perm-icon">
+                        <i class="fa fa-file"></i>
+                      </div>
+
+                      <div class="perm-info">
+                        <div class="perm-name">
+                          Drawings & Files
+                        </div>
+
+                        <div class="perm-desc">
+                          Upload, manage & version drawing files
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+
+                </tr>
+
+                <!-- APPROVAL -->
+                <tr class="perm-group">
+                  <td colspan="7">
+                    Approval Workflow
+                  </td>
+                </tr>
+
+                <tr>
+
+                  <td>
+
+                    <div class="perm-module">
+
+                      <div class="perm-icon">
+                        <i class="fa fa-check-square"></i>
+                      </div>
+
+                      <div class="perm-info">
+                        <div class="perm-name">
+                          Approval Queue
+                        </div>
+
+                        <div class="perm-desc">
+                          Review, approve & reject requests
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+
+                </tr>
+
+                <!-- USERS -->
+                <tr class="perm-group">
+                  <td colspan="7">
+                    User Management
+                  </td>
+                </tr>
+
+                <tr>
+
+                  <td>
+
+                    <div class="perm-module">
+
+                      <div class="perm-icon">
+                        <i class="fa fa-users"></i>
+                      </div>
+
+                      <div class="perm-info">
+                        <div class="perm-name">
+                          Team Members
+                        </div>
+
+                        <div class="perm-desc">
+                          Add, edit & manage user accounts
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
+                          class="slider"></span></label></div>
+                  </td>
+                  <td>
+                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
+                          class="slider"></span></label></div>
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <!-- ASSIGNED USERS -->
+          <div class="assign-wrap">
+
+            <div class="assign-title">
+              Users Assigned to Administrator Role
+            </div>
+
+            <div class="assign-grid">
+
+              <div class="assign-card">
+
+                <div class="assign-avatar">
+                  JD
+                </div>
+
+                <div class="assign-info">
+                  <div class="assign-name">
+                    James Doyle
+                  </div>
+
+                  <div class="assign-role">
+                    System Administrator
+                  </div>
+                </div>
+
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+
+              </div>
+
+              <div class="assign-card">
+
+                <div class="assign-avatar">
+                  SL
+                </div>
+
+                <div class="assign-info">
+                  <div class="assign-name">
+                    Sarah Lee
+                  </div>
+
+                  <div class="assign-role">
+                    Operations Admin
+                  </div>
+                </div>
+
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+
+              </div>
+
+              <div class="assign-card">
+
+                <div class="assign-avatar">
+                  TK
+                </div>
+
+                <div class="assign-info">
+                  <div class="assign-name">
+                    Thomas King
+                  </div>
+
+                  <div class="assign-role">
+                    Workflow Controller
+                  </div>
+                </div>
+
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+  <!-- ═══════════════════════════════════════════════
+     CREATE ROLE MODAL
+═══════════════════════════════════════════════ -->
+
+  <div class="modal-overlay action-modal" id="modal-role">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content role-modal">
+
+        <!-- HEADER -->
+        <div class="modal-header mb-0">
+
+          <div>
+            <div class="role-modal-label">
+              ACCESS CONTROL
+            </div>
+
+            <h5 class="modal-title">
+              Create New Role
+            </h5>
+          </div>
+
+          <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fa fa-times"></i>
+          </button>
+          
+
+        </div>
+
+        <!-- BODY -->
+        <div class="role-modal-body">
+
+          <!-- TOP FORM -->
+          <div class="role-form-grid">
+
+            <div class="role-form-group"> 
+              <input type="text" class="role-input" placeholder="Enter role name">
+            </div>
+
+            <div class="role-form-group"> 
+
+              <select class="role-select">
+                <option value=" Role Type">Select Role Type</option>
+                <option>Administrator</option>
+                <option>Approval Manager</option>
+                <option>Reviewer</option>
+                <option>Engineer</option>
+                <option>Viewer</option>
+              </select>
+            </div>
+
+            <div class="role-form-group full-width"> 
+              <textarea class="role-textarea" placeholder="Describe role responsibilities & access scope"></textarea>
+            </div>
+
+          </div>
+
+          <!-- PERMISSION SECTION -->
+          <div class="perm-section">
+
+            <div class="perm-section-header">
+
+              <div>
+                <div class="perm-section-title">
+                  Module Permissions
+                </div>
+
+                <div class="perm-section-sub">
+                  Configure access rights for this role
+                </div>
+              </div>
+
+              <button class="btn-outline-role">
+                <i class="fa fa-copy"></i> Clone Existing Role
+              </button>
+
+            </div>
+
+            <!-- PERMISSION GRID -->
+            <div class="perm-card-grid">
+
+              <!-- REQUESTS -->
+              <div class="perm-card">
+
+                <div class="perm-card-top">
+
+                  <div class="perm-card-icon">
+                    <i class="fa fa-address-book"></i>
+                  </div>
+
+                  <div>
+                    <div class="perm-card-title">
+                      Requests
+                    </div>
+
+                    <div class="perm-card-sub">
+                      Workflow & request management
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="perm-check-list">
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Create Requests</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Edit Requests</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Delete Requests</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Approve Requests</span>
+                  </label>
+
+                </div>
+
+              </div>
+
+              <!-- FILES -->
+              <div class="perm-card">
+
+                <div class="perm-card-top">
+
+                  <div class="perm-card-icon">
+                    <i class="fa fa-file"></i>
+                  </div>
+
+                  <div>
+                    <div class="perm-card-title">
+                      Drawings & Files
+                    </div>
+
+                    <div class="perm-card-sub">
+                      File upload & versioning
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="perm-check-list">
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Upload Files</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Download Files</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Delete Files</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Version Control</span>
+                  </label>
+
+                </div>
+
+              </div>
+
+              <!-- APPROVAL -->
+              <div class="perm-card">
+
+                <div class="perm-card-top">
+
+                  <div class="perm-card-icon">
+                    <i class="fa fa-check-square"></i>
+                  </div>
+
+                  <div>
+                    <div class="perm-card-title">
+                      Approval Queue
+                    </div>
+
+                    <div class="perm-card-sub">
+                      Review & approval workflow
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="perm-check-list">
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>View Queue</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox" checked>
+                    <span>Approve / Reject</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Escalate Requests</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Force Complete</span>
+                  </label>
+
+                </div>
+
+              </div>
+
+              <!-- USERS -->
+              <div class="perm-card">
+
+                <div class="perm-card-top">
+
+                  <div class="perm-card-icon">
+                    <i class="fa fa-users"></i>
+                  </div>
+
+                  <div>
+                    <div class="perm-card-title">
+                      Team Management
+                    </div>
+
+                    <div class="perm-card-sub">
+                      User & role administration
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="perm-check-list">
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Create Users</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Edit Users</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Assign Roles</span>
+                  </label>
+
+                  <label class="perm-check">
+                    <input type="checkbox">
+                    <span>Deactivate Users</span>
+                  </label>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="role-modal-footer">
+
+          <button class="btn-role-light" data-bs-dismiss="modal">
+            Cancel
+          </button>
+
+          <button class="btn-role-primary">
+            <i class="fa fa-save"></i>
+            Create Role
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+   MODAL CSS
+═══════════════════════════════════════════════ -->
+
+  <style>
+    .role-modal {
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .18);
+    } 
+
+    .role-modal-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--theme);
+      margin-bottom: 5px;
+    } 
+    .role-modal-body {
+      padding: 18px 24px;
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+
+    /* FORM */
+
+    .role-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .role-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .role-input,
+    .role-select,
+    .role-textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, .03);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: .15s;
+    }
+
+    .role-input:focus,
+    .role-select:focus,
+    .role-textarea:focus {
+      border-color: var(--theme);
+      box-shadow: 0 0 0 3px var(--theme-g);
+    }
+
+    .role-textarea {
+      min-height: 100px;
+      resize: vertical;
+      margin: 0;
+    }
+
+    /* PERMISSION */
+
+    .perm-section {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .perm-section-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, .015);
+    }
+
+    .perm-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .perm-section-sub {
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .btn-outline-role {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dim);
+      transition: .15s;
+    }
+
+    .btn-outline-role:hover {
+      border-color: var(--theme);
+      color: var(--theme);
+    }
+
+    /* CARDS */
+
+    .perm-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      padding: 20px;
+    }
+
+    .perm-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      transition: .15s;
+      background: var(--surface);
+    }
+
+    .perm-card:hover {
+      border-color: var(--theme);
+      box-shadow: var(--shadow-md);
+    }
+
+    .perm-card-top {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .perm-card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(71, 184, 201, .12);
+      color: var(--theme);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .perm-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .perm-card-sub {
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .perm-check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .perm-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text);
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .perm-check input {
+      width: 16px;
+      height: 16px;
+      accent-color: #47b8c9;
+    }
+
+    /* FOOTER */
+
+    .role-modal-footer {
+      padding: 18px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn-role-light {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-dim);
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .15s;
+    }
+
+    .btn-role-light:hover {
+      border-color: var(--theme);
+      color: var(--theme);
+    }
+
+    .btn-role-primary {
+      border: none;
+      background: var(--theme);
+      color: #fff;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .15s;
+    }
+
+    .btn-role-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(71, 184, 201, .25);
+    }
+
+    @media(max-width:992px) {
+
+      .perm-card-grid,
+      .role-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+ <script>
+  // OPEN MODAL
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.getAttribute('data-modal');
+      document.getElementById('modal-' + type).classList.add('open');
+    });
+  });
+
+  // CLOSE MODAL
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.onclick = () => {
+      btn.closest('.modal-overlay').classList.remove('open');
+    };
+  });
+
+  // CLOSE ON OUTSIDE CLICK
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+      }
+    });
+  });
+</script> 
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+  <script src="style.js"></script>
+  <div id="sidebar-overlay"></div>
+  <script src="assets/script.js"></script>
+
+  <script>
+    let toastTimer;
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show ' + type;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+    }
+
+    function openRequest(id) {
+      document.getElementById('modalReqId').textContent = '#' + id;
+      document.getElementById('requestModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('requestModal').classList.remove('open');
+    }
+
+    function openModal(key) {
+      openRequest(key);
+    }
+
+    function openStage(stage) {
+      showToast('Filtering by stage: ' + stage.replace(/-/g, ' '), 'info');
+    }
+
+    function doApprove(id) {
+      showToast('✓ ' + id + ' approved successfully', 'success');
+      closeModal();
+    }
+
+    function doRework(id) {
+      showToast('↩ ' + id + ' sent for rework', 'warning');
+      closeModal();
+    }
+
+    function retrySync(id) {
+      showToast('🔄 Retrying simPRO sync for ' + id + '…', 'info');
+    }
+
+    function filterTable(val) {
+      showToast('Filtering: ' + val, 'info');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+  <script>
+    document.getElementById('new-req-btn').addEventListener('click', function () {
+      document.getElementById('newRequestModal').classList.add('open');
+    });
+    function closeNewModal() {
+      document.getElementById('newRequestModal').classList.remove('open');
+    }
+    document.querySelectorAll('.btn-primary.small').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('newRequestModal').classList.add('open');
+      });
+    });
+  </script>
+  
+</body>
+
+</html>

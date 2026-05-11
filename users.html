@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Manager — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="12" height="12" rx="3" fill="#47b8c9" />
+            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+          </svg>
+        </div>
+        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa fa-home"></i>
+        <span>Dashboard</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="requests.html" class="nav-item">
+        <i class="fa fa-address-book"></i>
+        <span>Requests</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="files.html" class="nav-item">
+        <i class="fa fa-file"></i>
+        <span>Drawings</span>
+      </a>
+      <a href="approvals.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>Approvals</span>
+        <span class="nav-badge urgent">5</span>
+      </a>
+      <a href="simpro.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>simPRO Sync</span>
+      </a>
+      <a href="parts.html" class="nav-item">
+        <i class="fa fa-hourglass-half"></i>
+        <span>Parts</span>
+      </a>
+      <a href="users.html" class="nav-item active">
+        <i class="fa fa-users"></i>
+        <span>Team</span>
+      </a>
+
+      <a href="role.html" class="nav-item">
+        <i class="fa fa-user-secret"></i>
+        <span>Role</span>
+      </a>
+      <div class="nav-divider"></div>
+
+      <a href="reports.html" class="nav-item">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div class="user-info">
+        <span class="">James Doyle</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+  </aside>
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <h1 class="page-title">Team Management</h1>
+        <span class="page-subtitle">
+          Manage users, roles, workload & approval responsibilities
+        </span>
+      </div>
+
+      <div class="topbar-right">
+
+        <button class="btn-icon">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+          </svg>
+
+          <span class="notif-dot"></span>
+        </button>
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input class="search-input" type="text" placeholder="Search sync logs…">
+        </div>
+        <button class="btn-primary" data-modal="user">
+          <i class="fa fa-plus"></i> Add Team  
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- CONTENT -->
+    <div class="team-content">
+
+      <!-- STATS -->
+      <div class="team-stats">
+
+        <div class="team-stat total">
+          <div class="team-stat-value">42</div>
+          <div class="team-stat-label">Total Users</div>
+          <div class="team-stat-sub">Across all departments</div>
+          <i class="fa fa-users team-stat-icon"></i>
+        </div>
+
+        <div class="team-stat online">
+          <div class="team-stat-value">29</div>
+          <div class="team-stat-label">Currently Online</div>
+          <div class="team-stat-sub">Active this hour</div>
+          <i class="fa fa-circle team-stat-icon"></i>
+        </div>
+
+        <div class="team-stat review">
+          <div class="team-stat-value">11</div>
+          <div class="team-stat-label">Pending Reviews</div>
+          <div class="team-stat-sub">Assigned approvals</div>
+          <i class="fa fa-clock-o team-stat-icon"></i>
+        </div>
+
+        <div class="team-stat overdue">
+          <div class="team-stat-value">4</div>
+          <div class="team-stat-label">Overdue Tasks</div>
+          <div class="team-stat-sub">Needs attention</div>
+          <i class="fa fa-warning team-stat-icon"></i>
+        </div>
+
+      </div>
+
+      <!-- LAYOUT -->
+      <div class="team-layout">
+
+        <!-- LEFT -->
+        <div class="team-sidebar">
+
+          <div class="team-side-header">
+            <div class="team-side-title">
+              Team Filters
+            </div>
+          </div>
+
+          <div class="team-filter-list">
+
+            <div class="team-filter-item active">
+              <span>
+                <i class="fa fa-users"></i> All Members
+              </span>
+
+              <span class="filter-count">42</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-circle" style="color:#22c55e"></i> Online
+              </span>
+
+              <span class="filter-count">29</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-user-secret"></i> Administrators
+              </span>
+
+              <span class="filter-count">5</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-check-square-o"></i> Reviewers
+              </span>
+
+              <span class="filter-count">9</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-cogs"></i> Engineers
+              </span>
+
+              <span class="filter-count">21</span>
+            </div>
+
+            <div class="team-divider"></div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-building-o"></i> Mechanical
+              </span>
+
+              <span class="filter-count">14</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-bolt"></i> Electrical
+              </span>
+
+              <span class="filter-count">11</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-industry"></i> Production
+              </span>
+
+              <span class="filter-count">7</span>
+            </div>
+
+            <div class="team-filter-item">
+              <span>
+                <i class="fa fa-file-text-o"></i> QA / Review
+              </span>
+
+              <span class="filter-count">10</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="table-responsive team-main">
+
+          <!-- TOOLBAR -->
+          <div class="team-toolbar">
+
+            <div class="team-toolbar-left">
+
+              <button class="team-chip active">
+                All Users
+              </button>
+
+              <button class="team-chip">
+                Active
+              </button>
+
+              <button class="team-chip">
+                Pending Approval
+              </button>
+
+              <button class="team-chip">
+                Overloaded
+              </button>
+
+            </div>
+
+            <div class="team-search">
+              <i class="fa fa-search"></i>
+              <input type="text" placeholder="Search team members…">
+            </div>
+
+          </div>
+
+          <!-- TABLE -->
+          <table class="team-table">
+
+            <thead>
+
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Department</th>
+                <th>Assigned</th>
+                <th>Pending</th>
+                <th>Status</th>
+                <th>Last Active</th>
+                <th></th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td>
+
+                  <div class="user-cell">
+
+                    <div class="user-avatar-lg bg-theme">
+                      JD
+                    </div>
+
+                    <div class="user-info-wrap">
+                      <div class="">
+                        James Doyle
+                      </div>
+
+                      <div class="user-email">
+                        james.doyle@drawingmanager.com
+                      </div>
+                    </div>
+
+                  </div>
+
+                </td>
+
+                <td>
+                  <span class="role-badge role-admin">
+                    Administrator
+                  </span>
+                </td>
+
+                <td>
+                  Operations
+                </td>
+
+                <td class="mono">
+                  12
+                </td>
+
+                <td class="mono">
+                  4
+                </td>
+
+                <td>
+                  <span class="status-pill online">
+                    Online
+                  </span>
+                </td>
+
+                <td>
+                  Just now
+                </td>
+
+                <td>
+
+                  <div class="team-actions">
+
+                    <button class="team-btn"
+                        onclick="openViewUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        'Administrator',
+                        'Operations',
+                        'Online',
+                        '12',
+                        '4'
+                    )">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                
+                    <button class="team-btn"
+                        onclick="openEditUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        '9876543210'
+                    )">
+                        <i class="fa fa-pencil"></i>
+                    </button> 
+                
+                </div>
+
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>
+
+                  <div class="user-cell">
+
+                    <div class="user-avatar-lg bg-orange">
+                      SL
+                    </div>
+
+                    <div class="user-info-wrap">
+                      <div class="">
+                        Sarah Lee
+                      </div>
+
+                      <div class="user-email">
+                        sarah.lee@drawingmanager.com
+                      </div>
+                    </div>
+
+                  </div>
+
+                </td>
+
+                <td>
+                  <span class="role-badge role-reviewer">
+                    Reviewer
+                  </span>
+                </td>
+
+                <td>
+                  QA / Review
+                </td>
+
+                <td class="mono">
+                  18
+                </td>
+
+                <td class="mono">
+                  7
+                </td>
+
+                <td>
+                  <span class="status-pill away">
+                    Away
+                  </span>
+                </td>
+
+                <td>
+                  12 mins ago
+                </td>
+
+                <td>
+
+                  <div class="team-actions">
+
+                    <button class="team-btn"
+                        onclick="openViewUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        'Administrator',
+                        'Operations',
+                        'Online',
+                        '12',
+                        '4'
+                    )">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                
+                    <button class="team-btn"
+                        onclick="openEditUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        '9876543210'
+                    )">
+                        <i class="fa fa-pencil"></i>
+                    </button> 
+                
+                </div>
+
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>
+
+                  <div class="user-cell">
+
+                    <div class="user-avatar-lg bg-green">
+                      TK
+                    </div>
+
+                    <div class="user-info-wrap">
+                      <div class="">
+                        Thomas King
+                      </div>
+
+                      <div class="user-email">
+                        thomas.king@drawingmanager.com
+                      </div>
+                    </div>
+
+                  </div>
+
+                </td>
+
+                <td>
+                  <span class="role-badge role-engineer">
+                    Engineer
+                  </span>
+                </td>
+
+                <td>
+                  Mechanical
+                </td>
+
+                <td class="mono">
+                  9
+                </td>
+
+                <td class="mono">
+                  1
+                </td>
+
+                <td>
+                  <span class="status-pill online">
+                    Online
+                  </span>
+                </td>
+
+                <td>
+                  4 mins ago
+                </td>
+
+                <td>
+
+                  <div class="team-actions">
+
+                    <button class="team-btn"
+                        onclick="openViewUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        'Administrator',
+                        'Operations',
+                        'Online',
+                        '12',
+                        '4'
+                    )">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                
+                    <button class="team-btn"
+                        onclick="openEditUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        '9876543210'
+                    )">
+                        <i class="fa fa-pencil"></i>
+                    </button> 
+                
+                </div>
+
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>
+
+                  <div class="user-cell">
+
+                    <div class="user-avatar-lg bg-purple">
+                      MD
+                    </div>
+
+                    <div class="user-info-wrap">
+                      <div class="">
+                        Michael Doe
+                      </div>
+
+                      <div class="user-email">
+                        michael.doe@drawingmanager.com
+                      </div>
+                    </div>
+
+                  </div>
+
+                </td>
+
+                <td>
+                  <span class="role-badge role-manager">
+                    Manager
+                  </span>
+                </td>
+
+                <td>
+                  Production
+                </td>
+
+                <td class="mono">
+                  22
+                </td>
+
+                <td class="mono">
+                  8
+                </td>
+
+                <td>
+                  <span class="status-pill offline">
+                    Offline
+                  </span>
+                </td>
+
+                <td>
+                  1 hour ago
+                </td>
+
+                <td>
+
+                  <div class="team-actions">
+
+                    <button class="team-btn"
+                        onclick="openViewUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        'Administrator',
+                        'Operations',
+                        'Online',
+                        '12',
+                        '4'
+                    )">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                
+                    <button class="team-btn"
+                        onclick="openEditUserModal(
+                        'James Doyle',
+                        'james.doyle@drawingmanager.com',
+                        '9876543210'
+                    )">
+                        <i class="fa fa-pencil"></i>
+                    </button> 
+                
+                </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+  <!-- VIEW USER MODAL -->
+<div class="modal-overlay" id="viewUserModal" onclick="closeViewUserModal()">
+
+  <div class="modal user-view-modal" onclick="event.stopPropagation()">
+
+      <div class="modal-header p-0 m-0 align-items-center">
+
+          <div>
+              <h5 class="mb-1">User Details</h5>
+              <div class="user-modal-subtitle">
+                  Team member information & workload summary
+              </div>
+          </div>
+
+          <button class="modal-close mb-2" onclick="closeViewUserModal()">✕</button>
+
+      </div>
+
+      <div class="pt-3">
+
+          <div class="user-profile-card">
+
+              <div class="user-profile-avatar">
+                  JD
+              </div>
+
+              <div>
+                  <div class="user-profile-name" id="viewUserName">
+                      James Doyle
+                  </div>
+
+                  <div class="user-profile-email" id="viewUserEmail">
+                      james.doyle@drawingmanager.com
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="user-info-grid">
+
+              <div class="user-info-box">
+                  <span>Role</span>
+                  <strong id="viewUserRole">Administrator</strong>
+              </div>
+
+              <div class="user-info-box">
+                  <span>Department</span>
+                  <strong id="viewUserDepartment">Operations</strong>
+              </div>
+
+              <div class="user-info-box">
+                  <span>Assigned Tasks</span>
+                  <strong id="viewUserAssigned">12</strong>
+              </div>
+
+              <div class="user-info-box">
+                  <span>Pending Reviews</span>
+                  <strong id="viewUserPending">4</strong>
+              </div>
+
+          </div>
+
+          <div class="user-status-card">
+
+              <div>
+                  <div class="status-title">
+                      Current Status
+                  </div>
+
+                  <div class="status-sub">
+                      Latest activity from system monitoring
+                  </div>
+              </div>
+
+              <span class="status-pill online" id="viewUserStatus">
+                  Online
+              </span>
+
+          </div>
+
+          <div class="modal-footer-btns mt-4">
+
+              <button class="btn-ghost-sm" onclick="closeViewUserModal()">
+                  Close
+              </button>
+
+              <button class="btn-primary-sm"
+                  onclick="closeViewUserModal();showToast('User profile exported','success')">
+                  <i class="fa fa-download"></i> Export
+              </button>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+
+<!-- EDIT USER MODAL -->
+<div class="modal-overlay" id="editUserModal" onclick="closeEditUserModal()">
+
+  <div class="modal user-edit-modal" onclick="event.stopPropagation()">
+
+      <div class="modal-header p-0 m-0 align-items-center">
+
+          <div>
+              <h5 class="mb-1">Edit User</h5>
+
+              <div class="user-modal-subtitle">
+                  Update user details, role & access
+              </div>
+          </div>
+
+          <button class="modal-close mb-2" onclick="closeEditUserModal()">✕</button>
+
+      </div>
+
+      <div class="pt-3">
+
+          <div class="row g-3">
+
+              <div class="col-md-6">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="editUserName">
+              </div>
+
+              <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="editUserEmail">
+              </div>
+
+              <div class="col-md-6">
+                  <label class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="editUserPhone">
+              </div>
+
+              <div class="col-md-6">
+                  <label class="form-label">Role</label>
+
+                  <select class="form-select">
+                      <option>Administrator</option>
+                      <option>Manager</option>
+                      <option>Reviewer</option>
+                      <option>Engineer</option>
+                  </select>
+              </div>
+
+              <div class="col-md-6">
+                  <label class="form-label">Department</label>
+
+                  <select class="form-select">
+                      <option>Operations</option>
+                      <option>Mechanical</option>
+                      <option>Electrical</option>
+                      <option>QA / Review</option>
+                  </select>
+              </div>
+
+              <div class="col-md-6">
+                  <label class="form-label">Status</label>
+
+                  <select class="form-select">
+                      <option>Online</option>
+                      <option>Away</option>
+                      <option>Offline</option>
+                  </select>
+              </div>
+
+          </div>
+
+          <div class="modal-footer-btns mt-4">
+
+              <button class="btn-ghost-sm" onclick="closeEditUserModal()">
+                  Cancel
+              </button>
+
+              <button class="btn-primary-sm"
+                  onclick="closeEditUserModal();showToast('✓ User updated successfully','success')">
+                  Save Changes
+              </button>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+
+<style>
+  /* USER ACTION MODALS */
+.user-view-modal,
+.user-edit-modal{
+    width:min(760px,95%);
+}
+
+.user-modal-subtitle{
+    font-size:12px;
+    color:var(--text-soft);
+    margin-top:4px;
+}
+.user-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 15px;
+    border-radius: 18px;
+    background: rgb(243 202 247 / 47%);
+    border: 1px solid rgb(215 134 223 / 55%);
+    margin-bottom: 20px;
+}
+
+.user-profile-avatar{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#47b8c9,#31d2f2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:700;
+    color:#fff;
+}
+
+.user-profile-name{
+    font-size:20px;
+    font-weight:600;
+}
+
+.user-profile-email{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--text-soft);
+}
+
+.user-info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:20px;
+}
+.user-info-box {
+    padding: 5px 15px;
+    border-radius: 16px;
+    background: rgb(166 174 247 / 43%);
+    border: 1px solid rgb(151 157 230);
+}
+.user-info-box span{
+    display:block;
+    font-size:12px;
+    color:var(--text-soft);
+    margin-bottom:6px;
+}
+
+.user-info-box strong{
+    font-size:15px;
+}
+
+.user-status-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgb(132 156 247 / 20%);
+    border: 1px solid rgb(118 128 232 / 33%);
+}
+.status-title{
+    font-size:15px;
+    font-weight:600;
+}
+
+.status-sub{
+    font-size:12px;
+    color:var(--text-soft);
+    margin-top:4px;
+}
+
+@media(max-width:768px){
+
+    .user-info-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+<script>
+
+  function openViewUserModal(name,email,role,department,status,assigned,pending){
+  
+      document.getElementById('viewUserModal').classList.add('open');
+  
+      document.getElementById('viewUserName').innerText = name;
+      document.getElementById('viewUserEmail').innerText = email;
+      document.getElementById('viewUserRole').innerText = role;
+      document.getElementById('viewUserDepartment').innerText = department;
+      document.getElementById('viewUserAssigned').innerText = assigned;
+      document.getElementById('viewUserPending').innerText = pending;
+  
+      const statusEl = document.getElementById('viewUserStatus');
+  
+      statusEl.innerText = status;
+  
+      statusEl.className = 'status-pill ' + status.toLowerCase();
+  }
+  
+  function closeViewUserModal(){
+      document.getElementById('viewUserModal').classList.remove('open');
+  }
+  
+  function openEditUserModal(name,email,phone){
+  
+      document.getElementById('editUserModal').classList.add('open');
+  
+      document.getElementById('editUserName').value = name;
+      document.getElementById('editUserEmail').value = email;
+      document.getElementById('editUserPhone').value = phone;
+  }
+  
+  function closeEditUserModal(){
+      document.getElementById('editUserModal').classList.remove('open');
+  }
+  
+  </script>
+  <div class="modal-overlay action-modal" id="modal-user">
+    <div class="modal">
+
+      <div class="modal-header m-0 p-0">
+        <div class="modal-title">Add User</div>
+        <button class="modal-close">×</button>
+      </div>
+      <div class="modal-body p-0 pt-3">
+        <div class="row g-3">
+          <div class="col-md-12">
+            <label class="form-label">User Name</label>
+            <input type="text" class="form-control" placeholder="Full Name">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="user@gmail.com">
+          </div>
+          <div class="col-md-6 form-group mb-3">
+            <label class="form-label">Number</label>
+            <input type="number" class="form-control" placeholder="123456789000">
+          </div>
+
+          <div class="col-md-6 form-group mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control">
+          </div>
+        </div>
+
+        <!-- ROLE + STATUS -->
+        <div class="row g-3">
+
+          <div class="col-md-6 form-group mb-3">
+            <label class="form-label">Role</label>
+            <select class="form-select">
+              <option>Admin</option>
+              <option>Designer</option>
+              <option>Approver</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 form-group mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select">
+              <option>Active</option>
+              <option>Inactive</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-ghost">Cancel</button>
+        <button class="btn-primary">Save</button>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    // OPEN MODAL
+    document.querySelectorAll('[data-modal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-modal');
+        document.getElementById('modal-' + type).classList.add('open');
+      });
+    });
+
+    // CLOSE MODAL
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.onclick = () => {
+        btn.closest('.modal-overlay').classList.remove('open');
+      };
+    });
+
+    // CLOSE ON OUTSIDE CLICK
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+        }
+      });
+    });
+  </script>
+
+  <!-- NEW REQUEST MODAL -->
+  <div class="modal-overlay" id="newRequestModal" onclick="closeNewModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+
+      <div class="modal-header p-0 align-items-center m-0">
+        <h5>Create New Request</h5>
+        <button class="modal-close mb-2" onclick="closeNewModal()">✕</button>
+      </div>
+
+      <div class="pt-3">
+        <div class="modal-form-group">
+          <label>Request Title</label>
+          <input class="modal-input" type="text" placeholder="e.g. Pump Assembly Drawing">
+        </div>
+        <div class="modal-form-group">
+          <label>Description</label>
+          <textarea class="modal-textarea" placeholder="Describe the drawing requirements…"></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="modal-form-group">
+            <label>Assignee</label>
+            <select class="modal-select">
+              <option>Jordan M.</option>
+              <option>Sam K.</option>
+              <option>Priya R.</option>
+              <option>Sarah Lennox</option>
+            </select>
+          </div>
+          <div class="modal-form-group">
+            <label>Priority</label>
+            <select class="modal-select">
+              <option>High</option>
+              <option selected>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="modal-form-group">
+            <label>Category</label>
+            <select class="modal-select">
+              <option>Electrical</option>
+              <option>Mechanical</option>
+              <option>Structural</option>
+              <option>Piping</option>
+            </select>
+          </div>
+          <div class="modal-form-group">
+            <label>Due Date</label>
+            <input class="modal-input" type="date">
+          </div>
+        </div>
+        <div class="modal-form-group">
+          <label>Part Number (optional)</label>
+          <input class="modal-input" type="text" placeholder="e.g. P-2045" style="font-family:var(--mono);">
+        </div>
+        <div class="modal-form-group">
+          <label>Attach Drawing File</label>
+          <div class="upload-zone" style="margin-top:0;">
+            <div class="uz-icon"><i class="fa fa-cloud-upload"></i></div>
+            <p>Drop PDF, DWG, DXF or STEP files here</p>
+          </div>
+        </div>
+        <div class="modal-footer-btns">
+          <button class="btn-ghost-sm" onclick="closeModal('newRequestModal')">Cancel</button>
+          <button class="btn-ghost-sm" style="color:var(--theme);border-color:rgba(8,93,106,.3);"
+            onclick="closeModal('newRequestModal');toast('Saved as draft','info')">Save Draft</button>
+          <button class="btn-primary-sm"
+            onclick="closeModal('newRequestModal');toast('✓ Request submitted','success')">Submit Request</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+  <script src="style.js"></script>
+  <div id="sidebar-overlay"></div>
+  <script src="assets/script.js"></script>
+  <script>
+    let toastTimer;
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show ' + type;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+    }
+
+    function openRequest(id) {
+      document.getElementById('modalReqId').textContent = '#' + id;
+      document.getElementById('requestModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('requestModal').classList.remove('open');
+    }
+
+    function openModal(key) {
+      openRequest(key);
+    }
+
+    function openStage(stage) {
+      showToast('Filtering by stage: ' + stage.replace(/-/g, ' '), 'info');
+    }
+
+    function doApprove(id) {
+      showToast('✓ ' + id + ' approved successfully', 'success');
+      closeModal();
+    }
+
+    function doRework(id) {
+      showToast('↩ ' + id + ' sent for rework', 'warning');
+      closeModal();
+    }
+
+    function retrySync(id) {
+      showToast('🔄 Retrying simPRO sync for ' + id + '…', 'info');
+    }
+
+    function filterTable(val) {
+      showToast('Filtering: ' + val, 'info');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+  <script>
+    document.getElementById('new-req-btn').addEventListener('click', function () {
+      document.getElementById('newRequestModal').classList.add('open');
+    });
+    function closeNewModal() {
+      document.getElementById('newRequestModal').classList.remove('open');
+    }
+    document.querySelectorAll('.btn-primary.small').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('newRequestModal').classList.add('open');
+      });
+    });
+  </script>
+</body>
+
+</html>

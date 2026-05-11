@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exeloo DMS – Assembly & Parts Explorer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+   :root {
+  --teal:       #0d6efd;
+  --teal-dk:    #0b5ed7;
+  --teal-glow:  rgba(13,110,253,.12);
+  --teal-soft:  rgba(13,110,253,.08);
+
+  --bg:         #f4f7fb;
+  --s1:         #ffffff;
+  --s2:         #f8fafc;
+  --s3:         #eef2f7;
+  --s4:         #e5eaf1;
+
+  --b1:         #dbe3ec;
+  --b2:         #c9d4e0;
+
+  --green:      #16a34a;
+  --yellow:     #d97706;
+  --red:        #dc2626;
+  --blue:       #2563eb;
+  --orange:     #ea580c;
+
+  --text:       #1e293b;
+  --muted:      #64748b;
+  --dim:        #94a3b8;
+
+  --r:  5px;
+  --rl: 9px;
+  --sw: 228px;
+} 
+    /* ── PAGE HEAD ── */
+    .ph{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+    .pt{font-size:20px;font-weight:700;letter-spacing:-.3px;}
+    .ps{font-size:12px;color:var(--muted);margin-top:3px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;font-size:12.5px;font-weight:500;font-family:inherit;border-radius:var(--r);cursor:pointer;border:none;transition:all .13s;}
+    .btn-o{background:transparent;border:1px solid var(--b2);color:var(--muted);}
+    .btn-o:hover{color:var(--text);border-color:var(--muted);background:var(--s2);}
+    .btn-t{background:var(--teal);color:#fff;font-weight:600;}
+    .btn-t:hover{background:var(--teal-dk);}
+    .btn-sm{padding:5px 11px;font-size:12px;}
+
+    /* ── SEARCH CARD ── */
+    .sc{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);overflow:hidden;}
+
+    /* Catalogue/Pre-Builds tabs */
+    .cat-tabs{display:flex;border-bottom:1px solid var(--b1);padding:0 16px;}
+    .ct{padding:11px 17px;font-size:13px;font-weight:600;font-family:inherit;color:var(--muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all .13s;}
+    .ct:hover{color:var(--text);}
+    .ct.active{color:var(--teal);border-bottom-color:var(--teal);}
+
+    /* Search bar */
+    .sbr{display:flex;align-items:center;gap:8px;padding:14px 16px 12px;}
+    .sw{flex:1;position:relative;}
+    .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:14px;pointer-events:none;}
+    .sinput{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r);padding:9px 12px 9px 34px;font-size:13px;font-family:inherit;color:var(--text);outline:none;transition:border-color .13s,box-shadow .13s;}
+    .sinput::placeholder{color:var(--dim);}
+    .sinput:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow);}
+    .em-row{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap;}
+    .em-row input{accent-color:var(--teal);cursor:pointer;}
+
+    /* Mode tabs row */
+    .mode-row{display:flex;align-items:center;border-top:1px solid var(--b1);padding:0 16px;}
+    .mt{padding:9px 13px;font-size:12px;font-weight:500;font-family:inherit;color:var(--muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all .12s;}
+    .mt:hover{color:var(--text);}
+    .mt.active{color:var(--teal);border-bottom-color:var(--teal);}
+    .mt.link{color:var(--blue);}
+    .mt.link:hover{text-decoration:underline;}
+    .mdiv{width:1px;height:18px;background:var(--b1);margin:0 3px;align-self:center;}
+    .fav-row{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none;margin-right:4px;}
+    .fav-row input{accent-color:var(--teal);cursor:pointer;}
+    .mr-auto{margin-left:auto;}
+
+    /* Filter section */
+    .fsec{padding:14px 16px 16px;border-top:1px solid var(--b1);display:none;}
+    .fsec.open{display:block;}
+    .flbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:12px;}
+    .fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 14px;}
+    .fg{display:flex;flex-direction:column;gap:4px;}
+    .fl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+    .fi,.fsel{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r);padding:7px 10px;font-size:12.5px;font-family:inherit;color:var(--text);outline:none;transition:border-color .13s;}
+    .fi::placeholder{color:var(--dim);}
+    .fi:focus,.fsel:focus{border-color:var(--teal);}
+    .fsel option{background:var(--s3);}
+    .fopts{display:flex;align-items:center;gap:14px;margin-top:12px;padding-top:12px;border-top:1px solid var(--b1);}
+    .fc{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none;}
+    .fc input{accent-color:var(--teal);cursor:pointer;}
+    .factions{margin-left:auto;display:flex;gap:7px;}
+
+    /* Active filters */
+    .afs{display:none;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 16px 10px;}
+    .afs.show{display:flex;}
+    .afl{font-size:11px;color:var(--muted);font-weight:600;}
+    .aft{display:inline-flex;align-items:center;gap:5px;background:rgba(0,180,180,.1);border:1px solid rgba(0,180,180,.25);color:var(--teal);border-radius:20px;padding:3px 9px;font-size:11px;font-weight:500;}
+    .aft .x{color:rgba(0,180,180,.5);cursor:pointer;font-size:13px;line-height:1;}
+    .aft .x:hover{color:var(--red);}
+
+    /* ── STATS ── */
+    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+    .stat{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);padding:14px 16px;transition:border-color .13s;}
+    .stat:hover{border-color:var(--b2);}
+    .slbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);margin-bottom:6px;}
+    .sval{font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text);letter-spacing:-1px;}
+    .snote{font-size:11px;color:var(--muted);margin-top:3px;}
+    .snote.up{color:var(--green);}
+    .snote.warn{color:var(--yellow);}
+
+    /* ── TOOLBAR ── */
+    .tb{display:flex;align-items:center;gap:10px;}
+    .rc{font-size:12.5px;color:var(--muted);flex:1;}
+    .rc strong{color:var(--text);}
+    .ssel{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r);padding:6px 10px;font-size:12px;font-family:inherit;color:var(--muted);outline:none;cursor:pointer;}
+    .ssel:focus{border-color:var(--teal);}
+
+    /* ── TABLE ── */
+    .tw{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rl);overflow:hidden;}
+    table{width:100%;border-collapse:collapse;}
+    thead th{padding:10px 14px;text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);background:var(--s2);border-bottom:1px solid var(--b1);white-space:nowrap;cursor:pointer;user-select:none;}
+    thead th:hover{color:var(--text);}
+    thead th.sorted{color:var(--teal);}
+    .sic{opacity:.35;font-style:normal;font-size:10px;margin-left:3px;}
+    thead th.sorted .sic{opacity:1;}
+    tbody tr{border-bottom:1px solid var(--b1);cursor:pointer;transition:background .11s;}
+    tbody tr:last-child{border-bottom:none;}
+    tbody tr:hover{background:var(--s2);}
+    tbody tr.exp{background:var(--s2);}
+    td{padding:11px 14px;vertical-align:middle;}
+    .eic{font-size:10px;color:var(--dim);width:16px;display:inline-block;text-align:center;transition:color .12s;}
+    tr:hover .eic,tr.exp .eic{color:var(--teal);}
+    .pno{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--teal);white-space:nowrap;}
+    .drw{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:2px 7px;border-radius:3px;display:inline-block;}
+    .rev{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted);background:var(--s3);border:1px solid var(--b1);padding:2px 6px;border-radius:3px;display:inline-block;margin-left:5px;}
+    .dc{max-width:250px;line-height:1.4;}
+    .hl{background:rgba(0,180,180,.18);color:var(--teal);border-radius:2px;padding:0 2px;}
+    .tb-a{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;}
+    .ta{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.28);color:#60a5fa;}
+    .tp{background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.27);color:#4ade80;}
+    .tpb{background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.27);color:#fb923c;}
+    .st{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+    .st::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dim);flex-shrink:0;}
+    .sa::before{background:var(--green);}
+    .sr::before{background:var(--yellow);}
+    .so::before{background:var(--red);}
+    .wupips{display:flex;align-items:center;gap:3px;}
+    .pip{width:7px;height:7px;border-radius:50%;background:var(--s3);border:1px solid var(--b1);}
+    .pip.on{background:var(--teal);border-color:var(--teal);}
+    .pnum{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-left:4px;}
+    .ra{display:flex;gap:3px;justify-content:flex-end;}
+    .ib{background:transparent;border:1px solid transparent;border-radius:var(--r);padding:4px 7px;font-size:12px;color:var(--dim);cursor:pointer;transition:all .11s;}
+    .ib:hover{color:var(--text);background:var(--s3);border-color:var(--b1);}
+
+    /* ── WHERE USED PANEL ── */
+    .wuex td{padding:0;}
+    .wup{display:none;background:var(--bg);border-top:2px solid var(--teal-soft);padding:16px 16px 16px 46px;animation:fd .16s ease;}
+    .wup.open{display:block;}
+    @keyframes fd{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+    .wuh{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .wut{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--teal);}
+    .wus{font-size:11px;color:var(--muted);margin-left:auto;}
+    .wucards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;}
+    .wuc{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:10px 13px;cursor:pointer;transition:border-color .12s;}
+    .wuc:hover{border-color:var(--teal);}
+    .wucn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--teal);margin-bottom:2px;}
+    .wucname{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;}
+    .wucf{display:flex;align-items:center;gap:6px;}
+    .wuqty{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--teal-soft);border:1px solid rgba(0,180,180,.2);color:var(--teal);padding:1px 6px;border-radius:20px;}
+    .wu-nil{font-size:12px;color:var(--muted);font-style:italic;}
+    .ecn-note{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.22);border-radius:var(--r);padding:8px 13px;font-size:11.5px;color:#93c5fd;margin-top:10px;display:flex;align-items:center;gap:7px;}
+
+    /* ── PAGER ── */
+    .pager{display:flex;align-items:center;justify-content:space-between;}
+    .pinfo{font-size:11.5px;color:var(--muted);}
+    .pbtns{display:flex;gap:3px;}
+    .pb{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:5px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;color:var(--muted);cursor:pointer;transition:all .11s;}
+    .pb:hover{color:var(--text);border-color:var(--b2);}
+    .pb.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+    .pb:disabled{opacity:.3;cursor:not-allowed;pointer-events:none;}
+
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+    ::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px;}
+
+    @media(max-width:960px){ 
+      .stats{grid-template-columns:repeat(3,1fr);}
+      .fgrid{grid-template-columns:1fr 1fr;}
+    }
+    
+  </style>
+</head>
+<body>
+ 
+
+<div class="layout"> 
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="ph">
+      <div>
+        <div class="pt">Assembly &amp; Parts Explorer</div>
+        <div class="ps">Search by part number, description or drawing number · Trace parts across all assemblies and pre-builds</div>
+      </div>
+      <div style="display:flex;gap:7px;flex-shrink:0;">
+        <button class="btn btn-o">⤓ Export</button>
+        <button class="btn btn-o">＋ Import</button>
+        <button class="btn btn-t">＋ New Part</button>
+      </div>
+    </div>
+
+    <!-- SEARCH CARD -->
+    <div class="sc">
+
+      <!-- Catalogue / Pre-Builds tabs -->
+      <div class="cat-tabs">
+        <button class="ct active" onclick="swCat('catalogue',this)">Catalogue</button>
+        <button class="ct" onclick="swCat('prebuilds',this)">Pre-Builds</button>
+      </div>
+
+      <!-- Search bar -->
+      <div class="sbr">
+        <div class="sw">
+          <span class="si">🔍</span>
+          <input class="sinput" id="q" type="text"
+            placeholder="Search part number, description or drawing no…  e.g.  3D-5102   or   FRAME KIT JUPITER"
+            oninput="live()" />
+        </div>
+        <label class="em-row"><input type="checkbox" id="exact" onchange="live()" /> Exact Match</label>
+        <button class="btn btn-t" onclick="live()">Search</button>
+      </div>
+
+      <!-- Mode tabs row (matches simPRO layout) -->
+      <div class="mode-row">
+        <label class="fav-row"><input type="checkbox" id="favs" onchange="live()" /> Favourites Only</label>
+        <div class="mdiv"></div>
+        <button class="mt active" onclick="swMode('basic',this)">Basic</button>
+        <button class="mt" onclick="swMode('advanced',this)">Advanced Search</button>
+        <div class="mdiv"></div>
+        <button class="mt link">Save Search</button>
+        <button class="mt link">Modify Table View</button>
+        <div class="mr-auto">
+          <button class="btn btn-o btn-sm" onclick="clearAll()">Clear All</button>
+        </div>
+      </div>
+
+      <!-- Advanced filter panel -->
+      <div class="fsec" id="fsec">
+        <div class="flbl">Filter By</div>
+        <div class="fgrid">
+          <div class="fg">
+            <label class="fl">Supplier</label>
+            <select class="fsel" id="f-sup">
+              <option value="">Not Selected</option>
+              <option>Exeloo NZ</option><option>Exeloo AU</option><option>Exeloo USA</option>
+              <option>External Supplier A</option><option>External Supplier B</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl">Item Status</label>
+            <select class="fsel" id="f-stat">
+              <option value="">Not Selected</option>
+              <option value="Active">Active</option>
+              <option value="Under Review">Under Review</option>
+              <option value="Obsolete">Obsolete</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl">Manufacturer</label>
+            <input class="fi" id="f-mfr" type="text" placeholder="" />
+          </div>
+          <div class="fg">
+            <label class="fl">Country of Origin</label>
+            <input class="fi" id="f-coo" type="text" placeholder="" />
+          </div>
+          <div class="fg">
+            <label class="fl">Storage Location</label>
+            <input class="fi" id="f-loc" type="text" placeholder="" />
+          </div>
+          <div class="fg">
+            <label class="fl">Group</label>
+            <select class="fsel" id="f-grp">
+              <option value="">Not Selected</option>
+              <option>Door &amp; Frame</option><option>Structural</option>
+              <option>Electrical</option><option>Plumbing</option>
+              <option>Cladding</option><option>Hardware</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl">Drawing Number</label>
+            <input class="fi" id="f-drw" type="text" placeholder="e.g. 3D-5102" />
+          </div>
+          <div class="fg">
+            <label class="fl">Used In Assembly</label>
+            <input class="fi" id="f-ui" type="text" placeholder="e.g. ASM-001" />
+          </div>
+        </div>
+        <!-- Search Options row (as shown in simPRO screenshot) -->
+        <div class="fopts">
+          <span class="fl" style="color:var(--muted);">Search Options</span>
+          <label class="fc"><input type="checkbox" id="adv-ex" /> Exact Match</label>
+          <label class="fc"><input type="checkbox" id="adv-fav" /> Favourites Only</label>
+          <div class="factions">
+            <button class="btn btn-o btn-sm" onclick="clearAll()">Clear</button>
+            <button class="btn btn-t btn-sm" onclick="runAdv()">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active filter tags -->
+      <div class="afs" id="afs">
+        <span class="afl">Filters:</span>
+        <span id="aftags"></span>
+      </div>
+
+    </div><!-- /search card -->
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat"><div class="slbl">Total Catalogue</div><div class="sval">1 247</div><div class="snote up">▲ 24 this month</div></div>
+      <div class="stat"><div class="slbl">Assemblies</div><div class="sval">312</div><div class="snote up">▲ 8 this month</div></div>
+      <div class="stat"><div class="slbl">Pre-Builds</div><div class="sval">88</div><div class="snote warn">▼ 2 under review</div></div>
+      <div class="stat"><div class="slbl">Active Parts</div><div class="sval">847</div><div class="snote">of 1 247</div></div>
+      <div class="stat"><div class="slbl">Results Shown</div><div class="sval" id="sv">—</div><div class="snote" id="sn">matching</div></div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="tb">
+      <div class="rc"><strong id="mc">—</strong> items found</div>
+      <select class="ssel" id="srt" onchange="render()">
+        <option value="partNo">Sort: Part No.</option>
+        <option value="desc">Sort: Description</option>
+        <option value="drwNo">Sort: Drawing No.</option>
+        <option value="type">Sort: Type</option>
+        <option value="usedIn">Sort: Most Used</option>
+        <option value="status">Sort: Status</option>
+      </select>
+      <button class="btn btn-o btn-sm">⤓ Export Results</button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24px;"></th>
+            <th onclick="sortBy('partNo')">Part No. <i class="sic" id="ic-partNo">↕</i></th>
+            <th onclick="sortBy('desc')">Description <i class="sic" id="ic-desc">↕</i></th>
+            <th onclick="sortBy('drwNo')">Drawing No. <i class="sic" id="ic-drwNo">↕</i></th>
+            <th onclick="sortBy('type')">Type <i class="sic" id="ic-type">↕</i></th>
+            <th onclick="sortBy('cat')">Group <i class="sic" id="ic-cat">↕</i></th>
+            <th onclick="sortBy('usedIn')">Where Used <i class="sic" id="ic-usedIn">↕</i></th>
+            <th onclick="sortBy('status')">Status <i class="sic" id="ic-status">↕</i></th>
+            <th style="width:88px;"></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- PAGER -->
+    <div class="pager">
+      <div class="pinfo" id="pinfo"></div>
+      <div class="pbtns" id="pbtns"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ── DATA ── */
+const DATA = [
+  {id:1, partNo:'ASM-001',drwNo:'3D-5001',rev:'2-A',desc:'Main Frame Weld Assembly – JUPITER 22DD',type:'Assembly',cat:'Structural',status:'Active',fav:false,usedIn:[]},
+  {id:2, partNo:'ASM-002',drwNo:'3D-5010',rev:'1-C',desc:'Front Service Door Assembly – TWIN BC',type:'Assembly',cat:'Door & Frame',status:'Active',fav:false,usedIn:[]},
+  {id:3, partNo:'ASM-003',drwNo:'3D-5020',rev:'1-A',desc:'Electrical Control Panel Assembly – 24V',type:'Assembly',cat:'Electrical',status:'Active',fav:false,usedIn:[]},
+  {id:4, partNo:'ASM-004',drwNo:'3D-5030',rev:'1-B',desc:'Plumbing Manifold Block Assembly',type:'Assembly',cat:'Plumbing',status:'Active',fav:false,usedIn:[]},
+  {id:5, partNo:'ASM-005',drwNo:'3D-5035',rev:'1-A',desc:'Side Panel Cladding Sub-Assembly – Left Hand',type:'Assembly',cat:'Cladding',status:'Active',fav:false,usedIn:['ASM-001']},
+  {id:6, partNo:'ASM-006',drwNo:'3D-5036',rev:'1-A',desc:'Side Panel Cladding Sub-Assembly – Right Hand',type:'Assembly',cat:'Cladding',status:'Active',fav:false,usedIn:['ASM-001']},
+  {id:7, partNo:'ASM-007',drwNo:'3D-5040',rev:'2-B',desc:'Roof Frame Weld Assembly – SATURN 22',type:'Assembly',cat:'Structural',status:'Active',fav:false,usedIn:[]},
+  {id:8, partNo:'FRM-101',drwNo:'3D-5100',rev:'1-B',desc:'Frame Kit JUPITER US 22DD Front Service Door',type:'Part',cat:'Door & Frame',status:'Active',fav:true,usedIn:['ASM-001','ASM-002','PB-011']},
+  {id:9, partNo:'FRM-102',drwNo:'3D-5101',rev:'1-B',desc:'Frame Kit JUPITER US 22DD Rear Panel',type:'Part',cat:'Door & Frame',status:'Active',fav:false,usedIn:['ASM-001']},
+  {id:10,partNo:'FRM-103',drwNo:'3D-5102',rev:'1-B',desc:'Frame Kit JUPITER US 22DD Front Service Door – Twin BC',type:'Part',cat:'Door & Frame',status:'Under Review',fav:true,usedIn:['ASM-002','PB-011','PB-012']},
+  {id:11,partNo:'FRM-104',drwNo:'3D-5103',rev:'1-A',desc:'Frame Kit SATURN 22 Side Entry Door',type:'Part',cat:'Door & Frame',status:'Active',fav:false,usedIn:['ASM-007']},
+  {id:12,partNo:'BRK-201',drwNo:'3D-4201',rev:'2-A',desc:'Front Mounting Bracket – Heavy Duty Weld',type:'Part',cat:'Structural',status:'Active',fav:false,usedIn:['ASM-001','PB-011','ASM-007']},
+  {id:13,partNo:'BRK-202',drwNo:'3D-4202',rev:'1-C',desc:'Side Bracket Weld – Left Hand',type:'Part',cat:'Structural',status:'Active',fav:false,usedIn:['ASM-001','ASM-005']},
+  {id:14,partNo:'BRK-203',drwNo:'3D-4203',rev:'1-C',desc:'Side Bracket Weld – Right Hand',type:'Part',cat:'Structural',status:'Active',fav:false,usedIn:['ASM-001','ASM-006']},
+  {id:15,partNo:'BRK-204',drwNo:'3D-4204',rev:'1-B',desc:'Rear Weld Bracket Reinforced – JUPITER',type:'Part',cat:'Structural',status:'Under Review',fav:false,usedIn:['ASM-001']},
+  {id:16,partNo:'DOR-301',drwNo:'3D-5200',rev:'1-A',desc:'Door Hinge Set – Stainless 316 (Pair)',type:'Part',cat:'Hardware',status:'Active',fav:false,usedIn:['ASM-002','FRM-103']},
+  {id:17,partNo:'DOR-302',drwNo:'3D-5201',rev:'1-A',desc:'Door Latch Assembly – TWIN BC Deadbolt',type:'Part',cat:'Hardware',status:'Active',fav:true,usedIn:['ASM-002']},
+  {id:18,partNo:'DOR-303',drwNo:'3D-5202',rev:'2-A',desc:'Door Seal Rubber Extrusion – 22DD Profile',type:'Part',cat:'Hardware',status:'Active',fav:false,usedIn:['ASM-002','FRM-103']},
+  {id:19,partNo:'ELC-301',drwNo:'3D-6001',rev:'1-B',desc:'24V DC Power Supply Module – 10A',type:'Part',cat:'Electrical',status:'Active',fav:false,usedIn:['ASM-003','PB-015']},
+  {id:20,partNo:'ELC-302',drwNo:'3D-6002',rev:'1-A',desc:'PLC Controller Unit – Smart Toilet Interface',type:'Part',cat:'Electrical',status:'Active',fav:false,usedIn:['ASM-003']},
+  {id:21,partNo:'ELC-303',drwNo:'3D-6010',rev:'1-A',desc:'LED Lighting Strip – Internal 500mm 24V',type:'Part',cat:'Electrical',status:'Obsolete',fav:false,usedIn:[]},
+  {id:22,partNo:'PLM-401',drwNo:'3D-7001',rev:'1-A',desc:'Flush Valve Assembly – 6L Dual Flush',type:'Part',cat:'Plumbing',status:'Active',fav:false,usedIn:['ASM-004','PB-008']},
+  {id:23,partNo:'PLM-402',drwNo:'3D-7002',rev:'1-B',desc:'Water Inlet Valve – 15mm BSP Float',type:'Part',cat:'Plumbing',status:'Active',fav:false,usedIn:['ASM-004']},
+  {id:24,partNo:'PLM-403',drwNo:'3D-7010',rev:'1-A',desc:'Waste Pan Assembly – Stainless 316',type:'Part',cat:'Plumbing',status:'Active',fav:false,usedIn:['ASM-004','PB-008']},
+  {id:25,partNo:'PB-008', drwNo:'3D-8008',rev:'1-A',desc:'Plumbing Sub-Assembly Pre-Build – Flush & Fill',type:'Pre-Build',cat:'Plumbing',status:'Active',fav:false,usedIn:['ASM-004']},
+  {id:26,partNo:'PB-011', drwNo:'3D-8011',rev:'1-B',desc:'Frame & Door Pre-Build Kit – JUPITER 22DD',type:'Pre-Build',cat:'Door & Frame',status:'Active',fav:true,usedIn:['ASM-001','ASM-002']},
+  {id:27,partNo:'PB-012', drwNo:'3D-8012',rev:'1-A',desc:'Twin BC Door Pre-Build – Front Service Entry',type:'Pre-Build',cat:'Door & Frame',status:'Under Review',fav:false,usedIn:['ASM-002']},
+  {id:28,partNo:'PB-015', drwNo:'3D-8015',rev:'1-A',desc:'Control Cabinet Pre-Build – 24V JUPITER',type:'Pre-Build',cat:'Electrical',status:'Under Review',fav:false,usedIn:['ASM-003']},
+];
+
+/* ── STATE ── */
+let filtered=[ ...DATA],page=1,PER=12,sf='partNo',sasc=true,expId=null,afObj={},catT='catalogue';
+
+/* ── TABS ── */
+function swCat(t,el){
+  catT=t;
+  document.querySelectorAll('.ct').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  applyAll();
+}
+function swMode(m,el){
+  document.querySelectorAll('.mt:not(.link)').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('fsec').classList.toggle('open',m==='advanced');
+}
+
+/* ── SEARCH ── */
+function live(){applyAll();}
+
+function applyAll(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const exact=document.getElementById('exact').checked;
+  const favsOnly=document.getElementById('favs').checked;
+  filtered=DATA.filter(p=>{
+    if(catT==='prebuilds'&&p.type!=='Pre-Build')return false;
+    if(favsOnly&&!p.fav)return false;
+    if(q){
+      const mf=exact?(s)=>s.toLowerCase()===q:(s)=>s.toLowerCase().includes(q);
+      if(!mf(p.partNo)&&!mf(p.desc)&&!mf(p.drwNo))return false;
+    }
+    return true;
+  });
+  page=1;
+  afObj={};
+  if(q)afObj['Search']=q;
+  renderTags();
+  render();
+}
+
+function runAdv(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const stat=document.getElementById('f-stat').value;
+  const grp=document.getElementById('f-grp').value.replace('&amp;','&');
+  const drw=document.getElementById('f-drw').value.trim().toLowerCase();
+  const ui=document.getElementById('f-ui').value.trim().toLowerCase();
+  const exact=document.getElementById('adv-ex').checked;
+  const fav=document.getElementById('adv-fav').checked;
+  filtered=DATA.filter(p=>{
+    if(catT==='prebuilds'&&p.type!=='Pre-Build')return false;
+    if(fav&&!p.fav)return false;
+    if(stat&&p.status!==stat)return false;
+    if(grp&&p.cat!==grp)return false;
+    if(drw&&!p.drwNo.toLowerCase().includes(drw))return false;
+    if(ui&&!p.usedIn.some(u=>u.toLowerCase().includes(ui)))return false;
+    if(q){const mf=exact?(s)=>s.toLowerCase()===q:(s)=>s.toLowerCase().includes(q);if(!mf(p.partNo)&&!mf(p.desc)&&!mf(p.drwNo))return false;}
+    return true;
+  });
+  page=1;
+  afObj={};
+  if(q)afObj['Search']=q;
+  if(stat)afObj['Status']=stat;
+  if(grp)afObj['Group']=grp;
+  if(drw)afObj['Drawing']=drw;
+  if(ui)afObj['Used In']=ui;
+  renderTags();
+  render();
+}
+
+function renderTags(){
+  const bar=document.getElementById('afs'),wrap=document.getElementById('aftags');
+  const entries=Object.entries(afObj);
+  if(!entries.length){bar.classList.remove('show');return;}
+  bar.classList.add('show');
+  wrap.innerHTML=entries.map(([k,v])=>
+    `<span class="aft">${k}: <strong>${v}</strong><span class="x" onclick="rmTag('${k}')">✕</span></span>`
+  ).join('');
+}
+
+function rmTag(k){
+  delete afObj[k];
+  if(k==='Search')document.getElementById('q').value='';
+  filtered=[...DATA];
+  renderTags();
+  render();
+}
+
+function clearAll(){
+  document.getElementById('q').value='';
+  ['exact','favs','adv-ex','adv-fav'].forEach(id=>document.getElementById(id).checked=false);
+  ['f-stat','f-grp','f-sup'].forEach(id=>document.getElementById(id).selectedIndex=0);
+  ['f-mfr','f-coo','f-loc','f-drw','f-ui'].forEach(id=>document.getElementById(id).value='');
+  afObj={};filtered=catT==='prebuilds'?DATA.filter(p=>p.type==='Pre-Build'):[...DATA];
+  renderTags();page=1;render();
+}
+
+/* ── SORT ── */
+function sortBy(f){
+  sasc=sf===f?!sasc:true;sf=f;
+  document.querySelectorAll('.sic').forEach(el=>el.textContent='↕');
+  document.querySelectorAll('thead th').forEach(th=>th.classList.remove('sorted'));
+  const ic=document.getElementById('ic-'+f);
+  if(ic){ic.textContent=sasc?'↑':'↓';ic.closest('th').classList.add('sorted');}
+  render();
+}
+
+/* ── HIGHLIGHT ── */
+function hl(txt,q){
+  if(!q)return txt;
+  const s=q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return txt.replace(new RegExp(`(${s})`,'gi'),'<span class="hl">$1</span>');
+}
+
+/* ── RENDER ── */
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const sorted=[...filtered].sort((a,b)=>{
+    let va=a[sf],vb=b[sf];
+    if(sf==='usedIn'){va=va.length;vb=vb.length;}
+    if(typeof va==='string')va=va.toLowerCase();
+    if(typeof vb==='string')vb=vb.toLowerCase();
+    return(va<vb?-1:va>vb?1:0)*(sasc?1:-1);
+  });
+  const total=sorted.length,start=(page-1)*PER,slice=sorted.slice(start,start+PER);
+  document.getElementById('mc').textContent=total.toLocaleString();
+  document.getElementById('sv').textContent=slice.length;
+  document.getElementById('sn').textContent='of '+total.toLocaleString()+' matched';
+
+  document.getElementById('tbody').innerHTML=slice.map(p=>{
+    const tc=p.type==='Assembly'?'ta':p.type==='Pre-Build'?'tpb':'tp';
+    const sc=p.status==='Active'?'sa':p.status==='Under Review'?'sr':'so';
+    const wu=p.usedIn.length;
+    const pips=[1,2,3,4,5].map(i=>`<span class="pip${i<=wu?' on':''}"></span>`).join('');
+    return`
+    <tr id="r${p.id}" onclick="tog(${p.id})">
+      <td><span class="eic" id="ei${p.id}">▶</span></td>
+      <td class="pno">${hl(p.partNo,q)}${p.fav?' <span style="color:var(--yellow);font-size:10px;">★</span>':''}</td>
+      <td class="dc">${hl(p.desc,q)}</td>
+      <td><span class="drw">${hl(p.drwNo,q)}</span><span class="rev">${p.rev}</span></td>
+      <td><span class="tb-a ${tc}">${p.type}</span></td>
+      <td style="font-size:12px;color:var(--muted);">${p.cat}</td>
+      <td><div class="wupips">${pips}<span class="pnum">${wu}</span></div></td>
+      <td><span class="st ${sc}">${p.status}</span></td>
+      <td onclick="event.stopPropagation()"><div class="ra">
+        <button class="ib" title="View Drawing">📄</button>
+        <button class="ib" title="Export">⤓</button>
+        <button class="ib" title="Edit">✎</button>
+      </div></td>
+    </tr>
+    <tr class="wuex" id="wx${p.id}">
+      <td colspan="9"><div class="wup" id="wp${p.id}">${buildWU(p)}</div></td>
+    </tr>`;
+  }).join('');
+
+  renderPager(total);
+  document.getElementById('pinfo').textContent=
+    `Showing ${start+1}–${Math.min(start+PER,total)} of ${total.toLocaleString()} items`;
+}
+
+function buildWU(p){
+  const list=p.usedIn;
+  const head=`<div class="wuh"><span class="wut">⬡ Where Used — ${p.partNo}</span><span class="wus">${list.length} assembl${list.length===1?'y':'ies'}/pre-build${list.length===1?'':'s'}</span></div>`;
+  if(!list.length)return head+`<div class="wu-nil">Not currently referenced in any assembly or pre-build.</div>
+    <div class="ecn-note">ℹ Phase 2 – ECN impact tracing will link here once this part is used in an assembly.</div>`;
+  const cards=list.map(no=>{
+    const f=DATA.find(x=>x.partNo===no);
+    if(!f)return`<div class="wuc"><div class="wucn">${no}</div><div class="wucname">—</div></div>`;
+    const tc=f.type==='Assembly'?'ta':f.type==='Pre-Build'?'tpb':'tp';
+    return`<div class="wuc" onclick="event.stopPropagation()">
+      <div class="wucn">${f.partNo} <span class="rev" style="margin-left:4px;">${f.rev}</span></div>
+      <div class="wucname">${f.desc}</div>
+      <div class="wucf"><span class="tb-a ${tc}" style="font-size:10px;padding:2px 7px;">${f.type}</span>
+        <span class="wuqty">×1</span>
+        <span style="font-size:10px;color:var(--muted);">${f.cat}</span>
+      </div>
+    </div>`;
+  }).join('');
+  return head+`<div class="wucards">${cards}</div>
+    <div class="ecn-note">ℹ Phase 2 – ECN changes to <strong>${p.partNo}</strong> will automatically flag all ${list.length} linked assembl${list.length===1?'y':'ies'} for impact review.</div>`;
+}
+
+/* ── EXPAND ── */
+function tog(id){
+  const panel=document.getElementById('wp'+id),icon=document.getElementById('ei'+id),row=document.getElementById('r'+id);
+  if(!panel)return;
+  if(expId&&expId!==id){
+    const op=document.getElementById('wp'+expId),oi=document.getElementById('ei'+expId),or2=document.getElementById('r'+expId);
+    if(op)op.classList.remove('open');if(oi)oi.textContent='▶';if(or2)or2.classList.remove('exp');
+  }
+  const opening=!panel.classList.contains('open');
+  panel.classList.toggle('open',opening);
+  icon.textContent=opening?'▼':'▶';
+  row.classList.toggle('exp',opening);
+  expId=opening?id:null;
+}
+
+/* ── PAGER ── */
+function renderPager(total){
+  const pages=Math.ceil(total/PER)||1,ctrl=document.getElementById('pbtns');
+  let h=`<button class="pb" onclick="gp(${page-1})" ${page<=1?'disabled':''}>‹</button>`;
+  for(let i=1;i<=Math.min(pages,7);i++)h+=`<button class="pb${i===page?' on':''}" onclick="gp(${i})">${i}</button>`;
+  if(pages>7)h+=`<span style="color:var(--dim);padding:0 3px;font-size:11px;">…</span><button class="pb${pages===page?' on':''}" onclick="gp(${pages})">${pages}</button>`;
+  h+=`<button class="pb" onclick="gp(${page+1})" ${page>=pages?'disabled':''}>›</button>`;
+  ctrl.innerHTML=h;
+}
+function gp(p){
+  const pages=Math.ceil(filtered.length/PER)||1;
+  if(p<1||p>pages)return;
+  page=p;expId=null;render();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>

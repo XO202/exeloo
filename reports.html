@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Manager — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="12" height="12" rx="3" fill="#47b8c9" />
+            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+          </svg>
+        </div>
+        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+      </div>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa fa-home"></i>
+        <span>Dashboard</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="requests.html" class="nav-item">
+        <i class="fa fa-address-book"></i>
+        <span>Requests</span>
+        <span class="nav-badge">14</span>
+      </a>
+      <a href="files.html" class="nav-item">
+        <i class="fa fa-file"></i>
+        <span>Drawings</span>
+      </a>
+      <a href="approvals.html" class="nav-item">
+        <i class="fa fa-calendar"></i>
+        <span>Approvals</span>
+        <span class="nav-badge urgent">5</span>
+      </a>
+      <a href="simpro.html" class="nav-item">
+        <i class="fa fa-refresh"></i>
+        <span>simPRO Sync</span>
+      </a>
+      <a href="parts.html" class="nav-item">
+          <i class="fa fa-hourglass-half"></i>
+          <span>Parts</span>
+      </a>
+      <a href="users.html" class="nav-item">
+        <i class="fa fa-users"></i>
+        <span>Team</span>
+      </a>
+
+      <a href="role.html" class="nav-item">
+        <i class="fa fa-user-secret"></i>
+        <span>Role</span>
+      </a>
+      <div class="nav-divider"></div>
+
+      <a href="reports.html" class="nav-item active">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa fa-cogs"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">JD</div>
+      <div class="user-info">
+        <span class="user-name">James Doyle</span>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <h1 class="page-title">Reports</h1>
+        <span class="page-subtitle">Analytics &amp; performance overview</span>
+      </div>
+      <div class="topbar-right">
+        <div class="rpt-filters">
+          <select class="rpt-select">
+            <option>Last 30 Days</option>
+            <option>Last 7 Days</option>
+            <option>Last 90 Days</option>
+            <option>This Year</option>
+            <option>Custom Range…</option>
+          </select>
+          <select class="rpt-select">
+            <option>All Teams</option>
+            <option>Sarah Lennox</option>
+            <option>Mike Donovan</option>
+            <option>Jordan M.</option>
+            <option>Sam K.</option>
+          </select>
+          <button class="btn-ghost"><i class="fa fa-download"></i> Export CSV</button>
+          <button class="btn-primary"><i class="fa fa-print"></i> Print Report</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-body" style="padding: 20px 22px;">
+
+      <!-- ── KPI STRIP ── -->
+      <div class="kpi-strip">
+        <div class="kpi-card">
+          <div class="kpi-accent" style="background: var(--theme);"></div>
+          <div class="kpi-value">45</div>
+          <div class="kpi-label">Total Active Requests</div>
+          <div class="kpi-delta pos">↑ 3 from last period</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-accent" style="background: var(--green);"></div>
+          <div class="kpi-value">23</div>
+          <div class="kpi-label">Completed (30d)</div>
+          <div class="kpi-delta pos">↑ 5 from prior period</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-accent" style="background: #4A9EFF;"></div>
+          <div class="kpi-value">3.2d</div>
+          <div class="kpi-label">Avg. Approval Time</div>
+          <div class="kpi-delta pos">↓ 0.4d improvement</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-accent" style="background: var(--red);"></div>
+          <div class="kpi-value" style="color: var(--red);">5</div>
+          <div class="kpi-label">Overdue Requests</div>
+          <div class="kpi-delta neg">↑ 2 from last week</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-accent" style="background: var(--orange);"></div>
+          <div class="kpi-value" style="color: var(--orange);">87%</div>
+          <div class="kpi-label">On-Time Rate</div>
+          <div class="kpi-delta pos">↑ 4% vs last month</div>
+        </div>
+      </div>
+
+      <!-- ── ROW 1: LINE CHART + DONUT ── -->
+      <div class="chart-grid">
+
+        <!-- Requests Over Time -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">Requests Over Time</div>
+              <div class="rpt-panel-sub">New vs. completed — last 30 days</div>
+            </div>
+            <span class="chart-pill">Daily</span>
+          </div>
+          <div class="rpt-panel-body">
+            <canvas id="timelineChart" height="100"></canvas>
+          </div>
+        </div>
+
+        <!-- Completion Breakdown -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">Completion Breakdown</div>
+              <div class="rpt-panel-sub">By current status</div>
+            </div>
+          </div>
+          <div class="rpt-panel-body">
+            <div class="donut-wrap-sm">
+              <canvas id="breakdownChart"></canvas>
+              <div class="donut-center-sm">
+                <span>Total</span>
+                <strong>45</strong>
+              </div>
+            </div>
+            <div class="legend-sm">
+              <div class="legend-sm-row"><div><span class="dot" style="background:#0d6efd;"></span>Draft</div><b>8</b></div>
+              <div class="legend-sm-row"><div><span class="dot" style="background:#ffc107;"></span>Submitted</div><b>4</b></div>
+              <div class="legend-sm-row"><div><span class="dot" style="background:#17a2b8;"></span>In Review</div><b>5</b></div>
+              <div class="legend-sm-row"><div><span class="dot" style="background:#28a745;"></span>Approved</div><b>3</b></div>
+              <div class="legend-sm-row"><div><span class="dot" style="background:#dc3545;"></span>Rework</div><b>2</b></div>
+              <div class="legend-sm-row"><div><span class="dot" style="background:#6f42c1;"></span>Completed</div><b>23</b></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── ROW 2: THREE CHARTS ── -->
+      <div class="chart-grid-3">
+
+        <!-- Avg Turnaround by Stage -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">Avg. Turnaround by Stage</div>
+              <div class="rpt-panel-sub">Days spent per stage</div>
+            </div>
+          </div>
+          <div class="rpt-panel-body">
+            <canvas id="turnaroundChart" height="165"></canvas>
+          </div>
+        </div>
+
+        <!-- simPRO Sync History -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">simPRO Sync History</div>
+              <div class="rpt-panel-sub">Weekly push results</div>
+            </div>
+          </div>
+          <div class="rpt-panel-body">
+            <canvas id="syncHistoryChart" height="165"></canvas>
+          </div>
+        </div>
+
+        <!-- Rework Rate -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">Rework Rate</div>
+              <div class="rpt-panel-sub">% sent back vs. approved first pass</div>
+            </div>
+          </div>
+          <div class="rpt-panel-body">
+            <canvas id="reworkChart" height="165"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── ROW 3: TEAM PERFORMANCE TABLE + AUDIT LOG ── -->
+      <div class="chart-grid">
+
+        <!-- Team Performance -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">Team Performance</div>
+              <div class="rpt-panel-sub">Individual output — last 30 days</div>
+            </div>
+            <span class="chart-pill">30d</span>
+          </div>
+          <table class="team-table">
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Assigned</th>
+                <th>Completed</th>
+                <th>On-Time %</th>
+                <th>Reworks</th>
+                <th>Avg. Days</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <span class="t-avatar av-teal">SL</span>
+                    <div>
+                      <div style="font-weight:600;">Sarah Lennox</div>
+                      <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono-sm">12</td>
+                <td class="mono-sm">9</td>
+                <td>
+                  <div class="bar-mini-wrap">
+                    <div class="bar-mini-bg"><div class="bar-mini-fill" style="width:92%;background:var(--green);"></div></div>
+                    <span class="bar-mini-label">92%</span>
+                  </div>
+                </td>
+                <td><span class="pill pill-orange">1</span></td>
+                <td class="mono-sm">2.8d</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <span class="t-avatar av-orange">MD</span>
+                    <div>
+                      <div style="font-weight:600;">Mike Donovan</div>
+                      <div style="font-size:11px;color:var(--text-secondary);">Senior Drafter</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono-sm">10</td>
+                <td class="mono-sm">7</td>
+                <td>
+                  <div class="bar-mini-wrap">
+                    <div class="bar-mini-bg"><div class="bar-mini-fill" style="width:80%;background:var(--orange);"></div></div>
+                    <span class="bar-mini-label">80%</span>
+                  </div>
+                </td>
+                <td><span class="pill pill-red">2</span></td>
+                <td class="mono-sm">3.6d</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <span class="t-avatar av-purple">JM</span>
+                    <div>
+                      <div style="font-weight:600;">Jordan M.</div>
+                      <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono-sm">8</td>
+                <td class="mono-sm">8</td>
+                <td>
+                  <div class="bar-mini-wrap">
+                    <div class="bar-mini-bg"><div class="bar-mini-fill" style="width:100%;background:var(--green);"></div></div>
+                    <span class="bar-mini-label">100%</span>
+                  </div>
+                </td>
+                <td><span class="pill pill-green">0</span></td>
+                <td class="mono-sm">2.1d</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <span class="t-avatar av-green">SK</span>
+                    <div>
+                      <div style="font-weight:600;">Sam K.</div>
+                      <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono-sm">7</td>
+                <td class="mono-sm">5</td>
+                <td>
+                  <div class="bar-mini-wrap">
+                    <div class="bar-mini-bg"><div class="bar-mini-fill" style="width:71%;background:var(--orange);"></div></div>
+                    <span class="bar-mini-label">71%</span>
+                  </div>
+                </td>
+                <td><span class="pill pill-orange">1</span></td>
+                <td class="mono-sm">4.2d</td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <span class="t-avatar av-red">PR</span>
+                    <div>
+                      <div style="font-weight:600;">Priya R.</div>
+                      <div style="font-size:11px;color:var(--text-secondary);">Junior Drafter</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono-sm">5</td>
+                <td class="mono-sm">3</td>
+                <td>
+                  <div class="bar-mini-wrap">
+                    <div class="bar-mini-bg"><div class="bar-mini-fill" style="width:60%;background:var(--red);"></div></div>
+                    <span class="bar-mini-label">60%</span>
+                  </div>
+                </td>
+                <td><span class="pill pill-red">2</span></td>
+                <td class="mono-sm">5.1d</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Audit / Activity Log -->
+        <div class="rpt-panel">
+          <div class="rpt-panel-head">
+            <div>
+              <div class="rpt-panel-title">Activity Log</div>
+              <div class="rpt-panel-sub">Recent system events</div>
+            </div>
+            <a href="#" style="font-size:12px;color:var(--theme);font-weight:600;">View all →</a>
+          </div>
+          <div class="rpt-panel-body" style="padding: 4px 18px 14px;">
+            <div class="audit-row">
+              <div class="audit-dot" style="background:var(--green);"></div>
+              <div class="audit-time">Today 09:14</div>
+              <div class="audit-text"><strong>Jordan M.</strong> approved <strong>#REQ-027</strong> <span>— Gearbox Assembly</span></div>
+            </div>
+            <div class="audit-row">
+              <div class="audit-dot" style="background:var(--orange);"></div>
+              <div class="audit-time">Today 08:45</div>
+              <div class="audit-text"><strong>Sarah L.</strong> uploaded Rev 3 for <strong>#REQ-031</strong> <span>— Control Panel Layout</span></div>
+            </div>
+            <div class="audit-row">
+              <div class="audit-dot" style="background:var(--red);"></div>
+              <div class="audit-time">Today 08:02</div>
+              <div class="audit-text"><strong>simPRO Sync</strong> failed for <strong>P-2031, P-2028, P-2019</strong> <span>— retry available</span></div>
+            </div>
+            <div class="audit-row">
+              <div class="audit-dot" style="background:#4A9EFF;"></div>
+              <div class="audit-time">Yesterday 16:33</div>
+              <div class="audit-text"><strong>Mike D.</strong> sent <strong>#REQ-026</strong> <span>back for rework</span></div>
+            </div>
+            <div class="audit-row">
+              <div class="audit-dot" style="background:var(--green);"></div>
+              <div class="audit-time">Yesterday 14:10</div>
+              <div class="audit-text"><strong>James D.</strong> completed <strong>#REQ-024</strong> <span>— Drive Shaft Spec</span></div>
+            </div>
+            <div class="audit-row">
+              <div class="audit-dot" style="background:var(--theme);"></div>
+              <div class="audit-time">Yesterday 11:55</div>
+              <div class="audit-text"><strong>Sam K.</strong> created new request <strong>#REQ-041</strong> <span>— Pump Assembly v2</span></div>
+            </div>
+             
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── OVERDUE REQUESTS TABLE ── -->
+      <div class="rpt-panel" style="margin-bottom: 20px;">
+        <div class="rpt-panel-head">
+          <div>
+            <div class="rpt-panel-title">Overdue Requests</div>
+            <div class="rpt-panel-sub">Requests past their due date — action required</div>
+          </div>
+          <span class="pill pill-red">5 Overdue</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="overdue-table">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Title</th>
+                <th>Stage</th>
+                <th>Assignee</th>
+                <th>Due Date</th>
+                <th>Days Overdue</th>
+                <th>simPRO</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mono-sm">#REQ-031</td>
+                <td style="font-weight:600;">Control Panel Layout</td>
+                <td><span class="pill pill-blue">In Review</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <span class="t-avatar av-orange" style="width:24px;height:24px;font-size:9px;border-radius:6px;">MD</span>Mike Donovan
+                  </div>
+                </td>
+                <td class="mono-sm" style="color:var(--red);">Apr 28</td>
+                <td><span class="pill pill-red">9d</span></td>
+                <td><span class="pill pill-green">Synced</span></td>
+                <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;">Review →</button></td>
+              </tr>
+              <tr>
+                <td class="mono-sm">#REQ-029</td>
+                <td style="font-weight:600;">Frame Weld Spec</td>
+                <td><span class="pill pill-blue">In Review</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <span class="t-avatar av-teal" style="width:24px;height:24px;font-size:9px;border-radius:6px;">SL</span>Sarah Lennox
+                  </div>
+                </td>
+                <td class="mono-sm" style="color:var(--red);">Apr 30</td>
+                <td><span class="pill pill-red">7d</span></td>
+                <td><span class="pill pill-orange">Pending</span></td>
+                <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;">Review →</button></td>
+              </tr>
+              <tr>
+                <td class="mono-sm">#REQ-026</td>
+                <td style="font-weight:600;">Sensor Mount</td>
+                <td><span class="pill pill-red">Rework</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <span class="t-avatar av-orange" style="width:24px;height:24px;font-size:9px;border-radius:6px;">MD</span>Mike Donovan
+                  </div>
+                </td>
+                <td class="mono-sm" style="color:var(--red);">May 01</td>
+                <td><span class="pill pill-red">6d</span></td>
+                <td><span class="pill pill-red">Failed</span></td>
+                <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;">Review →</button></td>
+              </tr>
+              <tr>
+                <td class="mono-sm">#REQ-030</td>
+                <td style="font-weight:600;">Inlet Pipe Diagram</td>
+                <td><span class="pill pill-red">Rework</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <span class="t-avatar av-teal" style="width:24px;height:24px;font-size:9px;border-radius:6px;">SL</span>Sarah Lennox
+                  </div>
+                </td>
+                <td class="mono-sm" style="color:var(--red);">May 02</td>
+                <td><span class="pill pill-orange">5d</span></td>
+                <td><span class="pill pill-orange">Pending</span></td>
+                <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;">Review →</button></td>
+              </tr>
+              <tr>
+                <td class="mono-sm">#REQ-036</td>
+                <td style="font-weight:600;">Motor Housing</td>
+                <td><span class="pill" style="background:#EFF6FF;color:#2563EB;">Submitted</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <span class="t-avatar av-teal" style="width:24px;height:24px;font-size:9px;border-radius:6px;">SL</span>Sarah Lennox
+                  </div>
+                </td>
+                <td class="mono-sm" style="color:var(--orange);">May 04</td>
+                <td><span class="pill pill-orange">3d</span></td>
+                <td><span class="pill pill-green">Synced</span></td>
+                <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;">Review →</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /content-body -->
+  </main>
+
+  <div id="sidebar-overlay"></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/script.js"></script>
+  <script>
+    // ── Requests Over Time (Line) ──
+    new Chart(document.getElementById('timelineChart'), {
+      type: 'line',
+      data: {
+        labels: ['Apr 8','Apr 11','Apr 14','Apr 17','Apr 20','Apr 23','Apr 26','Apr 29','May 2','May 5','May 7'],
+        datasets: [
+          {
+            label: 'New Requests',
+            data: [3, 5, 2, 6, 4, 7, 3, 5, 6, 4, 3],
+            borderColor: '#085d6a',
+            backgroundColor: 'rgba(8,93,106,0.08)',
+            tension: 0.4,
+            fill: true,
+            pointRadius: 3,
+            borderWidth: 2
+          },
+          {
+            label: 'Completed',
+            data: [1, 3, 4, 2, 5, 4, 6, 3, 4, 5, 4],
+            borderColor: '#17B26A',
+            backgroundColor: 'rgba(23,178,106,0.06)',
+            tension: 0.4,
+            fill: true,
+            pointRadius: 3,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { font: { size: 11 } } },
+          x: { ticks: { font: { size: 11 } } }
+        }
+      }
+    });
+
+    // ── Breakdown Donut ──
+    new Chart(document.getElementById('breakdownChart'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [8, 4, 5, 3, 2, 23],
+          backgroundColor: ['#0d6efd','#ffc107','#17a2b8','#28a745','#dc3545','#6f42c1'],
+          borderWidth: 0
+        }]
+      },
+      options: { cutout: '72%', plugins: { legend: { display: false } } }
+    });
+
+    // ── Turnaround by Stage (Horizontal Bar) ──
+    new Chart(document.getElementById('turnaroundChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Draft', 'Submitted', 'In Review', 'Approved', 'Rework'],
+        datasets: [{
+          label: 'Avg Days',
+          data: [1.2, 0.8, 2.4, 0.6, 3.1],
+          borderRadius: 6,
+          backgroundColor: ['#0d6efd','#ffc107','#17a2b8','#28a745','#dc3545']
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { beginAtZero: true, ticks: { font: { size: 11 } } },
+          y: { ticks: { font: { size: 11 } } }
+        }
+      }
+    });
+
+    // ── simPRO Sync History (Stacked Bar) ──
+    new Chart(document.getElementById('syncHistoryChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Wk Apr 7','Wk Apr 14','Wk Apr 21','Wk Apr 28','Wk May 5'],
+        datasets: [
+          {
+            label: 'Synced',
+            data: [14, 18, 12, 20, 18],
+            backgroundColor: '#17B26A',
+            borderRadius: 4
+          },
+          {
+            label: 'Failed',
+            data: [2, 1, 3, 0, 3],
+            backgroundColor: '#F04438',
+            borderRadius: 4
+          }
+        ]
+      },
+      options: {
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } },
+        scales: {
+          x: { stacked: true, ticks: { font: { size: 10 } } },
+          y: { stacked: true, beginAtZero: true, ticks: { font: { size: 11 } } }
+        }
+      }
+    });
+
+    // ── Rework Rate (Line) ──
+    new Chart(document.getElementById('reworkChart'), {
+      type: 'line',
+      data: {
+        labels: ['Wk Apr 7','Wk Apr 14','Wk Apr 21','Wk Apr 28','Wk May 5'],
+        datasets: [{
+          label: 'Rework %',
+          data: [18, 22, 14, 10, 13],
+          borderColor: '#F04438',
+          backgroundColor: 'rgba(240,68,56,0.08)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 4,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, max: 40, ticks: { font: { size: 11 }, callback: v => v + '%' } },
+          x: { ticks: { font: { size: 10 } } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
