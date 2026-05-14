@@ -2,1457 +2,1451 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drawing Manager — Admin Panel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="assets/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawing Manager — Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="assets/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <a href="index.html">
-      <div class="sidebar-logo">
-        <div class="logo-mark">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <rect width="12" height="12" rx="3" fill="#47b8c9" />
-            <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
-            <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
-            <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
-          </svg>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="index.html">
+            <div class="sidebar-logo">
+                <div class="logo-mark">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <rect width="12" height="12" rx="3" fill="#47b8c9" />
+                        <rect x="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+                        <rect y="16" width="12" height="12" rx="3" fill="#47b8c9" opacity="0.5" />
+                        <rect x="16" y="16" width="12" height="12" rx="3" fill="#47b8c9" />
+                    </svg>
+                </div>
+                <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
+            </div>
+        </a>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+              <i class="fa fa-home"></i>
+              <span>Dashboard</span> 
+            </a>
+            <a href="requests.html" class="nav-item">
+              <i class="fa fa-address-book"></i>
+              <span>Drawing Requests</span>
+              <span class="nav-badge">14</span>
+            </a>
+            <a href="files.html" class="nav-item active">
+              <i class="fa fa-file"></i>
+              <span>Drawing Records</span>
+            </a>
+            <a href="approvals.html" class="nav-item">
+              <i class="fa fa-calendar"></i>
+              <span>Drawing Approvals</span> 
+            </a>
+            <a href="simpro.html" class="nav-item">
+              <i class="fa fa-calendar"></i>
+              <span>simPRO Sync</span>
+            </a>
+            <a href="parts.html" class="nav-item">
+                <i class="fa fa-hourglass-half"></i>
+                <span>Parts Catalogue</span>
+            </a>
+            <a href="users.html" class="nav-item">
+              <i class="fa fa-users"></i>
+              <span>Team</span>
+            </a>
+        
+            <a href="role.html" class="nav-item">
+              <i class="fa fa-user-secret"></i>
+              <span>Role</span>
+            </a>
+            <div class="nav-divider"></div>
+        
+           
+            <a href="settings.html" class="nav-item">
+              <i class="fa fa-cogs"></i>
+              <span>Settings</span>
+            </a>
+          </nav>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">JD</div>
+            <div class="user-info">
+                <span class="user-name">James Doyle</span>
+                <span class="user-role">Administrator</span>
+            </div>
         </div>
-        <span class="logo-text"><img src="assets/logo.png" class="img-fluid" alt=""></span>
-      </div>
-    </a>
-    <nav class="sidebar-nav">
-      <a href="index.html" class="nav-item">
-        <i class="fa fa-home"></i>
-        <span>Dashboard</span>
-        <span class="nav-badge">14</span>
-      </a>
-      <a href="requests.html" class="nav-item">
-        <i class="fa fa-address-book"></i>
-        <span>Requests</span>
-        <span class="nav-badge">14</span>
-      </a>
-      <a href="files.html" class="nav-item active">
-        <i class="fa fa-file"></i>
-        <span>Drawings</span>
-      </a>
-      <a href="approvals.html" class="nav-item">
-        <i class="fa fa-calendar"></i>
-        <span>Approvals</span>
-        <span class="nav-badge urgent">5</span>
-      </a>
-      <a href="simpro.html" class="nav-item">
-        <i class="fa fa-calendar"></i>
-        <span>simPRO Sync</span>
-      </a>
-      <a href="parts.html" class="nav-item">
-          <i class="fa fa-hourglass-half"></i>
-          <span>Parts</span>
-      </a>
-      <a href="users.html" class="nav-item">
-        <i class="fa fa-users"></i>
-        <span>Team</span>
-      </a>
 
-      <a href="role.html" class="nav-item">
-        <i class="fa fa-user-secret"></i>
-        <span>Role</span>
-      </a>
-      <div class="nav-divider"></div>
+    </aside>
 
-      <a href="reports.html" class="nav-item">
-        <i class="fa fa-file-pdf-o"></i>
-        <span>Reports</span>
-      </a>
-      <a href="settings.html" class="nav-item">
-        <i class="fa fa-cogs"></i>
-        <span>Settings</span>
-      </a>
-    </nav>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
 
-    <div class="sidebar-user">
-      <div class="user-avatar">JD</div>
-      <div class="user-info">
-        <span class="user-name">James Doyle</span>
-        <span class="user-role">Administrator</span>
-      </div>
-    </div>
+        <!-- TOP BAR -->
+        <header class="topbar" id="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <h1 class="page-title">Engineering Drawings </h1>
+                <span class="page-subtitle">Engineering Drawing Library</span>
+            </div>
+            <div class="topbar-right">
+                <button class="btn-icon" title="Notifications">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    </svg>
+                    <span class="notif-dot"></span>
+                </button>
+                <div class="search-wrap">
+                    <span class="search-icon">⌕</span>
+                    <input class="search-input" id="search-input" placeholder="Search drawings, revision or drawing number..." type="text">
+                </div>
+                <button class="btn-primary" id="new-req-btn">+ New Request</button>
+            </div>
+        </header>
 
-  </aside>
+        <div class="dashboard-grid">
+            <div id="">
+                <!-- THREE-COLUMN SHELL -->
+                <div class="files-shell" id="filesShell">
 
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
+                    <!-- ═══════════════════════════════════════════════ -->
+                    <!-- LEFT: FILE EXPLORER                            -->
+                    <!-- ═══════════════════════════════════════════════ -->
+                    <div class="files-explorer">
 
-    <!-- TOP BAR -->
-    <header class="topbar" id="topbar">
-      <div class="topbar-left">
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fa fa-bars"></i>
-          </button>
-        <h1 class="page-title">Files History </h1>
-        <span class="page-subtitle">Last updated: 2 minutes ago</span>
-      </div>
-      <div class="topbar-right">
-        <button class="btn-icon" title="Notifications">
-          <svg viewBox="0 0 20 20" fill="currentColor">
-            <path
-              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-          </svg>
-          <span class="notif-dot"></span>
-        </button>
-        <div class="search-wrap">
-          <span class="search-icon">⌕</span>
-          <input class="search-input" id="search-input" placeholder="Search requests…" type="text">
-        </div>
-        <button class="btn-primary" id="new-req-btn">+ New Request</button>
-      </div>
-    </header>
+                        <div class="explorer-section-label">Quick Access</div>
+                        <a class="explorer-item active" href="#" onclick="filterFolder('all')">
+                            <i class="fa fa-th-large"></i> All Drawings
+                            <span class="explorer-count">247</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterFolder('recent')">
+                            <i class="fa fa-clock-o"></i> Recent
+                            <span class="explorer-count">18</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterFolder('starred')">
+                            <i class="fa fa-star-o"></i> Released Drawings
+                            <span class="explorer-count">7</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterFolder('shared')">
+                            <i class="fa fa-share-alt"></i> Awaiting My Review
+                            <span class="explorer-count">12</span>
+                        </a>
 
-    <div class="dashboard-grid">
-      <div id=""> 
- <!-- THREE-COLUMN SHELL -->
- <div class="files-shell" id="filesShell">
+                        <div class="explorer-divider"></div>
+                        <div class="explorer-section-label">By Status</div>
+                        <a class="explorer-item" href="#" onclick="filterStatus('approved')">
+                            <span class="explorer-tag-dot" style="background:#22c55e"></span> Released
+                            <span class="explorer-count">89</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterStatus('review')">
+                            <span class="explorer-tag-dot" style="background:#f59e0b"></span> In Review
+                            <span class="explorer-count">34</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterStatus('draft')">
+                            <span class="explorer-tag-dot" style="background:#6b7a99"></span> Draft
+                            <span class="explorer-count">61</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterStatus('rework')">
+                            <span class="explorer-tag-dot" style="background:#ef4444"></span> Requires Revision
+                            <span class="explorer-count">12</span>
+                        </a>
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- LEFT: FILE EXPLORER                            -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div class="files-explorer">
-
-      <div class="explorer-section-label">Quick Access</div>
-      <a class="explorer-item active" href="#" onclick="filterFolder('all')">
-          <i class="fa fa-th-large"></i> All Files
-          <span class="explorer-count">247</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterFolder('recent')">
-          <i class="fa fa-clock-o"></i> Recent
-          <span class="explorer-count">18</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterFolder('starred')">
-          <i class="fa fa-star-o"></i> Starred
-          <span class="explorer-count">7</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterFolder('shared')">
-          <i class="fa fa-share-alt"></i> Shared with Me
-          <span class="explorer-count">12</span>
-      </a>
-
-      <div class="explorer-divider"></div>
-      <div class="explorer-section-label">By Status</div>
-      <a class="explorer-item" href="#" onclick="filterStatus('approved')">
-          <span class="explorer-tag-dot" style="background:#22c55e"></span> Approved
-          <span class="explorer-count">89</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterStatus('review')">
-          <span class="explorer-tag-dot" style="background:#f59e0b"></span> In Review
-          <span class="explorer-count">34</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterStatus('draft')">
-          <span class="explorer-tag-dot" style="background:#6b7a99"></span> Draft
-          <span class="explorer-count">61</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterStatus('rework')">
-          <span class="explorer-tag-dot" style="background:#ef4444"></span> Rework Required
-          <span class="explorer-count">12</span>
-      </a>
-
-      <div class="explorer-divider"></div>
-      <div class="explorer-section-label">Folders</div>
-      <a class="explorer-item" href="#" onclick="filterFolder('mechanical')">
-          <i class="fa fa-folder" style="color:#f59e0b"></i> Mechanical
-          <span class="explorer-count">78</span>
-      </a>
-      <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('mech-pump')">
-          <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Pump Assemblies
-          <span class="explorer-count">22</span>
-      </a>
-      <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('mech-frame')">
-          <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Frame & Structure
-          <span class="explorer-count">31</span>
-      </a>
-      <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('mech-pipe')">
-          <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Pipe Layouts
-          <span class="explorer-count">25</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterFolder('electrical')">
-          <i class="fa fa-folder" style="color:#f59e0b"></i> Electrical
-          <span class="explorer-count">54</span>
-      </a>
-      <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('elec-panel')">
-          <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Control Panels
-          <span class="explorer-count">19</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterFolder('civil')">
-          <i class="fa fa-folder" style="color:#f59e0b"></i> Civil
-          <span class="explorer-count">43</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterFolder('specs')">
-          <i class="fa fa-folder" style="color:#f59e0b"></i> Specifications
-          <span class="explorer-count">72</span>
-      </a>
-      <!-- <a class="explorer-item" href="#" onclick="filterFolder('archive')">
+                        <div class="explorer-divider"></div>
+                        <div class="explorer-section-label">Folders</div>
+                        <a class="explorer-item" href="#" onclick="filterFolder('mechanical')">
+                            <i class="fa fa-folder" style="color:#f59e0b"></i> Mechanical
+                            <span class="explorer-count">78</span>
+                        </a>
+                        <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('mech-pump')">
+                            <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Pump Assemblies
+                            <span class="explorer-count">22</span>
+                        </a>
+                        <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('mech-frame')">
+                            <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Frame & Structure
+                            <span class="explorer-count">31</span>
+                        </a>
+                        <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('mech-pipe')">
+                            <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Pipe Layouts
+                            <span class="explorer-count">25</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterFolder('electrical')">
+                            <i class="fa fa-folder" style="color:#f59e0b"></i> Electrical
+                            <span class="explorer-count">54</span>
+                        </a>
+                        <a class="explorer-item explorer-sub" href="#" onclick="filterFolder('elec-panel')">
+                            <i class="fa fa-folder-o" style="color:#f59e0b;opacity:.6"></i> Control Panels
+                            <span class="explorer-count">19</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterFolder('civil')">
+                            <i class="fa fa-folder" style="color:#f59e0b"></i> Civil
+                            <span class="explorer-count">43</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterFolder('specs')">
+                            <i class="fa fa-folder" style="color:#f59e0b"></i> Specifications
+                            <span class="explorer-count">72</span>
+                        </a>
+                        <!-- <a class="explorer-item" href="#" onclick="filterFolder('archive')">
           <i class="fa fa-archive" style="color:#6b7a99"></i> Archive
           <span class="explorer-count">—</span>
       </a> -->
 
-      <div class="explorer-divider"></div>
-      <div class="explorer-section-label">File Type</div>
-      <a class="explorer-item" href="#" onclick="filterType('pdf')">
-          <i class="fa fa-file-pdf-o" style="color:#ef4444"></i> PDF Files
-          <span class="explorer-count">112</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterType('dwg')">
-          <i class="fa fa-file-code-o" style="color:#3b82f6"></i> DWG / CAD
-          <span class="explorer-count">69</span>
-      </a>
-      <a class="explorer-item" href="#" onclick="filterType('step')">
-          <i class="fa fa-cube" style="color:#8b5cf6"></i> STEP / 3D
-          <span class="explorer-count">31</span>
-      </a> 
-      <a class="explorer-item" href="#" onclick="filterType('img')">
-          <i class="fa fa-file-image-o" style="color:#ec4899"></i> Images
-          <span class="explorer-count">17</span>
-      </a>
+                        <div class="explorer-divider"></div>
+                        <div class="explorer-section-label">File Type</div>
+                        <a class="explorer-item" href="#" onclick="filterType('pdf')">
+                            <i class="fa fa-file-pdf-o" style="color:#ef4444"></i> PDF Drawing
+                            <span class="explorer-count">112</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterType('dwg')">
+                            <i class="fa fa-file-code-o" style="color:#3b82f6"></i> DWG / CAD
+                            <span class="explorer-count">69</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterType('step')">
+                            <i class="fa fa-cube" style="color:#8b5cf6"></i> STEP / 3D
+                            <span class="explorer-count">31</span>
+                        </a>
+                        <a class="explorer-item" href="#" onclick="filterType('img')">
+                            <i class="fa fa-file-image-o" style="color:#ec4899"></i> Images
+                            <span class="explorer-count">17</span>
+                        </a>
 
-  </div>
+                    </div>
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- CENTER: FILE LIST                              -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div class="files-list-col" id="filesListCol">
+                    <!-- ═══════════════════════════════════════════════ -->
+                    <!-- CENTER: FILE LIST                              -->
+                    <!-- ═══════════════════════════════════════════════ -->
+                    <div class="files-list-col" id="filesListCol">
 
-      <!-- Stats strip -->
-      <div class="files-stats">
-          <div class="fstat">
-              <div class="fstat-val c-cyan">247</div>
-              <div class="fstat-label">Total Files</div>
-          </div>
-          <div class="fstat">
-              <div class="fstat-val c-green">89</div>
-              <div class="fstat-label">Approved</div>
-          </div>
-          <div class="fstat">
-              <div class="fstat-val c-orange">34</div>
-              <div class="fstat-label">In Review</div>
-          </div>
-          <div class="fstat">
-              <div class="fstat-val c-red">12</div>
-              <div class="fstat-label">Rework Needed</div>
-          </div>
-      </div>
+                        <!-- Stats strip -->
+                        <div class="files-stats">
+                            <div class="fstat">
+                                <div class="fstat-val c-cyan">247</div>
+                                <div class="fstat-label">Total Drawings</div>
+                            </div>
+                            <div class="fstat">
+                                <div class="fstat-val c-green">89</div>
+                                <div class="fstat-label">Released</div>
+                            </div>
+                            <div class="fstat">
+                                <div class="fstat-val c-orange">34</div>
+                                <div class="fstat-label">In Review</div>
+                            </div>
+                            <div class="fstat">
+                                <div class="fstat-val c-red">12</div>
+                                <div class="fstat-label">Rework Needed</div>
+                            </div>
+                        </div>
 
-      <!-- Toolbar -->
-      <div class="files-toolbar">
-          <div class="files-search-wrap">
-              <i class="fa fa-search"></i>
-              <input class="files-search" type="text" placeholder="Search files, part numbers, request IDs…"
-                  oninput="filterFiles(this.value)" />
-          </div>
-          <select class="sort-select" onchange="sortFiles(this.value)">
-              <option>Sort: Newest</option>
-              <option>Sort: Oldest</option>
-              <option>Sort: Name A–Z</option>
-              <option>Sort: Version</option>
-              <option>Sort: Status</option>
-          </select>
-          <div class="view-toggle">
-              <button class="view-btn active" id="listViewBtn" onclick="setView('list')" title="List view">
-                  <i class="fa fa-list"></i>
-              </button>
-              <button class="view-btn" id="gridViewBtn" onclick="setView('grid')" title="Grid view">
-                  <i class="fa fa-th"></i>
-              </button>
-          </div>
-          <button class="btn-primary" style="font-size:12.5px;padding:7px 13px" onclick="openUploadModal()">
-              <i class="fa fa-plus"></i> Upload
-          </button>
-      </div>
+                        <!-- Toolbar -->
+                        <div class="files-toolbar">
+                            <div class="files-search-wrap">
+                                <i class="fa fa-search"></i>
+                                <input class="files-search" type="text"
+                                    placeholder="Search drawings, part numbers or request IDs…"
+                                    oninput="filterDrawing(this.value)" />
+                            </div>
+                            <select class="sort-select" onchange="sortDrawing(this.value)">
+                                <option>Sort: Newest</option>
+                                <option>Sort: Oldest</option>
+                                <option>Sort: Name A–Z</option>
+                                <option>Sort: Version</option>
+                                <option>Sort: Status</option>
+                            </select>
+                            <div class="view-toggle">
+                                <button class="view-btn active" id="listViewBtn" onclick="setView('list')"
+                                    title="List view">
+                                    <i class="fa fa-list"></i>
+                                </button>
 
-      <!-- Breadcrumb -->
-      <div class="files-breadcrumb">
-          <i class="fa fa-folder-open" style="color:#47b8c9;font-size:11px"></i>
-          <a href="#">All Files</a>
-          <span class="bc-sep">/</span>
-          <a href="#">Mechanical</a>
-          <span class="bc-sep">/</span>
-          <span>Pump Assemblies</span>
-      </div>
+                            </div>
+                            <button class="btn-primary" style="font-size:12.5px;padding:7px 13px"
+                                onclick="openUploadModal()">
+                                <i class="fa fa-plus"></i> Upload
+                            </button>
+                        </div>
 
-      <!-- Selection banner -->
-      <div class="sel-banner" id="selBanner">
-          <i class="fa fa-check-square-o"></i>
-          <span id="selCount">0 files selected</span>
-          <div class="sel-actions">
-              <button class="btn-badge view" onclick="bulkDownload()"><i class="fa fa-download"></i>
-                  Download</button>
-              <button class="btn-badge approve" onclick="bulkApprove()"><i class="fa fa-check"></i> Approve
-                  All</button>
-              <button class="btn-badge" style="color:#ef4444;border-color:rgba(239,68,68,.3)"
-                  onclick="bulkDelete()"><i class="fa fa-trash"></i> Delete</button>
-              <button class="btn-badge" onclick="clearSelection()"><i class="fa fa-times"></i> Clear</button>
-          </div>
-      </div>
+                        <!-- Breadcrumb -->
+                        <div class="files-breadcrumb">
+                            <i class="fa fa-folder-open" style="color:#47b8c9;font-size:11px"></i>
+                            <a href="#">All Drawing</a>
+                            <span class="bc-sep">/</span>
+                            <a href="#">Mechanical</a>
+                            <span class="bc-sep">/</span>
+                            <span>Pump Assemblies</span>
+                        </div>
 
-      <!-- ── LIST VIEW ── -->
-      <div class="list-view">
-          <div class="files-table-head">
-              <div class="th-check"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)">
-              </div>
-              <div>Name / Title</div>
-              <div>Version</div>
-              <div>Status</div>
-              <div>Modified</div>
-              <div>Size</div>
-              <div></div>
-          </div>
+                        <!-- Selection banner -->
+                        <div class="sel-banner" id="selBanner">
+                            <i class="fa fa-check-square-o"></i>
+                            <span id="selCount">0 files selected</span>
+                            <div class="sel-actions">
+                                <button class="btn-badge view" onclick="bulkDownload()"><i class="fa fa-download"></i>
+                                    Download</button>
 
-          <!-- FOLDERS -->
-          <div class="file-row folder-row" onclick="openFolder('pump-assemblies')">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-folder"><i class="fa fa-folder"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">Pump Assemblies</div>
-                      <div class="fname-sub">22 files inside</div>
-                  </div>
-              </div>
-              <div class="td-cell">—</div>
-              <div class="td-cell">—</div>
-              <div class="td-cell">May 01, 2026</div>
-              <div class="td-cell">—</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Open"
-                      onclick="event.stopPropagation();openFolder('pump-assemblies')"><i
-                          class="fa fa-folder-open"></i></button>
-              </div>
-          </div>
+                                <button class="btn-badge" style="color:#ef4444;border-color:rgba(239,68,68,.3)"
+                                    onclick="bulkArchived()"><i class="fa fa-archive"></i> Archive</button>
+                                <button class="btn-badge" onclick="clearSelection()"><i class="fa fa-times"></i>
+                                    Clear</button>
+                            </div>
+                        </div>
 
-          <!-- FILE ROWS (data-id for JS filtering) -->
-          <div class="file-row selected" data-id="f1" data-name="PumpAssembly_v3.pdf" data-status="review"
-              data-type="pdf" onclick="selectFile('f1', event)">
-              <div class="file-check"><input type="checkbox" checked onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">PumpAssembly_v3.pdf</div>
-                      <div class="fname-sub">#REQ-041 · Pump Assembly v2 · P-2041</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f1')"><i class="fa fa-code-fork"></i>
-                      v3.0</span></div>
-              <div class="td-cell"><span class="spill spill-review">In Review</span></div>
-              <div class="td-cell">May 01, 2026</div>
-              <div class="td-cell td-mono">2.4 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f1')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f1')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                        <!-- ── LIST VIEW ── -->
+                        <div class="list-view">
+                            <div class="files-table-head">
+                                <div class="th-check"><input type="checkbox" id="selectAll"
+                                        onchange="toggleSelectAll(this)">
+                                </div>
+                                <div>Name / Title</div>
+                                <div>Version</div>
+                                <div>Status</div>
+                                <div>Modified</div>
+                                <div>Size</div>
+                                <div></div>
+                            </div>
 
-          <div class="file-row" data-id="f2" data-name="FrameWeldSpec_v2.dwg" data-status="review"
-              data-type="dwg" onclick="selectFile('f2', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-dwg"><i class="fa fa-file-code-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">FrameWeldSpec_v2.dwg</div>
-                      <div class="fname-sub">#REQ-029 · Frame Weld Spec · P-2029</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f2')"><i class="fa fa-code-fork"></i>
-                      v2.1</span></div>
-              <div class="td-cell"><span class="spill spill-review">In Review</span></div>
-              <div class="td-cell">Apr 29, 2026</div>
-              <div class="td-cell td-mono">8.1 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f2')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f2')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                            <!-- FOLDERS -->
+                            <div class="file-row folder-row" onclick="openFolder('pump-assemblies')">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-folder"><i class="fa fa-folder"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">Pump Assemblies</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">22 files inside</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell">—</div>
+                                <div class="td-cell">—</div>
+                                <div class="td-cell">May 01, 2026</div>
+                                <div class="td-cell">—</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Open"
+                                        onclick="event.stopPropagation();openFolder('pump-assemblies')"><i
+                                            class="fa fa-folder-open"></i></button>
+                                </div>
+                            </div>
 
-          <div class="file-row" data-id="f3" data-name="ControlPanel_Layout_v3.pdf" data-status="rework"
-              data-type="pdf" onclick="selectFile('f3', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">ControlPanel_Layout_v3.pdf</div>
-                      <div class="fname-sub">#REQ-031 · Control Panel Layout · P-2031</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f3')"><i class="fa fa-code-fork"></i>
-                      v3.0</span></div>
-              <div class="td-cell"><span class="spill spill-rework">Rework</span></div>
-              <div class="td-cell">May 01, 2026</div>
-              <div class="td-cell td-mono">1.9 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f3')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f3')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                            <!-- FILE ROWS (data-id for JS filtering) -->
+                            <div class="file-row selected" data-id="f1" data-name="PumpAssembly_v3.pdf"
+                                data-status="review" data-type="pdf" onclick="selectFile('f1', event)">
+                                <div class="file-check"><input type="checkbox" checked onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">PumpAssembly_v3.pdf</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-041 · Pump Assembly v2 · P-2041</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f1')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v3.0</span></div>
+                                <div class="td-cell"><span class="spill spill-review">In Review</span></div>
+                                <div class="td-cell">May 01, 2026</div>
+                                <div class="td-cell td-mono">2.4 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f1')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f1')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-          <div class="file-row" data-id="f4" data-name="GearboxAssembly_FINAL.pdf" data-status="approved"
-              data-type="pdf" onclick="selectFile('f4', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">GearboxAssembly_FINAL.pdf</div>
-                      <div class="fname-sub">#REQ-027 · Gearbox Assembly · P-2027</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f4')"><i class="fa fa-code-fork"></i>
-                      v4.0</span></div>
-              <div class="td-cell"><span class="spill spill-approved">Approved</span></div>
-              <div class="td-cell">Apr 30, 2026</div>
-              <div class="td-cell td-mono">3.6 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f4')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f4')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                            <div class="file-row" data-id="f2" data-name="FrameWeldSpec_v2.dwg" data-status="review"
+                                data-type="dwg" onclick="selectFile('f2', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-dwg"><i class="fa fa-file-code-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">FrameWeldSpec_v2.dwg</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-029 · Frame Weld Spec · P-2029</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f2')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v2.1</span></div>
+                                <div class="td-cell"><span class="spill spill-review">In Review</span></div>
+                                <div class="td-cell">Apr 29, 2026</div>
+                                <div class="td-cell td-mono">8.1 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f2')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f2')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-          <div class="file-row" data-id="f5" data-name="PipeLayout_RevC.dwg" data-status="draft"
-              data-type="dwg" onclick="selectFile('f5', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-dwg"><i class="fa fa-file-code-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">PipeLayout_RevC.dwg</div>
-                      <div class="fname-sub">#REQ-038 · Pipe Layout Rev C · P-2043</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f5')"><i class="fa fa-code-fork"></i>
-                      v1.2</span></div>
-              <div class="td-cell"><span class="spill spill-draft">Draft</span></div>
-              <div class="td-cell">Apr 28, 2026</div>
-              <div class="td-cell td-mono">12.4 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f5')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f5')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                            <div class="file-row" data-id="f3" data-name="ControlPanel_Layout_v3.pdf"
+                                data-status="rework" data-type="pdf" onclick="selectFile('f3', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">ControlPanel_Layout_v3.pdf</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-031 · Control Panel Layout · P-2031</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f3')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v3.0</span></div>
+                                <div class="td-cell"><span class="spill spill-rework">Rework</span></div>
+                                <div class="td-cell">May 01, 2026</div>
+                                <div class="td-cell td-mono">1.9 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f3')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f3')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-          <div class="file-row" data-id="f6" data-name="CoolingSystem_3D.step" data-status="approved"
-              data-type="step" onclick="selectFile('f6', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-step"><i class="fa fa-cube"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">CoolingSystem_3D.step</div>
-                      <div class="fname-sub">#REQ-025 · Cooling System · P-2041</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f6')"><i class="fa fa-code-fork"></i>
-                      v2.0</span></div>
-              <div class="td-cell"><span class="spill spill-approved">Approved</span></div>
-              <div class="td-cell">Apr 27, 2026</div>
-              <div class="td-cell td-mono">44.2 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f6')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f6')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                            <div class="file-row" data-id="f4" data-name="GearboxAssembly.pdf" data-status="approved"
+                                data-type="pdf" onclick="selectFile('f4', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">GearboxAssembly.pdf</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-027 · Gearbox Assembly · P-2027</div>
 
-          <div class="file-row" data-id="f7" data-name="MotorHousing_Spec.pdf" data-status="review"
-              data-type="pdf" onclick="selectFile('f7', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">MotorHousing_Spec.pdf</div>
-                      <div class="fname-sub">#REQ-036 · Motor Housing Drawing · P-2042</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f7')"><i class="fa fa-code-fork"></i>
-                      v1.0</span></div>
-              <div class="td-cell"><span class="spill spill-review">In Review</span></div>
-              <div class="td-cell">Apr 26, 2026</div>
-              <div class="td-cell td-mono">1.2 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f7')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f7')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f4')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v4.0</span></div>
+                                <div class="td-cell"><span class="spill spill-approved">Released</span></div>
+                                <div class="td-cell">Apr 30, 2026</div>
+                                <div class="td-cell td-mono">3.6 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f4')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f4')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-         
+                            <div class="file-row" data-id="f5" data-name="PipeLayout_RevC.dwg" data-status="draft"
+                                data-type="dwg" onclick="selectFile('f5', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-dwg"><i class="fa fa-file-code-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">PipeLayout_RevC.dwg</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-038 · Pipe Layout Rev C · P-2043</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f5')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v1.2</span></div>
+                                <div class="td-cell"><span class="spill spill-draft">Draft</span></div>
+                                <div class="td-cell">Apr 28, 2026</div>
+                                <div class="td-cell td-mono">12.4 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f5')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f5')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-          <div class="file-row" data-id="f9" data-name="SensorMount_Concept.png" data-status="draft"
-              data-type="img" onclick="selectFile('f9', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-img"><i class="fa fa-file-image-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">SensorMount_Concept.png</div>
-                      <div class="fname-sub">#REQ-026 · Sensor Mount · Draft concept</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f9')"><i class="fa fa-code-fork"></i>
-                      v1.0</span></div>
-              <div class="td-cell"><span class="spill spill-draft">Draft</span></div>
-              <div class="td-cell">Apr 18, 2026</div>
-              <div class="td-cell td-mono">3.8 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f9')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f9')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
+                            <div class="file-row" data-id="f6" data-name="CoolingSystem_3D.step" data-status="approved"
+                                data-type="step" onclick="selectFile('f6', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-step"><i class="fa fa-cube"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">CoolingSystem_3D.step</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-025 · Cooling System · P-2041</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f6')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v2.0</span></div>
+                                <div class="td-cell"><span class="spill spill-approved">Released</span></div>
+                                <div class="td-cell">Apr 27, 2026</div>
+                                <div class="td-cell td-mono">44.2 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f6')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f6')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-          <div class="file-row" data-id="f10" data-name="DriveShaft_Spec_Final.pdf" data-status="approved"
-              data-type="pdf" onclick="selectFile('f10', event)">
-              <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)"></div>
-              <div class="file-name-cell">
-                  <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-name-text">
-                      <div class="fname">DriveShaft_Spec_Final.pdf</div>
-                      <div class="fname-sub">#REQ-024 · Drive Shaft Spec · P-2024</div>
-                  </div>
-              </div>
-              <div class="td-cell"><span class="ver-badge"
-                      onclick="event.stopPropagation();openVersions('f10')"><i class="fa fa-code-fork"></i>
-                      v5.2</span></div>
-              <div class="td-cell"><span class="spill spill-approved">Approved</span></div>
-              <div class="td-cell">Apr 25, 2026</div>
-              <div class="td-cell td-mono">2.1 MB</div>
-              <div class="row-actions">
-                  <button class="ra-btn" title="Preview"
-                      onclick="event.stopPropagation();openPreview('f10')"><i class="fa fa-eye"></i></button>
-                  <button class="ra-btn" title="Download"
-                      onclick="event.stopPropagation();toast('Downloading…','info')"><i
-                          class="fa fa-download"></i></button>
-                  <button class="ra-btn" title="More"
-                      onclick="event.stopPropagation();showCtxMenu(event,'f10')"><i
-                          class="fa fa-ellipsis-h"></i></button>
-              </div>
-          </div>
-
-      </div><!-- /list-view -->
-
-      <!-- ── GRID VIEW ── -->
-      <div class="grid-view">
-          <div class="files-grid" id="filesGrid">
-
-              <div class="file-card" onclick="selectFile('f1', event)">
-                  <input type="checkbox" class="file-card-check" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)">
-                  <div class="file-card-icon fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-card-name">PumpAssembly_v3.pdf</div>
-                  <div class="file-card-meta">#REQ-041 · 2.4 MB</div>
-                  <div class="file-card-badges">
-                      <span class="ver-badge" style="font-size:10px;padding:1px 6px">v3.0</span>
-                      <span class="spill spill-review" style="font-size:9.5px">In Review</span>
-                  </div>
-              </div>
-
-              <div class="file-card" onclick="selectFile('f2', event)">
-                  <input type="checkbox" class="file-card-check" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)">
-                  <div class="file-card-icon fi-dwg"><i class="fa fa-file-code-o"></i></div>
-                  <div class="file-card-name">FrameWeldSpec_v2.dwg</div>
-                  <div class="file-card-meta">#REQ-029 · 8.1 MB</div>
-                  <div class="file-card-badges">
-                      <span class="ver-badge" style="font-size:10px;padding:1px 6px">v2.1</span>
-                      <span class="spill spill-review" style="font-size:9.5px">In Review</span>
-                  </div>
-              </div>
-
-              <div class="file-card" onclick="selectFile('f3', event)">
-                  <input type="checkbox" class="file-card-check" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)">
-                  <div class="file-card-icon fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-card-name">ControlPanel_Layout_v3.pdf</div>
-                  <div class="file-card-meta">#REQ-031 · 1.9 MB</div>
-                  <div class="file-card-badges">
-                      <span class="ver-badge" style="font-size:10px;padding:1px 6px">v3.0</span>
-                      <span class="spill spill-rework" style="font-size:9.5px">Rework</span>
-                  </div>
-              </div>
-
-              <div class="file-card" onclick="selectFile('f4', event)">
-                  <input type="checkbox" class="file-card-check" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)">
-                  <div class="file-card-icon fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
-                  <div class="file-card-name">GearboxAssembly_FINAL.pdf</div>
-                  <div class="file-card-meta">#REQ-027 · 3.6 MB</div>
-                  <div class="file-card-badges">
-                      <span class="ver-badge" style="font-size:10px;padding:1px 6px">v4.0</span>
-                      <span class="spill spill-approved" style="font-size:9.5px">Approved</span>
-                  </div>
-              </div>
-
-              <div class="file-card" onclick="selectFile('f5', event)">
-                  <input type="checkbox" class="file-card-check" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)">
-                  <div class="file-card-icon fi-dwg"><i class="fa fa-file-code-o"></i></div>
-                  <div class="file-card-name">PipeLayout_RevC.dwg</div>
-                  <div class="file-card-meta">#REQ-038 · 12.4 MB</div>
-                  <div class="file-card-badges">
-                      <span class="ver-badge" style="font-size:10px;padding:1px 6px">v1.2</span>
-                      <span class="spill spill-draft" style="font-size:9.5px">Draft</span>
-                  </div>
-              </div>
-
-              <div class="file-card" onclick="selectFile('f6', event)">
-                  <input type="checkbox" class="file-card-check" onclick="event.stopPropagation()"
-                      onchange="onRowCheck(this)">
-                  <div class="file-card-icon fi-step"><i class="fa fa-cube"></i></div>
-                  <div class="file-card-name">CoolingSystem_3D.step</div>
-                  <div class="file-card-meta">#REQ-025 · 44.2 MB</div>
-                  <div class="file-card-badges">
-                      <span class="ver-badge" style="font-size:10px;padding:1px 6px">v2.0</span>
-                      <span class="spill spill-approved" style="font-size:9.5px">Approved</span>
-                  </div>
-              </div>
-
-          </div>
-      </div><!-- /grid-view -->
-
-  </div><!-- /files-list-col -->
+                            <div class="file-row" data-id="f7" data-name="MotorHousing_Spec.pdf" data-status="review"
+                                data-type="pdf" onclick="selectFile('f7', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">MotorHousing_Spec.pdf</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-036 · Motor Housing Drawing · P-2042</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f7')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v1.0</span></div>
+                                <div class="td-cell"><span class="spill spill-review">In Review</span></div>
+                                <div class="td-cell">Apr 26, 2026</div>
+                                <div class="td-cell td-mono">1.2 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f7')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f7')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- RIGHT: PREVIEW PANEL                           -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div class="files-preview" id="previewPanel">
 
-      <!-- Default state -->
-      <div class="empty-state" id="previewEmpty">
-          <i class="fa fa-mouse-pointer"></i>
-          <p style="font-weight:600;color:#94a3b8;margin-bottom:6px">Select a file to preview</p>
-          <p style="font-size:12px">Click any row to view details,<br>version history &amp; comments.</p>
-      </div>
+                            <div class="file-row" data-id="f9" data-name="SensorMount_Concept.png" data-status="draft"
+                                data-type="img" onclick="selectFile('f9', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-img"><i class="fa fa-file-image-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">SensorMount_Concept.png</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-026 · Sensor Mount · Draft concept</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f9')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v1.0</span></div>
+                                <div class="td-cell"><span class="spill spill-draft">Draft</span></div>
+                                <div class="td-cell">Apr 18, 2026</div>
+                                <div class="td-cell td-mono">3.8 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f9')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f9')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-      <!-- Populated state (hidden until file selected) -->
-      <div id="previewContent" style="display:none">
+                            <div class="file-row" data-id="f10" data-name="DriveShaft_Spec_Final.pdf"
+                                data-status="approved" data-type="pdf" onclick="selectFile('f10', event)">
+                                <div class="file-check"><input type="checkbox" onclick="event.stopPropagation()"
+                                        onchange="onRowCheck(this)"></div>
+                                <div class="file-name-cell">
+                                    <div class="file-icon-wrap fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
+                                    <div class="file-name-text">
+                                        <div class="fname">DriveShaft_Spec_Final.pdf</div>
+                                        <small class="revision-badge">
+                                            Rev 2 - Current Released Revision
+                                        </small>
+                                        <div class="fname-sub">#REQ-024 · Drive Shaft Spec · P-2024</div>
+                                    </div>
+                                </div>
+                                <div class="td-cell"><span class="ver-badge"
+                                        onclick="event.stopPropagation();openVersions('f10')"><i
+                                            class="fa fa-code-fork"></i>
+                                        v5.2</span></div>
+                                <div class="td-cell"><span class="spill spill-approved">Released</span></div>
+                                <div class="td-cell">Apr 25, 2026</div>
+                                <div class="td-cell td-mono">2.1 MB</div>
+                                <div class="row-actions">
+                                    <button class="ra-btn" title="Preview"
+                                        onclick="event.stopPropagation();openPreview('f10')"><i
+                                            class="fa fa-eye"></i></button>
+                                    <button class="ra-btn" title="Download"
+                                        onclick="event.stopPropagation();toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i></button>
+                                    <button class="ra-btn" title="More"
+                                        onclick="event.stopPropagation();showCtxMenu(event,'f10')"><i
+                                            class="fa fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
 
-          <div class="preview-header">
-              <div class="preview-title-group">
-                  <div class="preview-filename" id="pvFilename">PumpAssembly_v3.pdf</div>
-                  <div class="preview-reqid" id="pvReqId">#REQ-041 · P-2041</div>
-              </div>
-              <button class="preview-close" onclick="closePreview()" title="Close">✕</button>
-          </div>
+                        </div><!-- /list-view -->
 
-          <!-- File thumbnail / viewer area -->
-          <div class="preview-thumb">
-              <i class="fa fa-file-pdf-o preview-thumb-icon c-red" id="pvThumbIcon"></i>
-              <span class="preview-thumb-label" id="pvThumbLabel">PDF</span>
-              <button class="btn-badge c-cyan pact-btn pact-download preview-open-btn"
-                  style="padding:5px 11px;font-size:11.5px" onclick="toast('Opening file…','info')">
-                  <i class="fa fa-external-link"></i> Open Full View
-              </button>
-          </div>
 
-          <!-- Meta -->
-          <div class="preview-meta">
-              <div class="pmeta-row">
-                  <span class="pmeta-key">Status</span>
-                  <span class="pmeta-val" id="pvStatus"><span class="spill spill-review">In
-                          Review</span></span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">Request</span>
-                  <span class="pmeta-val"><a href="#" id="pvRequest">#REQ-041 Pump Assembly v2</a></span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">Uploaded by</span>
-                  <span class="pmeta-val" id="pvUploader">Sarah Lennox</span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">Part Number</span>
-                  <span class="pmeta-val pmeta-mono" id="pvPart">P-2041</span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">simPRO</span>
-                  <span class="pmeta-val"><a href="#" id="pvSimPRO">View in simPRO ↗</a></span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">Modified</span>
-                  <span class="pmeta-val" id="pvModified">May 01, 2026</span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">File Size</span>
-                  <span class="pmeta-val pmeta-mono" id="pvSize">2.4 MB</span>
-              </div>
-              <div class="pmeta-row">
-                  <span class="pmeta-key">Version</span>
-                  <span class="pmeta-val"><span class="ver-badge" id="pvVer">v3.0</span></span>
-              </div>
-          </div>
+                    </div><!-- /files-list-col -->
 
-          <!-- Quick actions -->
-          <div class="preview-actions">
-              <div class="pact-row">
-                  <button class="pact-btn pact-approve" onclick="approveFile()"><i class="fa fa-check"></i>
-                      Approve</button>
-                  <button class="pact-btn pact-rework" onclick="sendRework()"><i class="fa fa-undo"></i>
-                      Rework</button>
-              </div>
-              <div class="pact-row">
-                  <button class="pact-btn pact-download" onclick="toast('Downloading…','info')"><i
-                          class="fa fa-download"></i> Download</button>
-                  <button class="pact-btn pact-upload" onclick="openUploadModal()"><i
-                          class="fa fa-upload"></i> New Version</button>
-              </div>
-          </div>
 
-          <!-- Version history -->
-          <div class="preview-section">
-              <div class="preview-section-title">Version History</div>
+                    <!-- ═══════════════════════════════════════════════ -->
+                    <!-- RIGHT: PREVIEW PANEL                           -->
+                    <!-- ═══════════════════════════════════════════════ -->
+                    <div class="files-preview" id="previewPanel">
 
-              <div class="ver-history-row current-ver">
-                  <div class="ver-dot current"></div>
-                  <div class="ver-history-info">
-                      <div class="ver-num">v3.0 <span class="ver-cur-badge">Current</span></div>
-                      <div class="ver-by">Uploaded by Sarah L.</div>
-                  </div>
-                  <div class="ver-date">May 01</div>
-              </div>
-              <div class="ver-history-row" onclick="toast('Loading v2.1…','info')">
-                  <div class="ver-dot"></div>
-                  <div class="ver-history-info">
-                      <div class="ver-num">v2.1</div>
-                      <div class="ver-by">Uploaded by Sarah L.</div>
-                  </div>
-                  <div class="ver-date">Apr 28</div>
-              </div>
-              <div class="ver-history-row" onclick="toast('Loading v2.0…','info')">
-                  <div class="ver-dot"></div>
-                  <div class="ver-history-info">
-                      <div class="ver-num">v2.0</div>
-                      <div class="ver-by">Uploaded by Sarah L.</div>
-                  </div>
-                  <div class="ver-date">Apr 26</div>
-              </div>
-              <div class="ver-history-row" onclick="toast('Loading v1.0…','info')">
-                  <div class="ver-dot"></div>
-                  <div class="ver-history-info">
-                      <div class="ver-num">v1.0</div>
-                      <div class="ver-by">Uploaded by James D.</div>
-                  </div>
-                  <div class="ver-date">Apr 20</div>
-              </div>
-          </div>
+                        <!-- Default state -->
+                        <div class="empty-state" id="previewEmpty">
+                            <i class="fa fa-mouse-pointer"></i>
+                            <p style="font-weight:600;color:#94a3b8;margin-bottom:6px">Select a file to preview</p>
+                            <p style="font-size:12px">Click any row to view details,<br>version history &amp; comments.
+                            </p>
+                        </div>
 
-          <!-- Comments -->
-          <div class="preview-comments">
-              <div class="preview-section-title">Comments</div>
+                        <!-- Populated state (hidden until file selected) -->
+                        <div id="previewContent" style="display:none">
 
-              <div class="pc-item">
-                  <div class="pc-avatar av-orange">MD</div>
-                  <div class="pc-body">
-                      <span class="pc-author">Mike Donovan <span class="pc-time">Apr 29 ·
-                              10:22am</span></span>
-                      <div class="pc-text">Dimensions on Section C don't match spec sheet. Please revise
-                          before approval.</div>
-                  </div>
-              </div>
-              <div class="pc-item">
-                  <div class="pc-avatar av-blue">SL</div>
-                  <div class="pc-body">
-                      <span class="pc-author">Sarah Lennox <span class="pc-time">May 01 · 8:45am</span></span>
-                      <div class="pc-text">Updated Section C in v3.0 — please re-review. Tolerance adjusted to
-                          ±0.5mm.</div>
-                  </div>
-              </div>
-              <div class="pc-item">
-                  <div class="pc-avatar av-purple">JD</div>
-                  <div class="pc-body">
-                      <span class="pc-author">James Doyle <span class="pc-time">May 01 · 9:10am</span></span>
-                      <div class="pc-text">Looks better. Forwarding to Tom for final sign-off.</div>
-                  </div>
-              </div>
+                            <div class="preview-header">
+                                <div class="preview-title-group">
+                                    <div class="preview-filename" id="pvFilename">PumpAssembly_v3.pdf</div>
+                                    <div class="preview-reqid" id="pvReqId">#REQ-041 · P-2041</div>
+                                </div>
+                                <button class="preview-close" onclick="closePreview()" title="Close">✕</button>
+                            </div>
 
-              <div class="pc-input-row">
-                  <div class="pc-avatar av-purple"
-                      style="width:26px;height:26px;font-size:9.5px;flex-shrink:0">JD</div>
-                  <input class="pc-input" type="text" placeholder="Add a comment…" id="pcInput"
-                      onkeydown="if(event.key==='Enter')sendComment()" />
-                  <button class="pc-send" onclick="sendComment()">Send</button>
-              </div>
-          </div>
+                            <!-- File thumbnail / viewer area -->
+                            <div class="preview-thumb">
+                                <i class="fa fa-file-pdf-o preview-thumb-icon c-red" id="pvThumbIcon"></i>
+                                <span class="preview-thumb-label" id="pvThumbLabel">PDF</span>
+                                <button class="btn-badge c-cyan pact-btn pact-download preview-open-btn"
+                                    style="padding:5px 11px;font-size:11.5px" onclick="toast('Opening file…','info')">
+                                    <i class="fa fa-external-link"></i> Open Full View
+                                </button>
+                            </div>
 
-      </div><!-- /previewContent -->
-  </div><!-- /files-preview -->
+                            <!-- Meta -->
+                            <div class="preview-meta">
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Status</span>
+                                    <span class="pmeta-val" id="pvStatus"><span class="spill spill-review">In
+                                            Review</span></span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Request</span>
+                                    <span class="pmeta-val"><a href="#" id="pvRequest">#REQ-041 Pump Assembly
+                                            v2</a></span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Uploaded by</span>
+                                    <span class="pmeta-val" id="pvUploader">Sarah Lennox</span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Part Number</span>
+                                    <span class="pmeta-val pmeta-mono" id="pvPart">P-2041</span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">simPRO</span>
+                                    <span class="pmeta-val"><a href="#" id="pvSimPRO">View in simPRO ↗</a></span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Modified</span>
+                                    <span class="pmeta-val" id="pvModified">May 01, 2026</span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Drawing Size</span>
+                                    <span class="pmeta-val pmeta-mono" id="pvSize">2.4 MB</span>
+                                </div>
+                                <div class="pmeta-row">
+                                    <span class="pmeta-key">Version</span>
+                                    <span class="pmeta-val"><span class="ver-badge" id="pvVer">v3.0</span></span>
+                                </div>
+                            </div>
 
-</div><!-- /files-shell --> 
-      </div>
+                            <!-- Quick actions -->
+                            <div class="preview-actions">
+                                <div class="pact-row">
+                                    <button class="pact-btn pact-approve" onclick="approveFile()"><i
+                                            class="fa fa-check"></i>
+                                            Review  </button>
+                                    <button class="pact-btn pact-rework" onclick="sendRework()"><i
+                                            class="fa fa-undo"></i>
+                                            Request Revision</button>
+                                </div>
+                                <div class="pact-row">
+                                    <button class="pact-btn pact-download" onclick="toast('Downloading…','info')"><i
+                                            class="fa fa-download"></i> Download</button>
+                                    <button class="pact-btn pact-upload" onclick="openUploadModal()"><i
+                                            class="fa fa-upload"></i> Create Revision</button>
+                                </div>
+                            </div>
+
+                            <!-- Version history -->
+                            <div class="preview-section">
+                                <div class="preview-section-title">Version History</div>
+
+                                <div class="ver-history-row current-ver">
+                                    <div class="ver-dot current"></div>
+                                    <div class="ver-history-info">
+                                        <div class="ver-num">v3.0 <span class="ver-cur-badge">Current Released Revision</span></div>
+                                        <div class="ver-by">Uploaded by Sarah L.</div>
+                                    </div>
+                                    <div class="ver-date">May 01</div>
+                                </div>
+                                <div class="compare-strip">
+                                    <button class="compare-btn">
+                                    <i class="fa fa-exchange"></i>
+                                    Compare v3.0 ↔ v2.1
+                                    </button>
+                                </div>
+
+                                <div class="ver-history-row" onclick="toast('Loading v2.1…','info')">
+                                    <div class="ver-dot"></div>
+                                    <div class="ver-history-info">
+                                        <div class="ver-num">v2.1</div>
+                                        <div class="ver-by">Uploaded by Sarah L.</div>
+                                    </div>
+                                    <div class="ver-date">Apr 28</div>
+                                </div>
+                                <div class="ver-history-row" onclick="toast('Loading v2.0…','info')">
+                                    <div class="ver-dot"></div>
+                                    <div class="ver-history-info">
+                                        <div class="ver-num">v2.0</div>
+                                        <div class="ver-by">Uploaded by Sarah L.</div>
+                                    </div>
+                                    <div class="ver-date">Apr 26</div>
+                                </div>
+                                <div class="ver-history-row" onclick="toast('Loading v1.0…','info')">
+                                    <div class="ver-dot"></div>
+                                    <div class="ver-history-info">
+                                        <div class="ver-num">v1.0</div>
+                                        <div class="ver-by">Uploaded by James D.</div>
+                                    </div>
+                                    <div class="ver-date">Apr 20</div>
+                                </div>
+                            </div>
+
+                            <!-- Comments -->
+                            <div class="preview-comments">
+                                <div class="preview-section-title">Comments</div>
+
+                                <div class="pc-item">
+                                    <div class="pc-avatar av-orange">MD</div>
+                                    <div class="pc-body">
+                                        <span class="pc-author">Mike Donovan <span class="pc-time">Apr 29 ·
+                                                10:22am</span></span>
+                                        <div class="pc-text">Dimensions on Section C don't match spec sheet. Please
+                                            revise
+                                            before approval.</div>
+                                    </div>
+                                </div>
+                                <div class="pc-item">
+                                    <div class="pc-avatar av-blue">SL</div>
+                                    <div class="pc-body">
+                                        <span class="pc-author">Sarah Lennox <span class="pc-time">May 01 ·
+                                                8:45am</span></span>
+                                        <div class="pc-text">Updated Section C in v3.0 — please re-review. Tolerance
+                                            adjusted to
+                                            ±0.5mm.</div>
+                                    </div>
+                                </div>
+                                <div class="pc-item">
+                                    <div class="pc-avatar av-purple">JD</div>
+                                    <div class="pc-body">
+                                        <span class="pc-author">James Doyle <span class="pc-time">May 01 ·
+                                                9:10am</span></span>
+                                        <div class="pc-text">Looks better. Forwarding to Tom for final sign-off.</div>
+                                    </div>
+                                </div>
+
+                                <div class="pc-input-row">
+                                    <div class="pc-avatar av-purple"
+                                        style="width:26px;height:26px;font-size:9.5px;flex-shrink:0">JD</div>
+                                    <input class="pc-input" type="text" placeholder="Add a comment…" id="pcInput"
+                                        onkeydown="if(event.key==='Enter')sendComment()" />
+                                    <button class="pc-send" onclick="sendComment()">Send</button>
+                                </div>
+                            </div>
+
+                        </div><!-- /previewContent -->
+                    </div><!-- /files-preview -->
+
+                </div><!-- /files-shell -->
+            </div>
+        </div>
+
+        </div>
+
+        <script>
+            // OPEN MODAL
+            document.querySelectorAll('[data-modal]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const type = btn.getAttribute('data-modal');
+                    document.getElementById('modal-' + type).classList.add('open');
+                });
+            });
+
+            // CLOSE MODAL
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.onclick = () => {
+                    btn.closest('.modal-overlay').classList.remove('open');
+                };
+            });
+
+            // CLOSE ON OUTSIDE CLICK
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            });
+        </script>
+        <!-- ──────────── MODAL ──────────── -->
+        </div><!-- /dashboard-grid -->
+    </main>
+    <div class="ctx-menu" id="ctxMenu">
+        <div class="ctx-item" onclick="ctxAction('open')"><i class="fa fa-eye"></i> Preview</div>
+        <div class="ctx-item" onclick="ctxAction('download')"><i class="fa fa-download"></i> Download</div>
+        <div class="ctx-item" onclick="ctxAction('version')"><i class="fa fa-upload"></i> Upload Create Revision</div>
+        <div class="ctx-item" onclick="ctxAction('rename')"><i class="fa fa-pencil"></i> Rename</div>
+        <div class="ctx-item" onclick="ctxAction('copy')"><i class="fa fa-copy"></i> Copy Link</div>
+        <div class="ctx-item" onclick="ctxAction('star')"><i class="fa fa-star-o"></i> Mark as Released</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item" onclick="ctxAction('move')"><i class="fa fa-folder-open"></i> Move to Folder</div>
+        <div class="ctx-item" onclick="ctxAction('share')"><i class="fa fa-share-alt"></i> Share</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item danger" onclick="ctxAction('delete')"><i class="fa fa-archive"></i> Archive</div>
     </div>
 
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- UPLOAD MODAL                                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="uploadModal" onclick="closeUploadModal()">
+        <div class="modal" onclick="event.stopPropagation()" style="max-width:500px">
+
+            <div class="modal-header p-0 align-items-center m-0">
+                <h5><i class="fa fa-upload" style="color:#47b8c9;margin-right:8px"></i> Upload Engineering Drawing</h5>
+                <button class="modal-close mb-2" onclick="closeUploadModal()">✕</button>
+            </div>
+
+            <div class="pt-3">
+                <!-- Drop zone -->
+                <div class="upload-drop" id="dropZone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"
+                    onclick="document.getElementById('fileInput').click()">
+                    <i class="fa fa-cloud-upload"></i>
+                    <div style="font-weight:600;color:#cbd5e1;margin-bottom:4px">Drop files here or click to browse
+                    </div>
+                    <div style="font-size:12px">Supports PDF, DWG, STEP, XLSX, PNG — Max 100 MB</div>
+                </div>
+                <input type="file" id="fileInput" style="display:none" multiple onchange="handleFileSelect(this)">
+
+                <!-- Selected files -->
+                <div id="selectedDrawingList" style="margin-top:12px;display:none">
+                    <div
+                        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#6b7a99;margin-bottom:7px">
+                        Selected Drawing</div>
+                    <div id="fileItems"></div>
+                </div>
+
+                <div class="form-group" style="margin-top:14px">
+                    <label class="form-label">Linked Request</label>
+                    <select class="form-select">
+                        <option>— None —</option>
+                        <option selected>#REQ-041 · Pump Assembly v2</option>
+                        <option>#REQ-038 · Pipe Layout Rev C</option>
+                        <option>#REQ-034 · Safety Valve Drawing</option>
+                        <option>#REQ-031 · Control Panel Layout</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Version Note</label>
+                    <input class="form-input" type="text" placeholder="e.g. Updated Section C tolerance to ±0.5mm">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Upload as</label>
+                    <select class="form-select">
+                        <option>Create Revision (increment current)</option>
+                        <option>New File (separate entry)</option>
+                        <option>Replace current version</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer p-0">
+                    <button class="btn-ghost" onclick="closeUploadModal()">Cancel</button>
+                    <button class="btn-primary" onclick="submitUpload()"><i class="fa fa-upload"></i> Upload &amp;
+                        Attach</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- VERSION HISTORY MODAL                              -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="versionModal" onclick="closeVersionModal()">
+        <div class="modal" onclick="event.stopPropagation()" style="max-width:520px">
+
+            <div class="modal-header p-0 align-items-center m-0">
+                <h5><i class="fa fa-code-fork" style="color:#47b8c9;margin-right:8px"></i> Version History</h5>
+                <button class="modal-close mb-2" onclick="closeVersionModal()">✕</button>
+            </div>
+
+            <div class="pt-3">
+                <div style="font-size:13px;color:#6b7a99;margin-bottom:14px">
+                    <span style="color:#47b8c9;font-weight:600" id="vmFilename">PumpAssembly_v3.pdf</span>
+                    &nbsp;· All revisions
+                </div>
+
+                <div class="revision-list">
+                    <div class="rev-row active-rev" style="display:flex;gap:10px;align-items:center">
+                        <span class="rev-ver">v3.0</span>
+                        <div style="flex:1">
+                            <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Current — In Review</div>
+                            <div class="rev-by" style="font-size:11.5px;color:#6b7a99">Sarah Lennox · May 01, 2026 ·
+                                Updated Section C</div>
+                        </div>
+                        <button class="btn-badge view" onclick="toast('Downloading v3.0…','info')">Download</button>
+                        <span class="rev-current">Current</span>
+                    </div>
+                    <div class="rev-row" style="display:flex;gap:10px;align-items:center">
+                        <span class="rev-ver">v2.1</span>
+                        <div style="flex:1">
+                            <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Rework — Sent back</div>
+                            <div class="rev-by" style="font-size:11.5px;color:#6b7a99">Sarah Lennox · Apr 28, 2026 ·
+                                Minor corrections</div>
+                        </div>
+                        <button class="btn-badge" onclick="toast('Restoring v2.1…','warning')">Revert to
+                            Revision</button>
+                        <button class="btn-badge view" onclick="toast('Downloading v2.1…','info')">Download</button>
+                    </div>
+                    <div class="rev-row" style="display:flex;gap:10px;align-items:center">
+                        <span class="rev-ver">v2.0</span>
+                        <div style="flex:1">
+                            <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Submitted</div>
+                            <div class="rev-by" style="font-size:11.5px;color:#6b7a99">Sarah Lennox · Apr 26, 2026 ·
+                                Full redraw</div>
+                        </div>
+                        <button class="btn-badge" onclick="toast('Restoring v2.0…','warning')">Revert to
+                            Revision</button>
+                        <button class="btn-badge view" onclick="toast('Downloading v2.0…','info')">Download</button>
+                    </div>
+                    <div class="rev-row" style="display:flex;gap:10px;align-items:center">
+                        <span class="rev-ver">v1.0</span>
+                        <div style="flex:1">
+                            <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Initial Draft</div>
+                            <div class="rev-by" style="font-size:11.5px;color:#6b7a99">James Doyle · Apr 20, 2026 ·
+                                First upload</div>
+                        </div>
+                        <button class="btn-badge" onclick="toast('Restoring v1.0…','warning')">Revert to
+                            Revision</button>
+                        <button class="btn-badge view" onclick="toast('Downloading v1.0…','info')">Download</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer p-0" style="margin-top:16px">
+                    <button class="btn-ghost" onclick="closeVersionModal()">Close</button>
+                    <button class="btn-primary" onclick="openUploadModal();closeVersionModal()"><i
+                            class="fa fa-upload"></i> Upload Create Revision</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <script>
-      // OPEN MODAL
-      document.querySelectorAll('[data-modal]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const type = btn.getAttribute('data-modal');
-          document.getElementById('modal-' + type).classList.add('open');
-        });
-      });
+        /* ═══════════════════════════════════════════════════════
+           FILES PAGE JAVASCRIPT
+           ═══════════════════════════════════════════════════════ */
 
-      // CLOSE MODAL
-      document.querySelectorAll('.modal-close').forEach(btn => {
-        btn.onclick = () => {
-          btn.closest('.modal-overlay').classList.remove('open');
-        };
-      });
+        let currentFile = null;
+        let selectedDrawing = new Set();
+        let currentView = 'list';
 
-      // CLOSE ON OUTSIDE CLICK
-      document.querySelectorAll('.modal-overlay').forEach(modal => {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            modal.classList.remove('open');
-          }
-        });
-      });
-    </script>
-    <!-- ──────────── MODAL ──────────── -->
-    </div><!-- /dashboard-grid -->
-  </main>
-  <div class="ctx-menu" id="ctxMenu">
-    <div class="ctx-item" onclick="ctxAction('open')"><i class="fa fa-eye"></i> Preview</div>
-    <div class="ctx-item" onclick="ctxAction('download')"><i class="fa fa-download"></i> Download</div>
-    <div class="ctx-item" onclick="ctxAction('version')"><i class="fa fa-upload"></i> Upload New Version</div>
-    <div class="ctx-item" onclick="ctxAction('rename')"><i class="fa fa-pencil"></i> Rename</div>
-    <div class="ctx-item" onclick="ctxAction('copy')"><i class="fa fa-copy"></i> Copy Link</div>
-    <div class="ctx-item" onclick="ctxAction('star')"><i class="fa fa-star-o"></i> Star</div>
-    <div class="ctx-divider"></div>
-    <div class="ctx-item" onclick="ctxAction('move')"><i class="fa fa-folder-open"></i> Move to Folder</div>
-    <div class="ctx-item" onclick="ctxAction('share')"><i class="fa fa-share-alt"></i> Share</div>
-    <div class="ctx-divider"></div>
-    <div class="ctx-item danger" onclick="ctxAction('delete')"><i class="fa fa-trash"></i> Delete</div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- UPLOAD MODAL                                       -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="modal-overlay" id="uploadModal" onclick="closeUploadModal()">
-    <div class="modal" onclick="event.stopPropagation()" style="max-width:500px">
-
-        <div class="modal-header p-0 align-items-center m-0">
-            <h5><i class="fa fa-upload" style="color:#47b8c9;margin-right:8px"></i> Upload Drawing File</h5>
-            <button class="modal-close mb-2" onclick="closeUploadModal()">✕</button>
-        </div>
-
-        <div class="pt-3">
-            <!-- Drop zone -->
-            <div class="upload-drop" id="dropZone" ondragover="event.preventDefault()" ondrop="handleDrop(event)"
-                onclick="document.getElementById('fileInput').click()">
-                <i class="fa fa-cloud-upload"></i>
-                <div style="font-weight:600;color:#cbd5e1;margin-bottom:4px">Drop files here or click to browse
-                </div>
-                <div style="font-size:12px">Supports PDF, DWG, STEP, XLSX, PNG — Max 100 MB</div>
-            </div>
-            <input type="file" id="fileInput" style="display:none" multiple onchange="handleFileSelect(this)">
-
-            <!-- Selected files -->
-            <div id="selectedFilesList" style="margin-top:12px;display:none">
-                <div
-                    style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#6b7a99;margin-bottom:7px">
-                    Selected Files</div>
-                <div id="fileItems"></div>
-            </div>
-
-            <div class="form-group" style="margin-top:14px">
-                <label class="form-label">Linked Request</label>
-                <select class="form-select">
-                    <option>— None —</option>
-                    <option selected>#REQ-041 · Pump Assembly v2</option>
-                    <option>#REQ-038 · Pipe Layout Rev C</option>
-                    <option>#REQ-034 · Safety Valve Drawing</option>
-                    <option>#REQ-031 · Control Panel Layout</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Version Note</label>
-                <input class="form-input" type="text" placeholder="e.g. Updated Section C tolerance to ±0.5mm">
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Upload as</label>
-                <select class="form-select">
-                    <option>New Version (increment current)</option>
-                    <option>New File (separate entry)</option>
-                    <option>Replace current version</option>
-                </select>
-            </div>
-
-            <div class="modal-footer p-0">
-                <button class="btn-ghost" onclick="closeUploadModal()">Cancel</button>
-                <button class="btn-primary" onclick="submitUpload()"><i class="fa fa-upload"></i> Upload &amp;
-                    Attach</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- VERSION HISTORY MODAL                              -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="modal-overlay" id="versionModal" onclick="closeVersionModal()">
-    <div class="modal" onclick="event.stopPropagation()" style="max-width:520px">
-
-        <div class="modal-header p-0 align-items-center m-0">
-            <h5><i class="fa fa-code-fork" style="color:#47b8c9;margin-right:8px"></i> Version History</h5>
-            <button class="modal-close mb-2" onclick="closeVersionModal()">✕</button>
-        </div>
-
-        <div class="pt-3">
-            <div style="font-size:13px;color:#6b7a99;margin-bottom:14px">
-                <span style="color:#47b8c9;font-weight:600" id="vmFilename">PumpAssembly_v3.pdf</span>
-                &nbsp;· All revisions
-            </div>
-
-            <div class="revision-list">
-                <div class="rev-row active-rev" style="display:flex;gap:10px;align-items:center">
-                    <span class="rev-ver">v3.0</span>
-                    <div style="flex:1">
-                        <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Current — In Review</div>
-                        <div class="rev-by" style="font-size:11.5px;color:#6b7a99">Sarah Lennox · May 01, 2026 ·
-                            Updated Section C</div>
-                    </div>
-                    <button class="btn-badge view" onclick="toast('Downloading v3.0…','info')">Download</button>
-                    <span class="rev-current">Current</span>
-                </div>
-                <div class="rev-row" style="display:flex;gap:10px;align-items:center">
-                    <span class="rev-ver">v2.1</span>
-                    <div style="flex:1">
-                        <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Rework — Sent back</div>
-                        <div class="rev-by" style="font-size:11.5px;color:#6b7a99">Sarah Lennox · Apr 28, 2026 ·
-                            Minor corrections</div>
-                    </div>
-                    <button class="btn-badge" onclick="toast('Restoring v2.1…','warning')">Restore</button>
-                    <button class="btn-badge view" onclick="toast('Downloading v2.1…','info')">Download</button>
-                </div>
-                <div class="rev-row" style="display:flex;gap:10px;align-items:center">
-                    <span class="rev-ver">v2.0</span>
-                    <div style="flex:1">
-                        <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Submitted</div>
-                        <div class="rev-by" style="font-size:11.5px;color:#6b7a99">Sarah Lennox · Apr 26, 2026 ·
-                            Full redraw</div>
-                    </div>
-                    <button class="btn-badge" onclick="toast('Restoring v2.0…','warning')">Restore</button>
-                    <button class="btn-badge view" onclick="toast('Downloading v2.0…','info')">Download</button>
-                </div>
-                <div class="rev-row" style="display:flex;gap:10px;align-items:center">
-                    <span class="rev-ver">v1.0</span>
-                    <div style="flex:1">
-                        <div style="font-size:12.5px;font-weight:600;color:#e2e8f0">Initial Draft</div>
-                        <div class="rev-by" style="font-size:11.5px;color:#6b7a99">James Doyle · Apr 20, 2026 ·
-                            First upload</div>
-                    </div>
-                    <button class="btn-badge" onclick="toast('Restoring v1.0…','warning')">Restore</button>
-                    <button class="btn-badge view" onclick="toast('Downloading v1.0…','info')">Download</button>
-                </div>
-            </div>
-
-            <div class="modal-footer p-0" style="margin-top:16px">
-                <button class="btn-ghost" onclick="closeVersionModal()">Close</button>
-                <button class="btn-primary" onclick="openUploadModal();closeVersionModal()"><i
-                        class="fa fa-upload"></i> Upload New Version</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-  <script>
-    /* ═══════════════════════════════════════════════════════
-       FILES PAGE JAVASCRIPT
-       ═══════════════════════════════════════════════════════ */
-
-    let currentFile = null;
-    let selectedFiles = new Set();
-    let currentView = 'list';
-
-    /* ── Toast ──────────────────────────────────────────── */
-    let _toastTimer;
-    function toast(msg, type = 'success') {
-        const t = document.getElementById('toast');
-        t.textContent = msg;
-        t.className = 'toast show ' + type;
-        clearTimeout(_toastTimer);
-        _toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
-    }
-
-    /* ── View toggle ────────────────────────────────────── */
-    function setView(v) {
-        currentView = v;
-        const col = document.getElementById('filesListCol');
-        col.classList.toggle('mode-grid', v === 'grid');
-        document.getElementById('listViewBtn').classList.toggle('active', v === 'list');
-        document.getElementById('gridViewBtn').classList.toggle('active', v === 'grid');
-    }
-
-    /* ── Explorer filter (visual only) ─────────────────── */
-    function filterFolder(key) {
-        document.querySelectorAll('.explorer-item').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        toast('Browsing: ' + key.replace(/-/g, ' '), 'info');
-    }
-    function filterStatus(s) {
-        document.querySelectorAll('.explorer-item').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        const rows = document.querySelectorAll('.file-row[data-status]');
-        rows.forEach(r => {
-            r.style.display = (r.dataset.status === s) ? '' : 'none';
-        });
-        toast('Filtered: ' + s, 'info');
-    }
-    function filterType(t) {
-        document.querySelectorAll('.explorer-item').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        const rows = document.querySelectorAll('.file-row[data-type]');
-        rows.forEach(r => {
-            r.style.display = (r.dataset.type === t) ? '' : 'none';
-        });
-        toast('File type: ' + t.toUpperCase(), 'info');
-    }
-
-    /* ── Search ─────────────────────────────────────────── */
-    function filterFiles(q) {
-        const rows = document.querySelectorAll('.file-row[data-name]');
-        const lq = q.toLowerCase();
-        rows.forEach(r => {
-            const name = (r.dataset.name || '').toLowerCase();
-            const id = (r.querySelector('.fname-sub') || {}).textContent || '';
-            r.style.display = (!q || name.includes(lq) || id.toLowerCase().includes(lq)) ? '' : 'none';
-        });
-    }
-
-    /* ── Sort ───────────────────────────────────────────── */
-    function sortFiles(val) { toast('Sorted by: ' + val, 'info'); }
-
-    /* ── File selection ─────────────────────────────────── */
-    const fileData = {
-        f1: { name: 'PumpAssembly_v3.pdf', req: '#REQ-041 Pump Assembly v2', reqId: '#REQ-041 · P-2041', uploader: 'Sarah Lennox', part: 'P-2041', modified: 'May 01, 2026', size: '2.4 MB', ver: 'v3.0', status: 'review', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
-        f2: { name: 'FrameWeldSpec_v2.dwg', req: '#REQ-029 Frame Weld Spec', reqId: '#REQ-029 · P-2029', uploader: 'James Doyle', part: 'P-2029', modified: 'Apr 29, 2026', size: '8.1 MB', ver: 'v2.1', status: 'review', icon: 'fa-file-code-o', iconClass: 'c-blue', label: 'DWG' },
-        f3: { name: 'ControlPanel_Layout_v3.pdf', req: '#REQ-031 Control Panel Layout', reqId: '#REQ-031 · P-2031', uploader: 'Sarah Lennox', part: 'P-2031', modified: 'May 01, 2026', size: '1.9 MB', ver: 'v3.0', status: 'rework', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
-        f4: { name: 'GearboxAssembly_FINAL.pdf', req: '#REQ-027 Gearbox Assembly', reqId: '#REQ-027 · P-2027', uploader: 'Tom Kovacs', part: 'P-2027', modified: 'Apr 30, 2026', size: '3.6 MB', ver: 'v4.0', status: 'approved', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
-        f5: { name: 'PipeLayout_RevC.dwg', req: '#REQ-038 Pipe Layout Rev C', reqId: '#REQ-038 · P-2043', uploader: 'James Doyle', part: 'P-2043', modified: 'Apr 28, 2026', size: '12.4 MB', ver: 'v1.2', status: 'draft', icon: 'fa-file-code-o', iconClass: 'c-blue', label: 'DWG' },
-        f6: { name: 'CoolingSystem_3D.step', req: '#REQ-025 Cooling System', reqId: '#REQ-025 · P-2041', uploader: 'Tom Kovacs', part: 'P-2041', modified: 'Apr 27, 2026', size: '44.2 MB', ver: 'v2.0', status: 'approved', icon: 'fa-cube', iconClass: 'c-purple', label: 'STEP' },
-        f7: { name: 'MotorHousing_Spec.pdf', req: '#REQ-036 Motor Housing Drawing', reqId: '#REQ-036 · P-2042', uploader: 'Sarah Lennox', part: 'P-2042', modified: 'Apr 26, 2026', size: '1.2 MB', ver: 'v1.0', status: 'review', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
-        f9: { name: 'SensorMount_Concept.png', req: '#REQ-026 Sensor Mount', reqId: '#REQ-026 · Draft', uploader: 'Mike Donovan', part: '—', modified: 'Apr 18, 2026', size: '3.8 MB', ver: 'v1.0', status: 'draft', icon: 'fa-file-image-o', iconClass: 'c-pink', label: 'PNG' },
-        f10: { name: 'DriveShaft_Spec_Final.pdf', req: '#REQ-024 Drive Shaft Spec', reqId: '#REQ-024 · P-2024', uploader: 'Tom Kovacs', part: 'P-2024', modified: 'Apr 25, 2026', size: '2.1 MB', ver: 'v5.2', status: 'approved', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
-    };
-
-    const statusPills = {
-        approved: '<span class="spill spill-approved">Approved</span>',
-        review: '<span class="spill spill-review">In Review</span>',
-        draft: '<span class="spill spill-draft">Draft</span>',
-        rework: '<span class="spill spill-rework">Rework</span>',
-    };
-
-    function selectFile(id, e) {
-        // Deselect all rows
-        document.querySelectorAll('.file-row').forEach(r => r.classList.remove('selected'));
-        document.querySelectorAll('.file-card').forEach(c => c.classList.remove('selected'));
-
-        // Select clicked
-        const row = document.querySelector(`[data-id="${id}"]`);
-        if (row) row.classList.add('selected');
-        currentFile = id;
-        openPreview(id);
-    }
-
-    function openPreview(id) {
-        const d = fileData[id];
-        if (!d) return;
-        currentFile = id;
-
-        document.getElementById('previewEmpty').style.display = 'none';
-        document.getElementById('previewContent').style.display = 'block';
-
-        document.getElementById('pvFilename').textContent = d.name;
-        document.getElementById('pvReqId').textContent = d.reqId;
-        document.getElementById('pvStatus').innerHTML = statusPills[d.status] || d.status;
-        document.getElementById('pvRequest').textContent = d.req;
-        document.getElementById('pvUploader').textContent = d.uploader;
-        document.getElementById('pvPart').textContent = d.part;
-        document.getElementById('pvModified').textContent = d.modified;
-        document.getElementById('pvSize').textContent = d.size;
-        document.getElementById('pvVer').textContent = d.ver;
-
-        const icon = document.getElementById('pvThumbIcon');
-        icon.className = 'fa ' + d.icon + ' preview-thumb-icon ' + (d.iconClass || 'c-cyan');
-        document.getElementById('pvThumbLabel').textContent = d.label;
-    }
-
-    function closePreview() {
-        document.getElementById('previewEmpty').style.display = 'flex';
-        document.getElementById('previewContent').style.display = 'none';
-        document.querySelectorAll('.file-row').forEach(r => r.classList.remove('selected'));
-        currentFile = null;
-    }
-
-    /* ── Selection checkboxes ───────────────────────────── */
-    function onRowCheck(cb) {
-        const row = cb.closest('.file-row, .file-card');
-        if (row) {
-            const id = row.dataset.id;
-            if (cb.checked) selectedFiles.add(id);
-            else selectedFiles.delete(id);
+        /* ── Toast ──────────────────────────────────────────── */
+        let _toastTimer;
+        function toast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast show ' + type;
+            clearTimeout(_toastTimer);
+            _toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
         }
-        updateSelBanner();
-    }
-    function toggleSelectAll(cb) {
-        const boxes = document.querySelectorAll('.file-row input[type=checkbox]:not(#selectAll)');
-        boxes.forEach(b => {
-            b.checked = cb.checked;
-            const row = b.closest('.file-row');
-            if (row && row.dataset.id) {
-                if (cb.checked) selectedFiles.add(row.dataset.id);
-                else selectedFiles.delete(row.dataset.id);
+
+        /* ── View toggle ────────────────────────────────────── */
+        function setView(v) {
+            currentView = v;
+            const col = document.getElementById('filesListCol');
+            col.classList.toggle('mode-grid', v === 'grid');
+            document.getElementById('listViewBtn').classList.toggle('active', v === 'list');
+            document.getElementById('gridViewBtn').classList.toggle('active', v === 'grid');
+        }
+
+        /* ── Explorer filter (visual only) ─────────────────── */
+        function filterFolder(key) {
+            document.querySelectorAll('.explorer-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            toast('Browsing: ' + key.replace(/-/g, ' '), 'info');
+        }
+        function filterStatus(s) {
+            document.querySelectorAll('.explorer-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            const rows = document.querySelectorAll('.file-row[data-status]');
+            rows.forEach(r => {
+                r.style.display = (r.dataset.status === s) ? '' : 'none';
+            });
+            toast('Filtered: ' + s, 'info');
+        }
+        function filterType(t) {
+            document.querySelectorAll('.explorer-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            const rows = document.querySelectorAll('.file-row[data-type]');
+            rows.forEach(r => {
+                r.style.display = (r.dataset.type === t) ? '' : 'none';
+            });
+            toast('File type: ' + t.toUpperCase(), 'info');
+        }
+
+        /* ── Search ─────────────────────────────────────────── */
+        function filterDrawing(q) {
+            const rows = document.querySelectorAll('.file-row[data-name]');
+            const lq = q.toLowerCase();
+            rows.forEach(r => {
+                const name = (r.dataset.name || '').toLowerCase();
+                const id = (r.querySelector('.fname-sub') || {}).textContent || '';
+                r.style.display = (!q || name.includes(lq) || id.toLowerCase().includes(lq)) ? '' : 'none';
+            });
+        }
+
+        /* ── Sort ───────────────────────────────────────────── */
+        function sortDrawing(val) { toast('Sorted by: ' + val, 'info'); }
+
+        /* ── File selection ─────────────────────────────────── */
+        const fileData = {
+            f1: { name: 'PumpAssembly_v3.pdf', req: '#REQ-041 Pump Assembly v2', reqId: '#REQ-041 · P-2041', uploader: 'Sarah Lennox', part: 'P-2041', modified: 'May 01, 2026', size: '2.4 MB', ver: 'v3.0', status: 'review', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
+            f2: { name: 'FrameWeldSpec_v2.dwg', req: '#REQ-029 Frame Weld Spec', reqId: '#REQ-029 · P-2029', uploader: 'James Doyle', part: 'P-2029', modified: 'Apr 29, 2026', size: '8.1 MB', ver: 'v2.1', status: 'review', icon: 'fa-file-code-o', iconClass: 'c-blue', label: 'DWG' },
+            f3: { name: 'ControlPanel_Layout_v3.pdf', req: '#REQ-031 Control Panel Layout', reqId: '#REQ-031 · P-2031', uploader: 'Sarah Lennox', part: 'P-2031', modified: 'May 01, 2026', size: '1.9 MB', ver: 'v3.0', status: 'rework', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
+            f4: { name: 'GearboxAssembly.pdf', req: '#REQ-027 Gearbox Assembly', reqId: '#REQ-027 · P-2027', uploader: 'Tom Kovacs', part: 'P-2027', modified: 'Apr 30, 2026', size: '3.6 MB', ver: 'v4.0', status: 'approved', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
+            f5: { name: 'PipeLayout_RevC.dwg', req: '#REQ-038 Pipe Layout Rev C', reqId: '#REQ-038 · P-2043', uploader: 'James Doyle', part: 'P-2043', modified: 'Apr 28, 2026', size: '12.4 MB', ver: 'v1.2', status: 'draft', icon: 'fa-file-code-o', iconClass: 'c-blue', label: 'DWG' },
+            f6: { name: 'CoolingSystem_3D.step', req: '#REQ-025 Cooling System', reqId: '#REQ-025 · P-2041', uploader: 'Tom Kovacs', part: 'P-2041', modified: 'Apr 27, 2026', size: '44.2 MB', ver: 'v2.0', status: 'approved', icon: 'fa-cube', iconClass: 'c-purple', label: 'STEP' },
+            f7: { name: 'MotorHousing_Spec.pdf', req: '#REQ-036 Motor Housing Drawing', reqId: '#REQ-036 · P-2042', uploader: 'Sarah Lennox', part: 'P-2042', modified: 'Apr 26, 2026', size: '1.2 MB', ver: 'v1.0', status: 'review', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
+            f9: { name: 'SensorMount_Concept.png', req: '#REQ-026 Sensor Mount', reqId: '#REQ-026 · Draft', uploader: 'Mike Donovan', part: '—', modified: 'Apr 18, 2026', size: '3.8 MB', ver: 'v1.0', status: 'draft', icon: 'fa-file-image-o', iconClass: 'c-pink', label: 'PNG' },
+            f10: { name: 'DriveShaft_Spec_Final.pdf', req: '#REQ-024 Drive Shaft Spec', reqId: '#REQ-024 · P-2024', uploader: 'Tom Kovacs', part: 'P-2024', modified: 'Apr 25, 2026', size: '2.1 MB', ver: 'v5.2', status: 'approved', icon: 'fa-file-pdf-o', iconClass: 'c-red', label: 'PDF' },
+        };
+
+        const statusPills = {
+            approved: '<span class="spill spill-approved">Released</span>',
+            review: '<span class="spill spill-review">In Review</span>',
+            draft: '<span class="spill spill-draft">Draft</span>',
+            rework: '<span class="spill spill-rework">Rework</span>',
+        };
+
+        function selectFile(id, e) {
+            // Deselect all rows
+            document.querySelectorAll('.file-row').forEach(r => r.classList.remove('selected'));
+            document.querySelectorAll('.file-card').forEach(c => c.classList.remove('selected'));
+
+            // Select clicked
+            const row = document.querySelector(`[data-id="${id}"]`);
+            if (row) row.classList.add('selected');
+            currentFile = id;
+            openPreview(id);
+        }
+
+        function openPreview(id) {
+            const d = fileData[id];
+            if (!d) return;
+            currentFile = id;
+
+            document.getElementById('previewEmpty').style.display = 'none';
+            document.getElementById('previewContent').style.display = 'block';
+
+            document.getElementById('pvFilename').textContent = d.name;
+            document.getElementById('pvReqId').textContent = d.reqId;
+            document.getElementById('pvStatus').innerHTML = statusPills[d.status] || d.status;
+            document.getElementById('pvRequest').textContent = d.req;
+            document.getElementById('pvUploader').textContent = d.uploader;
+            document.getElementById('pvPart').textContent = d.part;
+            document.getElementById('pvModified').textContent = d.modified;
+            document.getElementById('pvSize').textContent = d.size;
+            document.getElementById('pvVer').textContent = d.ver;
+
+            const icon = document.getElementById('pvThumbIcon');
+            icon.className = 'fa ' + d.icon + ' preview-thumb-icon ' + (d.iconClass || 'c-cyan');
+            document.getElementById('pvThumbLabel').textContent = d.label;
+        }
+
+        function closePreview() {
+            document.getElementById('previewEmpty').style.display = 'flex';
+            document.getElementById('previewContent').style.display = 'none';
+            document.querySelectorAll('.file-row').forEach(r => r.classList.remove('selected'));
+            currentFile = null;
+        }
+
+        /* ── Selection checkboxes ───────────────────────────── */
+        function onRowCheck(cb) {
+            const row = cb.closest('.file-row, .file-card');
+            if (row) {
+                const id = row.dataset.id;
+                if (cb.checked) selectedDrawing.add(id);
+                else selectedDrawing.delete(id);
+            }
+            updateSelBanner();
+        }
+        function toggleSelectAll(cb) {
+            const boxes = document.querySelectorAll('.file-row input[type=checkbox]:not(#selectAll)');
+            boxes.forEach(b => {
+                b.checked = cb.checked;
+                const row = b.closest('.file-row');
+                if (row && row.dataset.id) {
+                    if (cb.checked) selectedDrawing.add(row.dataset.id);
+                    else selectedDrawing.delete(row.dataset.id);
+                }
+            });
+            updateSelBanner();
+        }
+        function updateSelBanner() {
+            const banner = document.getElementById('selBanner');
+            const count = selectedDrawing.size;
+            if (count > 0) {
+                banner.classList.add('visible');
+                document.getElementById('selCount').textContent = count + ' file' + (count > 1 ? 's' : '') + ' selected';
+            } else {
+                banner.classList.remove('visible');
+            }
+        }
+        function clearSelection() {
+            selectedDrawing.clear();
+            document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+            updateSelBanner();
+        }
+        function bulkDownload() { toast('Downloading ' + selectedDrawing.size + ' files…', 'info'); clearSelection(); }
+         function bulkArchived() { if (confirm('Archive ' + selectedDrawing.size + ' files?')) { toast('Archived ' + selectedDrawing.size + ' files', 'warning'); clearSelection(); } }
+
+        /* ── Context menu ───────────────────────────────────── */
+        let _ctxFile = null;
+        function showCtxMenu(e, id) {
+            e.preventDefault();
+            _ctxFile = id;
+            const menu = document.getElementById('ctxMenu');
+            menu.classList.add('visible');
+            let x = e.clientX, y = e.clientY;
+            if (x + 190 > window.innerWidth) x = window.innerWidth - 195;
+            if (y + 260 > window.innerHeight) y = window.innerHeight - 265;
+            menu.style.left = x + 'px';
+            menu.style.top = y + 'px';
+        }
+        function ctxAction(action) {
+            const actions = {
+                open: () => { openPreview(_ctxFile); selectFile(_ctxFile, {}); },
+                download: () => toast('Downloading…', 'info'),
+                version: () => openUploadModal(),
+                rename: () => toast('Rename: ' + (fileData[_ctxFile]?.name || ''), 'info'),
+                copy: () => toast('Link copied to clipboard', 'success'),
+                star: () => toast('⭐ Added to Released Drawings', 'success'),
+                move: () => toast('Move to folder…', 'info'),
+                share: () => toast('Share link generated', 'success'),
+                delete: () => { if (confirm('Archive this file?')) toast('File deleted', 'warning'); },
+            };
+            if (actions[action]) actions[action]();
+            hideCtxMenu();
+        }
+        function hideCtxMenu() {
+            document.getElementById('ctxMenu').classList.remove('visible');
+            _ctxFile = null;
+        }
+        document.addEventListener('click', hideCtxMenu);
+        document.addEventListener('contextmenu', e => {
+            if (e.target.closest('.file-row')) {
+                e.preventDefault();
+                const row = e.target.closest('.file-row');
+                showCtxMenu(e, row.dataset.id);
             }
         });
-        updateSelBanner();
-    }
-    function updateSelBanner() {
-        const banner = document.getElementById('selBanner');
-        const count = selectedFiles.size;
-        if (count > 0) {
-            banner.classList.add('visible');
-            document.getElementById('selCount').textContent = count + ' file' + (count > 1 ? 's' : '') + ' selected';
-        } else {
-            banner.classList.remove('visible');
-        }
-    }
-    function clearSelection() {
-        selectedFiles.clear();
-        document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
-        updateSelBanner();
-    }
-    function bulkDownload() { toast('Downloading ' + selectedFiles.size + ' files…', 'info'); clearSelection(); }
-    function bulkApprove() { toast('✓ ' + selectedFiles.size + ' files approved', 'success'); clearSelection(); }
-    function bulkDelete() { if (confirm('Delete ' + selectedFiles.size + ' files?')) { toast('Deleted ' + selectedFiles.size + ' files', 'warning'); clearSelection(); } }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                hideCtxMenu();
+                closeUploadModal();
+                closeVersionModal();
+            }
+        });
 
-    /* ── Context menu ───────────────────────────────────── */
-    let _ctxFile = null;
-    function showCtxMenu(e, id) {
-        e.preventDefault();
-        _ctxFile = id;
-        const menu = document.getElementById('ctxMenu');
-        menu.classList.add('visible');
-        let x = e.clientX, y = e.clientY;
-        if (x + 190 > window.innerWidth) x = window.innerWidth - 195;
-        if (y + 260 > window.innerHeight) y = window.innerHeight - 265;
-        menu.style.left = x + 'px';
-        menu.style.top = y + 'px';
-    }
-    function ctxAction(action) {
-        const actions = {
-            open: () => { openPreview(_ctxFile); selectFile(_ctxFile, {}); },
-            download: () => toast('Downloading…', 'info'),
-            version: () => openUploadModal(),
-            rename: () => toast('Rename: ' + (fileData[_ctxFile]?.name || ''), 'info'),
-            copy: () => toast('Link copied to clipboard', 'success'),
-            star: () => toast('⭐ Added to Starred', 'success'),
-            move: () => toast('Move to folder…', 'info'),
-            share: () => toast('Share link generated', 'success'),
-            delete: () => { if (confirm('Delete this file?')) toast('File deleted', 'warning'); },
-        };
-        if (actions[action]) actions[action]();
-        hideCtxMenu();
-    }
-    function hideCtxMenu() {
-        document.getElementById('ctxMenu').classList.remove('visible');
-        _ctxFile = null;
-    }
-    document.addEventListener('click', hideCtxMenu);
-    document.addEventListener('contextmenu', e => {
-        if (e.target.closest('.file-row')) {
-            e.preventDefault();
-            const row = e.target.closest('.file-row');
-            showCtxMenu(e, row.dataset.id);
+        /* ── Approve / Rework from preview ─────────────────── */
+        function approveFile() {
+            if (!currentFile) return;
+            toast('✓ ' + (fileData[currentFile]?.name || 'File') + ' approved', 'success');
+            document.getElementById('pvStatus').innerHTML = statusPills['approved'];
+            const row = document.querySelector(`[data-id="${currentFile}"]`);
+            if (row) { const sp = row.querySelector('.spill'); if (sp) { sp.className = 'spill spill-approved'; sp.textContent = 'Released'; } }
         }
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            hideCtxMenu();
+        function sendRework() {
+            if (!currentFile) return;
+            toast('↩ Sent for rework', 'warning');
+            document.getElementById('pvStatus').innerHTML = statusPills['rework'];
+        }
+
+        /* ── Upload modal ───────────────────────────────────── */
+        function openUploadModal() { document.getElementById('uploadModal').classList.add('open'); }
+        function closeUploadModal() { document.getElementById('uploadModal').classList.remove('open'); }
+        function submitUpload() {
+            toast('✓ File uploaded &amp; version created', 'success');
             closeUploadModal();
-            closeVersionModal();
         }
-    });
-
-    /* ── Approve / Rework from preview ─────────────────── */
-    function approveFile() {
-        if (!currentFile) return;
-        toast('✓ ' + (fileData[currentFile]?.name || 'File') + ' approved', 'success');
-        document.getElementById('pvStatus').innerHTML = statusPills['approved'];
-        const row = document.querySelector(`[data-id="${currentFile}"]`);
-        if (row) { const sp = row.querySelector('.spill'); if (sp) { sp.className = 'spill spill-approved'; sp.textContent = 'Approved'; } }
-    }
-    function sendRework() {
-        if (!currentFile) return;
-        toast('↩ Sent for rework', 'warning');
-        document.getElementById('pvStatus').innerHTML = statusPills['rework'];
-    }
-
-    /* ── Upload modal ───────────────────────────────────── */
-    function openUploadModal() { document.getElementById('uploadModal').classList.add('open'); }
-    function closeUploadModal() { document.getElementById('uploadModal').classList.remove('open'); }
-    function submitUpload() {
-        toast('✓ File uploaded &amp; version created', 'success');
-        closeUploadModal();
-    }
-    function handleDrop(e) {
-        e.preventDefault();
-        const files = Array.from(e.dataTransfer.files);
-        renderFileItems(files);
-    }
-    function handleFileSelect(input) {
-        const files = Array.from(input.files);
-        renderFileItems(files);
-    }
-    function renderFileItems(files) {
-        const list = document.getElementById('selectedFilesList');
-        const items = document.getElementById('fileItems');
-        list.style.display = 'block';
-        items.innerHTML = files.map(f =>
-            `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px;color:#cbd5e1">
+        function handleDrop(e) {
+            e.preventDefault();
+            const files = Array.from(e.dataTransfer.files);
+            renderFileItems(files);
+        }
+        function handleFileSelect(input) {
+            const files = Array.from(input.files);
+            renderFileItems(files);
+        }
+        function renderFileItems(files) {
+            const list = document.getElementById('selectedDrawingList');
+            const items = document.getElementById('fileItems');
+            list.style.display = 'block';
+            items.innerHTML = files.map(f =>
+                `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px;color:#cbd5e1">
     <i class="fa fa-file" style="color:#47b8c9"></i>
     <span style="flex:1">${f.name}</span>
     <span style="color:#6b7a99;font-family:'IBM Plex Mono',monospace;font-size:11px">${(f.size / 1024 / 1024).toFixed(1)} MB</span>
   </div>`
-        ).join('');
-    }
+            ).join('');
+        }
 
-    /* ── Version modal ──────────────────────────────────── */
-    function openVersions(id) {
-        document.getElementById('vmFilename').textContent = fileData[id]?.name || '—';
-        document.getElementById('versionModal').classList.add('open');
-    }
-    function closeVersionModal() { document.getElementById('versionModal').classList.remove('open'); }
+        /* ── Version modal ──────────────────────────────────── */
+        function openVersions(id) {
+            document.getElementById('vmFilename').textContent = fileData[id]?.name || '—';
+            document.getElementById('versionModal').classList.add('open');
+        }
+        function closeVersionModal() { document.getElementById('versionModal').classList.remove('open'); }
 
-    /* ── Comment ────────────────────────────────────────── */
-    function sendComment() {
-        const input = document.getElementById('pcInput');
-        if (!input.value.trim()) return;
-        toast('Comment added', 'success');
-        input.value = '';
-    }
+        /* ── Comment ────────────────────────────────────────── */
+        function sendComment() {
+            const input = document.getElementById('pcInput');
+            if (!input.value.trim()) return;
+            toast('Comment added', 'success');
+            input.value = '';
+        }
 
-    /* ── Auto-open first file on load ───────────────────── */
-    window.addEventListener('DOMContentLoaded', () => {
-        const firstRow = document.querySelector('.file-row[data-id]');
-        if (firstRow) { firstRow.classList.add('selected'); openPreview(firstRow.dataset.id); }
-    });
+        /* ── Auto-open first file on load ───────────────────── */
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstRow = document.querySelector('.file-row[data-id]');
+            if (firstRow) { firstRow.classList.add('selected'); openPreview(firstRow.dataset.id); }
+        });
 
-</script>
+    </script>
 
-  <!-- NEW REQUEST MODAL -->
-  <div class="modal-overlay" id="newRequestModal" onclick="closeNewModal()">
-    <div class="modal" onclick="event.stopPropagation()">
+    <!-- NEW REQUEST MODAL -->
+    <div class="modal-overlay" id="newRequestModal" onclick="closeNewModal()">
+        <div class="modal" onclick="event.stopPropagation()">
 
-      <div class="modal-header p-0 align-items-center m-0">
-        <h5>Create New Request</h5>
-        <button class="modal-close mb-2" onclick="closeNewModal()">✕</button>
-      </div>
-      <div class="pt-3">
-        <div class="modal-form-group">
-          <label>Request Title</label>
-          <input class="modal-input" type="text" placeholder="e.g. Pump Assembly Drawing">
+            <div class="modal-header p-0 align-items-center m-0">
+                <h5>Create New Request</h5>
+                <button class="modal-close mb-2" onclick="closeNewModal()">✕</button>
+            </div>
+            <div class="pt-3">
+                <div class="modal-form-group">
+                    <label>Request Title</label>
+                    <input class="modal-input" type="text" placeholder="e.g. Pump Assembly Drawing">
+                </div>
+                <div class="modal-form-group">
+                    <label>Description</label>
+                    <textarea class="modal-textarea" placeholder="Describe the drawing requirements…"></textarea>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="modal-form-group">
+                        <label>Assignee</label>
+                        <select class="modal-select">
+                            <option>Jordan M.</option>
+                            <option>Sam K.</option>
+                            <option>Priya R.</option>
+                            <option>Sarah Lennox</option>
+                        </select>
+                    </div>
+                    <div class="modal-form-group">
+                        <label>Priority</label>
+                        <select class="modal-select">
+                            <option>High</option>
+                            <option selected>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="modal-form-group">
+                        <label>Category</label>
+                        <select class="modal-select">
+                            <option>Electrical</option>
+                            <option>Mechanical</option>
+                            <option>Structural</option>
+                            <option>Piping</option>
+                        </select>
+                    </div>
+                    <div class="modal-form-group">
+                        <label>Due Date</label>
+                        <input class="modal-input" type="date">
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label>Part Number (optional)</label>
+                    <input class="modal-input" type="text" placeholder="e.g. P-2045" style="font-family:var(--mono);">
+                </div>
+                <div class="modal-form-group">
+                    <label>Attach Drawing File</label>
+                    <div class="upload-zone" style="margin-top:0;">
+                        <div class="uz-icon"><i class="fa fa-cloud-upload"></i></div>
+                        <p>Drop PDF, DWG, DXF or STEP files here</p>
+                    </div>
+                </div>
+                <div class="modal-footer-btns">
+                    <button class="btn-ghost-sm" onclick="closeModal('newRequestModal')">Cancel</button>
+                    <button class="btn-ghost-sm" style="color:var(--theme);border-color:rgba(8,93,106,.3);"
+                        onclick="closeModal('newRequestModal');toast('Saved as draft','info')">Save Draft</button>
+                    <button class="btn-primary-sm"
+                        onclick="closeModal('newRequestModal');toast('✓ Request submitted','success')">Submit
+                        Request</button>
+                </div>
+
+            </div>
+
         </div>
-        <div class="modal-form-group">
-          <label>Description</label>
-          <textarea class="modal-textarea" placeholder="Describe the drawing requirements…"></textarea>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div class="modal-form-group">
-            <label>Assignee</label>
-            <select class="modal-select">
-              <option>Jordan M.</option><option>Sam K.</option>
-              <option>Priya R.</option><option>Sarah Lennox</option>
-            </select>
-          </div>
-          <div class="modal-form-group">
-            <label>Priority</label>
-            <select class="modal-select">
-              <option>High</option><option selected>Medium</option><option>Low</option>
-            </select>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div class="modal-form-group">
-            <label>Category</label>
-            <select class="modal-select">
-              <option>Electrical</option><option>Mechanical</option>
-              <option>Structural</option><option>Piping</option>
-            </select>
-          </div>
-          <div class="modal-form-group">
-            <label>Due Date</label>
-            <input class="modal-input" type="date">
-          </div>
-        </div>
-        <div class="modal-form-group">
-          <label>Part Number (optional)</label>
-          <input class="modal-input" type="text" placeholder="e.g. P-2045" style="font-family:var(--mono);">
-        </div>
-        <div class="modal-form-group">
-          <label>Attach Drawing File</label>
-          <div class="upload-zone" style="margin-top:0;">
-            <div class="uz-icon"><i class="fa fa-cloud-upload"></i></div>
-            <p>Drop PDF, DWG, DXF or STEP files here</p>
-          </div>
-        </div>
-        <div class="modal-footer-btns">
-          <button class="btn-ghost-sm" onclick="closeModal('newRequestModal')">Cancel</button>
-          <button class="btn-ghost-sm" style="color:var(--theme);border-color:rgba(8,93,106,.3);" onclick="closeModal('newRequestModal');toast('Saved as draft','info')">Save Draft</button>
-          <button class="btn-primary-sm" onclick="closeModal('newRequestModal');toast('✓ Request submitted','success')">Submit Request</button>
-        </div>
-
-      </div>
-
     </div>
-  </div>
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
-  <script src="style.js"></script>
-  <div id="sidebar-overlay"></div>
-  <script src="assets/script.js"></script>
-  <script>
-    let toastTimer;
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+    <script src="style.js"></script>
+    <div id="sidebar-overlay"></div>
+    <script src="assets/script.js"></script>
+    <script>
+        let toastTimer;
 
-    function showToast(msg, type = 'success') {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.className = 'toast show ' + type;
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
-    }
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast show ' + type;
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+        }
 
-    function openRequest(id) {
-      document.getElementById('modalReqId').textContent = '#' + id;
-      document.getElementById('requestModal').classList.add('open');
-    }
+        function openRequest(id) {
+            document.getElementById('modalReqId').textContent = '#' + id;
+            document.getElementById('requestModal').classList.add('open');
+        }
 
-    function closeModal() {
-      document.getElementById('requestModal').classList.remove('open');
-    }
+        function closeModal() {
+            document.getElementById('requestModal').classList.remove('open');
+        }
 
-    function openModal(key) {
-      openRequest(key);
-    }
+        function openModal(key) {
+            openRequest(key);
+        }
 
-    function openStage(stage) {
-      showToast('Filtering by stage: ' + stage.replace(/-/g, ' '), 'info');
-    }
+        function openStage(stage) {
+            showToast('Filtering by stage: ' + stage.replace(/-/g, ' '), 'info');
+        }
 
-    function doApprove(id) {
-      showToast('✓ ' + id + ' approved successfully', 'success');
-      closeModal();
-    }
+        function doApprove(id) {
+            showToast('✓ ' + id + ' approved successfully', 'success');
+            closeModal();
+        }
 
-    function doRework(id) {
-      showToast('↩ ' + id + ' sent for rework', 'warning');
-      closeModal();
-    }
+        function doRework(id) {
+            showToast('↩ ' + id + ' sent for rework', 'warning');
+            closeModal();
+        }
 
-    function retrySync(id) {
-      showToast('🔄 Retrying simPRO sync for ' + id + '…', 'info');
-    }
+        function retrySync(id) {
+            showToast('🔄 Retrying simPRO sync for ' + id + '…', 'info');
+        }
 
-    function filterTable(val) {
-      showToast('Filtering: ' + val, 'info');
-    }
+        function filterTable(val) {
+            showToast('Filtering: ' + val, 'info');
+        }
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeModal();
-    });
-  </script>
-  <script>
-    document.getElementById('new-req-btn').addEventListener('click', function () {
-      document.getElementById('newRequestModal').classList.add('open');
-    });
-    function closeNewModal() {
-      document.getElementById('newRequestModal').classList.remove('open');
-    }
-    document.querySelectorAll('.btn-primary.small').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.getElementById('newRequestModal').classList.add('open');
-      });
-    });
-  </script>
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+    <script>
+        document.getElementById('new-req-btn').addEventListener('click', function () {
+            document.getElementById('newRequestModal').classList.add('open');
+        });
+        function closeNewModal() {
+            document.getElementById('newRequestModal').classList.remove('open');
+        }
+        document.querySelectorAll('.btn-primary.small').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('newRequestModal').classList.add('open');
+            });
+        });
+    </script>
 </body>
 
 </html>

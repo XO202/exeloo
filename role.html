@@ -35,22 +35,20 @@
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">
         <i class="fa fa-home"></i>
-        <span>Dashboard</span>
-        <span class="nav-badge">14</span>
+        <span>Dashboard</span> 
       </a>
       <a href="requests.html" class="nav-item">
         <i class="fa fa-address-book"></i>
-        <span>Requests</span>
+        <span>Drawing Requests</span>
         <span class="nav-badge">14</span>
       </a>
       <a href="files.html" class="nav-item">
         <i class="fa fa-file"></i>
-        <span>Drawings</span>
+        <span>Drawing Records</span>
       </a>
       <a href="approvals.html" class="nav-item">
         <i class="fa fa-calendar"></i>
-        <span>Approvals</span>
-        <span class="nav-badge urgent">5</span>
+        <span>Drawing Approvals</span> 
       </a>
       <a href="simpro.html" class="nav-item">
         <i class="fa fa-calendar"></i>
@@ -58,23 +56,20 @@
       </a>
       <a href="parts.html" class="nav-item">
           <i class="fa fa-hourglass-half"></i>
-          <span>Parts</span>
+          <span>Parts Catalogue</span>
       </a>
       <a href="users.html" class="nav-item">
         <i class="fa fa-users"></i>
         <span>Team</span>
       </a>
-
+  
       <a href="role.html" class="nav-item active">
         <i class="fa fa-user-secret"></i>
         <span>Role</span>
       </a>
       <div class="nav-divider"></div>
-
-      <a href="reports.html" class="nav-item">
-        <i class="fa fa-file-pdf-o"></i>
-        <span>Reports</span>
-      </a>
+  
+     
       <a href="settings.html" class="nav-item">
         <i class="fa fa-cogs"></i>
         <span>Settings</span>
@@ -102,10 +97,10 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn">
           <i class="fa fa-bars"></i>
         </button>
-        <h1 class="page-title">Role & Permission Management</h1>
+        <h1 class="page-title">Access Roles</h1>
 
         <span class="page-subtitle">
-          Configure access control, approval rights & system visibility
+          Manage team access and approval permissions
         </span>
       </div>
 
@@ -133,39 +128,7 @@
 
     <!-- CONTENT -->
     <div class="role-content">
-
-      <!-- STATS -->
-      <div class="role-stats">
-
-        <div class="role-stat stat-theme">
-          <div class="role-stat-value">8</div>
-          <div class="role-stat-label">Active Roles</div>
-          <div class="role-stat-sub">Configured in system</div>
-          <i class="fa fa-user-secret role-stat-icon"></i>
-        </div>
-
-        <div class="role-stat stat-green">
-          <div class="role-stat-value">42</div>
-          <div class="role-stat-label">Assigned Users</div>
-          <div class="role-stat-sub">Mapped with permissions</div>
-          <i class="fa fa-users role-stat-icon"></i>
-        </div>
-
-        <div class="role-stat stat-orange">
-          <div class="role-stat-value">126</div>
-          <div class="role-stat-label">Permissions</div>
-          <div class="role-stat-sub">Across all modules</div>
-          <i class="fa fa-shield role-stat-icon"></i>
-        </div>
-
-        <div class="role-stat stat-red">
-          <div class="role-stat-value">4</div>
-          <div class="role-stat-label">Restricted Modules</div>
-          <div class="role-stat-sub">Admin-only access</div>
-          <i class="fa fa-lock role-stat-icon"></i>
-        </div>
-
-      </div>
+ 
 
       <!-- LAYOUT -->
       <div class="role-layout">
@@ -309,9 +272,8 @@
                   <th>Create</th>
                   <th>View</th>
                   <th>Edit</th>
-                  <th>Delete</th>
-                  <th>Approve</th>
-                  <th>Export</th>
+                  <th>Archive</th>
+                  <th>Approve</th> 
                 </tr>
 
               </thead>
@@ -357,16 +319,7 @@
                       </label>
                     </div>
                   </td>
-
-                  <td>
-                    <div class="switch-wrap">
-                      <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </div>
-                  </td>
-
+ 
                   <td>
                     <div class="switch-wrap">
                       <label class="switch">
@@ -451,11 +404,7 @@
                   <td>
                     <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
                           class="slider"></span></label></div>
-                  </td>
-                  <td>
-                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
-                          class="slider"></span></label></div>
-                  </td>
+                  </td> 
                   <td>
                     <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
                           class="slider"></span></label></div>
@@ -506,10 +455,7 @@
                     <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
                           class="slider"></span></label></div>
                   </td>
-                  <td>
-                    <div class="switch-wrap"><label class="switch"><input type="checkbox"><span
-                          class="slider"></span></label></div>
-                  </td>
+                 
                   <td>
                     <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
                           class="slider"></span></label></div>
@@ -555,11 +501,7 @@
                   <td>
                     <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
                           class="slider"></span></label></div>
-                  </td>
-                  <td>
-                    <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
-                          class="slider"></span></label></div>
-                  </td>
+                  </td> 
                   <td>
                     <div class="switch-wrap"><label class="switch"><input type="checkbox" checked><span
                           class="slider"></span></label></div>
@@ -789,7 +731,7 @@
 
                   <label class="perm-check">
                     <input type="checkbox">
-                    <span>Delete Requests</span>
+                    <span>Archive Requests</span>
                   </label>
 
                   <label class="perm-check">
@@ -836,7 +778,7 @@
 
                   <label class="perm-check">
                     <input type="checkbox">
-                    <span>Delete Files</span>
+                    <span>Archive Files</span>
                   </label>
 
                   <label class="perm-check">
@@ -879,17 +821,7 @@
                   <label class="perm-check">
                     <input type="checkbox" checked>
                     <span>Approve / Reject</span>
-                  </label>
-
-                  <label class="perm-check">
-                    <input type="checkbox">
-                    <span>Escalate Requests</span>
-                  </label>
-
-                  <label class="perm-check">
-                    <input type="checkbox">
-                    <span>Force Complete</span>
-                  </label>
+                  </label> 
 
                 </div>
 

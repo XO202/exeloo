@@ -35,46 +35,41 @@
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">
         <i class="fa fa-home"></i>
-        <span>Dashboard</span>
-        <span class="nav-badge">14</span>
+        <span>Dashboard</span> 
       </a>
       <a href="requests.html" class="nav-item active">
         <i class="fa fa-address-book"></i>
-        <span>Requests</span>
+        <span>Drawing Requests</span>
         <span class="nav-badge">14</span>
       </a>
       <a href="files.html" class="nav-item">
         <i class="fa fa-file"></i>
-        <span>Drawings</span>
+        <span>Drawing Records</span>
       </a>
       <a href="approvals.html" class="nav-item">
         <i class="fa fa-calendar"></i>
-        <span>Approvals</span>
-        <span class="nav-badge urgent">5</span>
+        <span>Drawing Approvals</span> 
       </a>
       <a href="simpro.html" class="nav-item">
-        <i class="fa fa-refresh"></i>
+        <i class="fa fa-calendar"></i>
         <span>simPRO Sync</span>
       </a>
       <a href="parts.html" class="nav-item">
-        <i class="fa fa-hourglass-half"></i>
-        <span>Parts</span>
+          <i class="fa fa-hourglass-half"></i>
+          <span>Parts Catalogue</span>
       </a>
       <a href="users.html" class="nav-item">
         <i class="fa fa-users"></i>
         <span>Team</span>
       </a>
-
+  
       <a href="role.html" class="nav-item">
         <i class="fa fa-user-secret"></i>
         <span>Role</span>
       </a>
       <div class="nav-divider"></div>
-
-      <a href="reports.html" class="nav-item">
-        <i class="fa fa-file-pdf-o"></i>
-        <span>Reports</span>
-      </a>
+  
+     
       <a href="settings.html" class="nav-item">
         <i class="fa fa-cogs"></i>
         <span>Settings</span>
@@ -102,7 +97,7 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn">
           <i class="fa fa-bars"></i>
         </button>
-        <h1 class="page-title">Requests</h1>
+        <h1 class="page-title">Drawing Requests</h1>
         <span class="page-subtitle">45 total — 5 overdue</span>
       </div>
       <div class="rq-topbar-right">
@@ -119,8 +114,7 @@
           <option>High</option>
           <option>Medium</option>
           <option>Low</option>
-        </select>
-        <button class="btn-ghost-sm"><i class="fa fa-download"></i> </button>
+        </select> 
         <button class="btn-primary-sm" id="new-req-btn">+ New </button>
       </div>
     </header>
@@ -135,7 +129,7 @@
           <!-- search -->
           <div class="req-search-wrap">
             <span class="req-search-icon">⌕</span>
-            <input class="req-search" id="req-search" type="text" placeholder="Search by title, ID or part number…">
+            <input class="req-search" id="req-search" type="text" placeholder="Search by Request ID, Part Number or Drawing Description">
           </div>
 
           <!-- status filter chips -->
@@ -164,7 +158,7 @@
               <span style="font-size:10px;opacity:.7;">2</span>
             </button>
             <button class="status-chip" data-filter="completed" onclick="filterChip(this,'completed')">
-              <span class="chip-dot" style="background:#7C3AED;"></span>Completed
+              <span class="chip-dot" style="background:#7C3AED;"></span>Released
               <span style="font-size:10px;opacity:.7;">23</span>
             </button>
           </div>
@@ -179,7 +173,7 @@
             <option value="recent">Most Recent</option>
             <option value="due">Due Date</option>
             <option value="priority">Priority</option>
-            <option value="id">Request ID</option>
+            <option value="id">Drawing Request ID</option>
           </select>
         </div>
 
@@ -207,7 +201,7 @@
           <div class="detail-header">
             <div class="detail-header-top">
               <div>
-                <div class="detail-req-id" id="d-req-id">#REQ-031</div>
+                <div class="detail-req-id" id="d-req-id">#DR-031</div>
                 <div class="detail-req-title" id="d-req-title">Control Panel Layout</div>
               </div>
               <div class="detail-header-actions">
@@ -274,7 +268,7 @@
                 <!-- current drawing preview -->
                 <div class="drawing-preview">
                   <div class="drawing-preview-head">
-                    <div class="drawing-preview-title">Current Drawing — Rev 3</div>
+                    <div class="drawing-preview-title">Current Released Drawing — Rev C</div>
                     <div style="display:flex;gap:6px;">
                       <button class="btn-ghost-sm" style="font-size:11px;padding:4px 10px;"
                         onclick="toast('Opening drawing…','info')"><i class="fa fa-eye"></i> View</button>
@@ -305,7 +299,7 @@
                       <div class="file-badge">
                         <i class="fa fa-file-pdf-o" style="color:var(--red);font-size:16px;"></i>
                         Control-Panel-Layout-Rev3.pdf
-                        <span class="rev-tag">Rev 3</span>
+                        <span class="rev-tag">Rev C</span>
                       </div>
                       <div style="font-size:11px;color:var(--text-muted);">2.4 MB · Uploaded May 1 by Sarah L.</div>
                     </div>
@@ -392,14 +386,14 @@
 
                 <div class="version-timeline">
 
-                  <!-- Rev 3 — current -->
+                  <!-- Rev C — current -->
                   <div class="ver-item">
                     <div class="ver-dot current"><i class="fa fa-check"></i></div>
                     <div class="ver-card current-ver">
                       <div class="ver-card-head">
                         <div class="ver-card-left">
                           <span class="ver-num">Revision 3</span>
-                          <span class="ver-current-tag">Current</span>
+                          <span class="ver-current-tag">Released</span>
                           <span class="spl spl-review" style="font-size:9.5px;padding:2px 7px;">In Review</span>
                         </div>
                         <span style="font-size:11px;color:var(--text-muted);font-family:var(--mono);">May 01,
@@ -438,15 +432,15 @@
                         </div>
                         <div class="ver-actions">
                           <button class="btn-ghost-sm" style="font-size:11px;padding:4px 9px;"
-                            onclick="toast('Comparing…','info')"><i class="fa fa-code-fork"></i> Diff</button>
+                            onclick="toast('Comparing…','info')"><i class="fa fa-code-fork"></i> Compare Revisions</button>
                           <button class="btn-ghost-sm" style="font-size:11px;padding:4px 9px;"
-                            onclick="toast('Downloading Rev 3…','info')"><i class="fa fa-download"></i></button>
+                            onclick="toast('Downloading Rev C…','info')"><i class="fa fa-download"></i></button>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Rev 2 — rework -->
+                  <!-- Rev B — rework -->
                   <div class="ver-item">
                     <div class="ver-dot rework-dot"><i class="fa fa-times"></i></div>
                     <div class="ver-card">
@@ -479,7 +473,7 @@
                             spec. Please revise before approval.</span>
                         </div>
                         <div class="ver-files" style="margin-top:10px;">
-                          <div class="ver-file-chip" onclick="toast('Opening Rev 2 PDF…','info')">
+                          <div class="ver-file-chip" onclick="toast('Opening Rev B PDF…','info')">
                             <i class="fa fa-file-pdf-o" style="color:var(--red);"></i> Control-Panel-Layout-Rev2.pdf
                           </div>
                         </div>
@@ -492,15 +486,15 @@
                         </div>
                         <div class="ver-actions">
                           <button class="btn-ghost-sm" style="font-size:11px;padding:4px 9px;"
-                            onclick="toast('Opening Rev 2…','info')"><i class="fa fa-eye"></i> View</button>
+                            onclick="toast('Opening Rev B…','info')"><i class="fa fa-eye"></i> View</button>
                           <button class="btn-ghost-sm" style="font-size:11px;padding:4px 9px;"
-                            onclick="toast('Downloading Rev 2…','info')"><i class="fa fa-download"></i></button>
+                            onclick="toast('Downloading Rev B…','info')"><i class="fa fa-download"></i></button>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Rev 1 — original -->
+                  <!-- Rev A — original -->
                   <div class="ver-item">
                     <div class="ver-dot"><i class="fa fa-flag"></i></div>
                     <div class="ver-card">
@@ -529,20 +523,20 @@
                           </div>
                         </div>
                         <div class="ver-files">
-                          <div class="ver-file-chip" onclick="toast('Opening Rev 1 PDF…','info')">
+                          <div class="ver-file-chip" onclick="toast('Opening Rev A PDF…','info')">
                             <i class="fa fa-file-pdf-o" style="color:var(--red);"></i> Control-Panel-Layout-Rev1.pdf
                           </div>
                         </div>
                       </div>
                       <div class="ver-card-foot">
                         <div class="ver-reviewer" style="color:var(--text-muted);font-size:11px;">
-                          <i class="fa fa-clock-o"></i>&nbsp; No review recorded
+                          <i class="fa fa-clock-o"></i>&nbsp; Awaiting Initial Review
                         </div>
                         <div class="ver-actions">
                           <button class="btn-ghost-sm" style="font-size:11px;padding:4px 9px;"
-                            onclick="toast('Opening Rev 1…','info')"><i class="fa fa-eye"></i> View</button>
+                            onclick="toast('Opening Rev A…','info')"><i class="fa fa-eye"></i> View</button>
                           <button class="btn-ghost-sm" style="font-size:11px;padding:4px 9px;"
-                            onclick="toast('Downloading Rev 1…','info')"><i class="fa fa-download"></i></button>
+                            onclick="toast('Downloading Rev A…','info')"><i class="fa fa-download"></i></button>
                         </div>
                       </div>
                     </div>
@@ -608,7 +602,7 @@
                         <span class="comment-author">Sarah Lennox</span>
                         <span class="comment-time">May 01 8:45am</span>
                       </div>
-                      <div class="comment-text">Updated Section C in Rev 3. Corrected conduit entry point at C3 and
+                      <div class="comment-text">Updated Section C in Rev C. Corrected conduit entry point at C3 and
                         re-checked all other positions against the spec. Please re-review — I've also attached the
                         updated DWG source file.</div>
                       <div class="comment-actions-row">
@@ -621,7 +615,7 @@
                   <!-- system event -->
                   <div class="sys-comment" style="border-color:rgba(8,93,106,.15);background:rgba(8,93,106,.03);">
                     <div class="sys-dot" style="background:var(--theme);"></div>
-                    <div class="sys-text"><b>Rev 3</b> uploaded and submitted for review</div>
+                    <div class="sys-text"><b>Rev C</b> uploaded and submitted for review</div>
                     <div class="sys-time">May 01 8:46</div>
                   </div>
 
@@ -726,22 +720,22 @@
               <div class="action-panel">
                 <div class="action-panel-title">Actions</div>
                 <button class="btn-action-full btn-approve-full" onclick="doAction('approve')">
-                  <i class="fa fa-check-circle"></i> Approve Request
+                  <i class="fa fa-check-circle"></i> Review & Release Drawing
                 </button>
                 <button class="btn-action-full btn-rework-full" onclick="openModal('reworkModal')">
-                  <i class="fa fa-undo"></i> Send for Rework
+                  <i class="fa fa-undo"></i> Return for Revision
                 </button>
                 <button class="btn-action-full btn-draft-full" onclick="doAction('draft')">
-                  <i class="fa fa-arrow-left"></i> Return to Draft
+                  <i class="fa fa-arrow-left"></i> Reopen Revision
                 </button>
                 <button class="btn-action-full btn-assign-full" onclick="openModal('assignModal')">
                   <i class="fa fa-user-plus"></i> Reassign
                 </button>
                 <button class="btn-action-full btn-sync-full" onclick="doAction('sync')">
-                  <i class="fa fa-refresh"></i> Push to simPRO
+                  <i class="fa fa-refresh"></i> Sync to simPRO
                 </button>
                 <button class="btn-action-full btn-archive-full" onclick="doAction('archive')">
-                  <i class="fa fa-archive"></i> Archive
+                  <i class="fa fa-archive"></i> Archive Request
                 </button>
               </div>
 
@@ -813,7 +807,7 @@
 
               <!-- WATCHERS -->
               <div class="watchers-panel">
-                <div class="meta-panel-title">Watchers</div>
+                <div class="meta-panel-title">Visible to assigned reviewers</div>
                 <div class="watcher-row">
                   <span class="mini-av"
                     style="background:var(--theme);width:26px;height:26px;font-size:9px;border-radius:7px;">JD</span>
@@ -834,7 +828,7 @@
                 </div>
                 <button class="btn-ghost-sm" style="width:100%;margin-top:8px;font-size:11px;text-align:center;"
                   onclick="toast('Watching this request','success')">
-                  <i class="fa fa-eye"></i> Add Watcher
+                  <i class="fa fa-eye"></i> Add Reviewer
                 </button>
               </div>
 
@@ -853,7 +847,7 @@
   <!-- New Request Modal -->
   <div class="overlay" id="newRequestModal" onclick="closeModal('newRequestModal')">
     <div class="mini-modal" onclick="event.stopPropagation()">
-      <h3>Create New Request <button onclick="closeModal('newRequestModal')">✕</button></h3>
+      <h3>Create Drawing Request <button onclick="closeModal('newRequestModal')">✕</button></h3>
       <div class="modal-form-group">
         <label>Request Title</label>
         <input class="modal-input" type="text" placeholder="e.g. Pump Assembly Drawing">
@@ -920,7 +914,7 @@
   <!-- Rework Modal -->
   <div class="overlay" id="reworkModal" onclick="closeModal('reworkModal')">
     <div class="mini-modal" onclick="event.stopPropagation()">
-      <h3>Send for Rework <button onclick="closeModal('reworkModal')">✕</button></h3>
+      <h3>Return for Revision <button onclick="closeModal('reworkModal')">✕</button></h3>
       <div
         style="padding:10px 12px;background:var(--orange-light,#FFF6E5);border:1px solid rgba(215,119,0,.2);border-radius:8px;margin-bottom:14px;font-size:12.5px;color:#92400e;display:flex;gap:8px;align-items:flex-start;">
         <i class="fa fa-exclamation-triangle" style="margin-top:2px;flex-shrink:0;"></i>
@@ -947,7 +941,7 @@
       <div class="modal-footer-btns">
         <button class="btn-ghost-sm" onclick="closeModal('reworkModal')">Cancel</button>
         <button class="btn-primary-sm" style="background:var(--red);"
-          onclick="closeModal('reworkModal');toast('↩ Sent for rework','warning')">Send for Rework</button>
+          onclick="closeModal('reworkModal');toast('↩ Sent for rework','warning')">Return for Revision</button>
       </div>
     </div>
   </div>
@@ -985,7 +979,7 @@
       <h3>Upload New Revision <button onclick="closeModal('uploadModal')">✕</button></h3>
       <div
         style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(8,93,106,.05);border:1px solid rgba(8,93,106,.15);border-radius:8px;margin-bottom:14px;">
-        <div class="ver-current-tag">Rev 3 → Rev 4</div>
+        <div class="ver-current-tag">Rev C → Rev D</div>
         <span style="font-size:12px;color:var(--text-secondary);">This will become the new current revision</span>
       </div>
       <div class="modal-form-group">
@@ -1025,20 +1019,20 @@
        DATA
     ════════════════════════════════════════ */
     const REQUESTS = [
-      { id: 'REQ-041', title: 'Pump Assembly v2', status: 'draft', priority: 'high', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'May 12, 2026', overdue: false, part: 'P-2045', sync: 'synced', category: 'Mechanical' },
-      { id: 'REQ-040', title: 'Bracket Drawing', status: 'draft', priority: 'medium', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'May 13, 2026', overdue: false, part: 'P-2044', sync: 'pending', category: 'Structural' },
-      { id: 'REQ-038', title: 'Pipe Layout Rev C', status: 'submitted', priority: 'high', assignee: 'JD', assigneeName: 'James Doyle', due: 'May 10, 2026', overdue: false, part: 'P-2041', sync: 'synced', category: 'Piping' },
-      { id: 'REQ-036', title: 'Motor Housing', status: 'submitted', priority: 'medium', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'May 04, 2026', overdue: true, part: 'P-2039', sync: 'synced', category: 'Mechanical' },
-      { id: 'REQ-031', title: 'Control Panel Layout', status: 'review', priority: 'high', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'Apr 28, 2026', overdue: true, part: 'P-2031', sync: 'synced', category: 'Electrical' },
-      { id: 'REQ-029', title: 'Frame Weld Spec', status: 'review', priority: 'high', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'Apr 30, 2026', overdue: true, part: 'P-2028', sync: 'pending', category: 'Structural' },
-      { id: 'REQ-034', title: 'Exhaust Manifold Detail', status: 'review', priority: 'medium', assignee: 'JM', assigneeName: 'Jordan M.', due: 'May 08, 2026', overdue: false, part: 'P-2035', sync: 'synced', category: 'Mechanical' },
-      { id: 'REQ-033', title: 'Cable Tray Layout', status: 'review', priority: 'low', assignee: 'SK', assigneeName: 'Sam K.', due: 'May 09, 2026', overdue: false, part: 'P-2034', sync: 'synced', category: 'Electrical' },
-      { id: 'REQ-032', title: 'Earthing Layout', status: 'review', priority: 'medium', assignee: 'PR', assigneeName: 'Priya R.', due: 'May 08, 2026', overdue: false, part: 'P-2033', sync: 'synced', category: 'Electrical' },
-      { id: 'REQ-027', title: 'Gearbox Assembly', status: 'approved', priority: 'medium', assignee: 'TK', assigneeName: 'Tom K.', due: 'May 05, 2026', overdue: false, part: 'P-2026', sync: 'synced', category: 'Mechanical' },
-      { id: 'REQ-025', title: 'Cooling System', status: 'approved', priority: 'low', assignee: 'JD', assigneeName: 'James Doyle', due: 'May 06, 2026', overdue: false, part: 'P-2023', sync: 'synced', category: 'Mechanical' },
-      { id: 'REQ-022', title: 'Valve Body Schematic', status: 'approved', priority: 'high', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'May 03, 2026', overdue: false, part: 'P-2020', sync: 'pending', category: 'Piping' },
-      { id: 'REQ-030', title: 'Inlet Pipe Diagram', status: 'rework', priority: 'high', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'May 02, 2026', overdue: true, part: 'P-2029', sync: 'pending', category: 'Piping' },
-      { id: 'REQ-026', title: 'Sensor Mount', status: 'rework', priority: 'medium', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'May 01, 2026', overdue: true, part: 'P-2024', sync: 'failed', category: 'Mechanical' },
+      { id: 'DR-041', title: 'Pump Assembly v2', status: 'draft', priority: 'high', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'May 12, 2026', overdue: false, part: 'P-2045', sync: 'synced', category: 'Mechanical' },
+      { id: 'DR-040', title: 'Bracket Drawing', status: 'draft', priority: 'medium', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'May 13, 2026', overdue: false, part: 'P-2044', sync: 'pending', category: 'Structural' },
+      { id: 'DR-038', title: 'Pipe Layout Rev C', status: 'submitted', priority: 'high', assignee: 'JD', assigneeName: 'James Doyle', due: 'May 10, 2026', overdue: false, part: 'P-2041', sync: 'synced', category: 'Piping' },
+      { id: 'DR-036', title: 'Motor Housing', status: 'submitted', priority: 'medium', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'May 04, 2026', overdue: true, part: 'P-2039', sync: 'synced', category: 'Mechanical' },
+      { id: 'DR-031', title: 'Control Panel Layout', status: 'review', priority: 'high', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'Apr 28, 2026', overdue: true, part: 'P-2031', sync: 'synced', category: 'Electrical' },
+      { id: 'DR-029', title: 'Frame Weld Spec', status: 'review', priority: 'high', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'Apr 30, 2026', overdue: true, part: 'P-2028', sync: 'pending', category: 'Structural' },
+      { id: 'DR-034', title: 'Exhaust Manifold Detail', status: 'review', priority: 'medium', assignee: 'JM', assigneeName: 'Jordan M.', due: 'May 08, 2026', overdue: false, part: 'P-2035', sync: 'synced', category: 'Mechanical' },
+      { id: 'DR-033', title: 'Cable Tray Layout', status: 'review', priority: 'low', assignee: 'SK', assigneeName: 'Sam K.', due: 'May 09, 2026', overdue: false, part: 'P-2034', sync: 'synced', category: 'Electrical' },
+      { id: 'DR-032', title: 'Earthing Layout', status: 'review', priority: 'medium', assignee: 'PR', assigneeName: 'Priya R.', due: 'May 08, 2026', overdue: false, part: 'P-2033', sync: 'synced', category: 'Electrical' },
+      { id: 'DR-027', title: 'Gearbox Assembly', status: 'approved', priority: 'medium', assignee: 'TK', assigneeName: 'Tom K.', due: 'May 05, 2026', overdue: false, part: 'P-2026', sync: 'synced', category: 'Mechanical' },
+      { id: 'DR-025', title: 'Cooling System', status: 'approved', priority: 'low', assignee: 'JD', assigneeName: 'James Doyle', due: 'May 06, 2026', overdue: false, part: 'P-2023', sync: 'synced', category: 'Mechanical' },
+      { id: 'DR-022', title: 'Valve Body Schematic', status: 'approved', priority: 'high', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'May 03, 2026', overdue: false, part: 'P-2020', sync: 'pending', category: 'Piping' },
+      { id: 'DR-030', title: 'Inlet Pipe Diagram', status: 'rework', priority: 'high', assignee: 'SL', assigneeName: 'Sarah Lennox', due: 'May 02, 2026', overdue: true, part: 'P-2029', sync: 'pending', category: 'Piping' },
+      { id: 'DR-026', title: 'Sensor Mount', status: 'rework', priority: 'medium', assignee: 'MD', assigneeName: 'Mike Donovan', due: 'May 01, 2026', overdue: true, part: 'P-2024', sync: 'failed', category: 'Mechanical' },
     ];
 
     const STATUS_COLORS = {
@@ -1047,7 +1041,7 @@
     };
     const STATUS_LABELS = {
       draft: 'Draft', submitted: 'Submitted', review: 'In Review',
-      approved: 'Approved', rework: 'Rework', completed: 'Completed'
+      approved: 'Approved', rework: 'Rework', completed: 'Released'
     };
     const STATUS_PILL_CLASS = {
       draft: 'spl-draft', submitted: 'spl-submitted', review: 'spl-review',
@@ -1169,7 +1163,7 @@
         { key: 'submitted', label: 'Submitted', icon: 'fa-paper-plane-o' },
         { key: 'review', label: 'In Review', icon: 'fa-search' },
         { key: 'approved', label: 'Approved', icon: 'fa-check-circle-o' },
-        { key: 'completed', label: 'Completed', icon: 'fa-flag-checkered' },
+        { key: 'completed', label: 'Released', icon: 'fa-flag-checkered' },
       ];
       const ORDER = ['draft', 'submitted', 'review', 'approved', 'completed'];
       const rework = status === 'rework';
@@ -1292,7 +1286,7 @@
       <div class="comment-text">${val.replace(/</g, '&lt;')}</div>
       <div class="comment-actions-row">
         <div class="comment-action-btn"><i class="fa fa-reply"></i> Reply</div>
-        <div class="comment-action-btn"><i class="fa fa-thumbs-up"></i> 0</div>
+        <div class="comment-action-btn">Mark as Reviewed</div>
       </div>
     </div>`;
       thread.appendChild(div);
@@ -1339,7 +1333,7 @@
     /* ── INIT ── */
     renderList('all');
     // Auto-open first item
-    setTimeout(() => openDetail('REQ-031'), 80);
+    setTimeout(() => openDetail('DR-031'), 80);
   </script>
 </body>
 

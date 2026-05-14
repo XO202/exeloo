@@ -34,52 +34,47 @@
         </a>
         <nav class="sidebar-nav">
             <a href="index.html" class="nav-item">
-                <i class="fa fa-home"></i>
-                <span>Dashboard</span>
-                <span class="nav-badge">14</span>
+              <i class="fa fa-home"></i>
+              <span>Dashboard</span> 
             </a>
             <a href="requests.html" class="nav-item">
-                <i class="fa fa-address-book"></i>
-                <span>Requests</span>
-                <span class="nav-badge">14</span>
+              <i class="fa fa-address-book"></i>
+              <span>Drawing Requests</span>
+              <span class="nav-badge">14</span>
             </a>
             <a href="files.html" class="nav-item">
-                <i class="fa fa-file"></i>
-                <span>Drawings</span>
+              <i class="fa fa-file"></i>
+              <span>Drawing Records</span>
             </a>
             <a href="approvals.html" class="nav-item">
-                <i class="fa fa-calendar"></i>
-                <span>Approvals</span>
-                <span class="nav-badge urgent">5</span>
+              <i class="fa fa-calendar"></i>
+              <span>Drawing Approvals</span> 
             </a>
             <a href="simpro.html" class="nav-item">
-                <i class="fa fa-refresh"></i>
-                <span>simPRO Sync</span>
+              <i class="fa fa-calendar"></i>
+              <span>simPRO Sync</span>
             </a>
             <a href="parts.html" class="nav-item active">
                 <i class="fa fa-hourglass-half"></i>
-                <span>Parts</span>
+                <span>Parts Catalogue</span>
             </a>
             <a href="users.html" class="nav-item">
-                <i class="fa fa-users"></i>
-                <span>Team</span>
+              <i class="fa fa-users"></i>
+              <span>Team</span>
             </a>
-
+        
             <a href="role.html" class="nav-item">
-                <i class="fa fa-user-secret"></i>
-                <span>Role</span>
+              <i class="fa fa-user-secret"></i>
+              <span>Role</span>
             </a>
             <div class="nav-divider"></div>
-
-            <a href="reports.html" class="nav-item">
-                <i class="fa fa-file-pdf-o"></i>
-                <span>Reports</span>
-            </a>
+        
+           
             <a href="settings.html" class="nav-item">
-                <i class="fa fa-cogs"></i>
-                <span>Settings</span>
+              <i class="fa fa-cogs"></i>
+              <span>Settings</span>
             </a>
-        </nav>
+          </nav>
 
         <div class="sidebar-user">
             <div class="user-avatar">JD</div>
@@ -100,11 +95,10 @@
             <div class="topbar-left">
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fa fa-bars"></i>
-                  </button>
-                <h1 class="page-title">Assembly & Parts Explorer </h1>
+                </button>
+                <h1 class="page-title">Parts Catalogue </h1>
                 <span class="page-subtitle">
-                    Search by part number, description or drawing number · Trace parts across all assemblies and
-                    pre-builds
+                    Search part number, drawing number or description...
                 </span>
             </div>
 
@@ -116,14 +110,13 @@
                             d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                     </svg>
                     <span class="notif-dot"></span>
-                </button>
-
-
-                <button class="btn-ghost">⤓ Export</button>
-                <button class="btn-ghost">＋ Import</button>
-                <button class="btn-primary">
-                    <i class="fa fa-plus"></i> New Part
-                </button>
+                </button> 
+                
+                <!-- BUTTON -->
+                   <!-- BUTTON -->
+<button class="btn btn-primary" onclick="openPartModal()">
+    <i class="fa fa-plus"></i> New Part
+</button>
 
             </div>
 
@@ -138,7 +131,7 @@
 
                 <!-- Catalogue / Pre-Builds tabs -->
                 <div class="cat-tabs">
-                    <button class="ct active" onclick="swCat('catalogue',this)">Catalogue</button>
+                    <button class="ct active" onclick="swCat('catalogue',this)">Parts Catalogue</button>
                     <button class="ct" onclick="swCat('prebuilds',this)">Pre-Builds</button>
                 </div>
 
@@ -147,7 +140,7 @@
                     <div class="sw">
                         <span class="si">🔍</span>
                         <input class="sinput" id="q" type="text"
-                            placeholder="Search part number, description or drawing no…  e.g.  3D-5102   or   FRAME KIT JUPITER"
+                            placeholder="Search part number, drawing number or description..."
                             oninput="live()" />
                     </div>
                     <label class="em-row"><input type="checkbox" id="exact" onchange="live()" /> Exact Match</label>
@@ -156,7 +149,7 @@
 
                 <!-- Mode tabs row (matches simPRO layout) -->
                 <div class="mode-row">
-                    <label class="fav-row"><input type="checkbox" id="favs" onchange="live()" /> Favourites Only</label>
+                    <label class="fav-row"> <input type="checkbox" id="favs" onchange="live()" /> Tracked Parts Only </label>
                     <div class="mdiv"></div>
                     <button class="mt active" onclick="swMode('basic',this)">Basic</button>
                     <button class="mt" onclick="swMode('advanced',this)">Advanced Search</button>
@@ -170,17 +163,7 @@
                 <div class="fsec" id="fsec">
                     <div class="flbl">Filter By</div>
                     <div class="fgrid">
-                        <div class="fg">
-                            <label class="fl">Supplier</label>
-                            <select class="fsel" id="f-sup">
-                                <option value="">Not Selected</option>
-                                <option>Exeloo NZ</option>
-                                <option>Exeloo AU</option>
-                                <option>Exeloo USA</option>
-                                <option>External Supplier A</option>
-                                <option>External Supplier B</option>
-                            </select>
-                        </div>
+
                         <div class="fg">
                             <label class="fl">Item Status</label>
                             <select class="fsel" id="f-stat">
@@ -190,18 +173,7 @@
                                 <option value="Obsolete">Obsolete</option>
                             </select>
                         </div>
-                        <div class="fg">
-                            <label class="fl">Manufacturer</label>
-                            <input class="fi" id="f-mfr" type="text" placeholder="" />
-                        </div>
-                        <div class="fg">
-                            <label class="fl">Country of Origin</label>
-                            <input class="fi" id="f-coo" type="text" placeholder="" />
-                        </div>
-                        <div class="fg">
-                            <label class="fl">Storage Location</label>
-                            <input class="fi" id="f-loc" type="text" placeholder="" />
-                        </div>
+
                         <div class="fg">
                             <label class="fl">Group</label>
                             <select class="fsel" id="f-grp">
@@ -227,7 +199,7 @@
                     <div class="fopts">
                         <span class="fl" style="color:var(--muted);">Search Options</span>
                         <label class="fc"><input type="checkbox" id="adv-ex" /> Exact Match</label>
-                        <label class="fc"><input type="checkbox" id="adv-fav" /> Favourites Only</label>
+                        <label class="fc"> <input type="checkbox" id="adv-fav" /> Tracked Parts Only </label>
                         <div class="factions">
                             <button class="btn-ghost btn-sm" onclick="clearAll()">Clear</button>
                             <button class="btn btn-primary btn-sm" onclick="runAdv()">Apply Filters</button>
@@ -245,24 +217,29 @@
 
             <!-- STATS -->
             <div class="stats">
+                
+                 
                 <div class="stat">
                     <div class="kpi-accent" style="background: var(--theme);"></div>
                     <div class="slbl">Total Catalogue</div>
                     <div class="sval">1 247</div>
-                    <div class="snote up">▲ 24 this month</div>
+                    <div class="snote">Active catalogue items</div>
                 </div>
+                
                 <div class="stat">
                     <div class="kpi-accent" style="background: var(--green);"></div>
                     <div class="slbl">Assemblies</div>
                     <div class="sval">312</div>
-                    <div class="snote up">▲ 8 this month</div>
+                    <div class="snote">Linked assemblies</div>
                 </div>
+                
                 <div class="stat">
                     <div class="kpi-accent" style="background: var(--orange);"></div>
                     <div class="slbl">Pre-Builds</div>
                     <div class="sval">88</div>
-                    <div class="snote warn">▼ 2 under review</div>
-                </div>
+                    <div class="snote">Grouped pre-build records</div>
+                </div>                 
+
                 <div class="stat">
                     <div class="kpi-accent" style="background: #4A9EFF;"></div>
                     <div class="slbl">Active Parts</div>
@@ -287,8 +264,7 @@
                     <option value="type">Sort: Type</option>
                     <option value="usedIn">Sort: Most Used</option>
                     <option value="status">Sort: Status</option>
-                </select>
-                <button class="btn-ghost btn-sm">⤓ Export Results</button>
+                </select> 
             </div>
 
             <!-- TABLE -->
@@ -314,47 +290,43 @@
             <!-- PAGER -->
             <div class="ap-pagination">
                 <span id="pinfo"></span>
-                <div class="pg-btns" id="pbtns"> 
+                <div class="pg-btns" id="pbtns">
                 </div>
-              </div> 
+            </div>
         </div>
     </main>
 
-    <div class="toast" id="toast"></div>
-    <script src="style.js"></script>
-    <div id="sidebar-overlay"></div>
-    <script src="assets/script.js"></script>
     <script>
         /* ── DATA ── */
         const DATA = [
-            { id: 1, partNo: 'ASM-001', drwNo: '3D-5001', rev: '2-A', desc: 'Main Frame Weld Assembly – JUPITER 22DD', type: 'Assembly', cat: 'Structural', status: 'Active', fav: false, usedIn: [] },
-            { id: 2, partNo: 'ASM-002', drwNo: '3D-5010', rev: '1-C', desc: 'Front Service Door Assembly – TWIN BC', type: 'Assembly', cat: 'Door & Frame', status: 'Active', fav: false, usedIn: [] },
-            { id: 3, partNo: 'ASM-003', drwNo: '3D-5020', rev: '1-A', desc: 'Electrical Control Panel Assembly – 24V', type: 'Assembly', cat: 'Electrical', status: 'Active', fav: false, usedIn: [] },
-            { id: 4, partNo: 'ASM-004', drwNo: '3D-5030', rev: '1-B', desc: 'Plumbing Manifold Block Assembly', type: 'Assembly', cat: 'Plumbing', status: 'Active', fav: false, usedIn: [] },
-            { id: 5, partNo: 'ASM-005', drwNo: '3D-5035', rev: '1-A', desc: 'Side Panel Cladding Sub-Assembly – Left Hand', type: 'Assembly', cat: 'Cladding', status: 'Active', fav: false, usedIn: ['ASM-001'] },
-            { id: 6, partNo: 'ASM-006', drwNo: '3D-5036', rev: '1-A', desc: 'Side Panel Cladding Sub-Assembly – Right Hand', type: 'Assembly', cat: 'Cladding', status: 'Active', fav: false, usedIn: ['ASM-001'] },
-            { id: 7, partNo: 'ASM-007', drwNo: '3D-5040', rev: '2-B', desc: 'Roof Frame Weld Assembly – SATURN 22', type: 'Assembly', cat: 'Structural', status: 'Active', fav: false, usedIn: [] },
-            { id: 8, partNo: 'FRM-101', drwNo: '3D-5100', rev: '1-B', desc: 'Frame Kit JUPITER US 22DD Front Service Door', type: 'Part', cat: 'Door & Frame', status: 'Active', fav: true, usedIn: ['ASM-001', 'ASM-002', 'PB-011'] },
-            { id: 9, partNo: 'FRM-102', drwNo: '3D-5101', rev: '1-B', desc: 'Frame Kit JUPITER US 22DD Rear Panel', type: 'Part', cat: 'Door & Frame', status: 'Active', fav: false, usedIn: ['ASM-001'] },
-            { id: 10, partNo: 'FRM-103', drwNo: '3D-5102', rev: '1-B', desc: 'Frame Kit JUPITER US 22DD Front Service Door – Twin BC', type: 'Part', cat: 'Door & Frame', status: 'Under Review', fav: true, usedIn: ['ASM-002', 'PB-011', 'PB-012'] },
-            { id: 11, partNo: 'FRM-104', drwNo: '3D-5103', rev: '1-A', desc: 'Frame Kit SATURN 22 Side Entry Door', type: 'Part', cat: 'Door & Frame', status: 'Active', fav: false, usedIn: ['ASM-007'] },
-            { id: 12, partNo: 'BRK-201', drwNo: '3D-4201', rev: '2-A', desc: 'Front Mounting Bracket – Heavy Duty Weld', type: 'Part', cat: 'Structural', status: 'Active', fav: false, usedIn: ['ASM-001', 'PB-011', 'ASM-007'] },
-            { id: 13, partNo: 'BRK-202', drwNo: '3D-4202', rev: '1-C', desc: 'Side Bracket Weld – Left Hand', type: 'Part', cat: 'Structural', status: 'Active', fav: false, usedIn: ['ASM-001', 'ASM-005'] },
-            { id: 14, partNo: 'BRK-203', drwNo: '3D-4203', rev: '1-C', desc: 'Side Bracket Weld – Right Hand', type: 'Part', cat: 'Structural', status: 'Active', fav: false, usedIn: ['ASM-001', 'ASM-006'] },
-            { id: 15, partNo: 'BRK-204', drwNo: '3D-4204', rev: '1-B', desc: 'Rear Weld Bracket Reinforced – JUPITER', type: 'Part', cat: 'Structural', status: 'Under Review', fav: false, usedIn: ['ASM-001'] },
-            { id: 16, partNo: 'DOR-301', drwNo: '3D-5200', rev: '1-A', desc: 'Door Hinge Set – Stainless 316 (Pair)', type: 'Part', cat: 'Hardware', status: 'Active', fav: false, usedIn: ['ASM-002', 'FRM-103'] },
-            { id: 17, partNo: 'DOR-302', drwNo: '3D-5201', rev: '1-A', desc: 'Door Latch Assembly – TWIN BC Deadbolt', type: 'Part', cat: 'Hardware', status: 'Active', fav: true, usedIn: ['ASM-002'] },
-            { id: 18, partNo: 'DOR-303', drwNo: '3D-5202', rev: '2-A', desc: 'Door Seal Rubber Extrusion – 22DD Profile', type: 'Part', cat: 'Hardware', status: 'Active', fav: false, usedIn: ['ASM-002', 'FRM-103'] },
-            { id: 19, partNo: 'ELC-301', drwNo: '3D-6001', rev: '1-B', desc: '24V DC Power Supply Module – 10A', type: 'Part', cat: 'Electrical', status: 'Active', fav: false, usedIn: ['ASM-003', 'PB-015'] },
-            { id: 20, partNo: 'ELC-302', drwNo: '3D-6002', rev: '1-A', desc: 'PLC Controller Unit – Smart Toilet Interface', type: 'Part', cat: 'Electrical', status: 'Active', fav: false, usedIn: ['ASM-003'] },
-            { id: 21, partNo: 'ELC-303', drwNo: '3D-6010', rev: '1-A', desc: 'LED Lighting Strip – Internal 500mm 24V', type: 'Part', cat: 'Electrical', status: 'Obsolete', fav: false, usedIn: [] },
-            { id: 22, partNo: 'PLM-401', drwNo: '3D-7001', rev: '1-A', desc: 'Flush Valve Assembly – 6L Dual Flush', type: 'Part', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004', 'PB-008'] },
-            { id: 23, partNo: 'PLM-402', drwNo: '3D-7002', rev: '1-B', desc: 'Water Inlet Valve – 15mm BSP Float', type: 'Part', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004'] },
-            { id: 24, partNo: 'PLM-403', drwNo: '3D-7010', rev: '1-A', desc: 'Waste Pan Assembly – Stainless 316', type: 'Part', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004', 'PB-008'] },
-            { id: 25, partNo: 'PB-008', drwNo: '3D-8008', rev: '1-A', desc: 'Plumbing Sub-Assembly Pre-Build – Flush & Fill', type: 'Pre-Build', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004'] },
-            { id: 26, partNo: 'PB-011', drwNo: '3D-8011', rev: '1-B', desc: 'Frame & Door Pre-Build Kit – JUPITER 22DD', type: 'Pre-Build', cat: 'Door & Frame', status: 'Active', fav: true, usedIn: ['ASM-001', 'ASM-002'] },
-            { id: 27, partNo: 'PB-012', drwNo: '3D-8012', rev: '1-A', desc: 'Twin BC Door Pre-Build – Front Service Entry', type: 'Pre-Build', cat: 'Door & Frame', status: 'Under Review', fav: false, usedIn: ['ASM-002'] },
-            { id: 28, partNo: 'PB-015', drwNo: '3D-8015', rev: '1-A', desc: 'Control Cabinet Pre-Build – 24V JUPITER', type: 'Pre-Build', cat: 'Electrical', status: 'Under Review', fav: false, usedIn: ['ASM-003'] },
+            { id: 1, partNo: 'ASM-001', drwNo: '3D-5001', rev: 'Rev A', desc: 'Main Frame Weld Assembly – JUPITER 22DD', type: 'Assembly', cat: 'Structural', status: 'Active', fav: false, usedIn: [] },
+            { id: 2, partNo: 'ASM-002', drwNo: '3D-5010', rev: 'Rev B', desc: 'Front Service Door Assembly – TWIN BC', type: 'Assembly', cat: 'Door & Frame', status: 'Active', fav: false, usedIn: [] },
+            { id: 3, partNo: 'ASM-003', drwNo: '3D-5020', rev: 'Rev A', desc: 'Electrical Control Panel Assembly – 24V', type: 'Assembly', cat: 'Electrical', status: 'Active', fav: false, usedIn: [] },
+            { id: 4, partNo: 'ASM-004', drwNo: '3D-5030', rev: 'Rev B', desc: 'Plumbing Manifold Block Assembly', type: 'Assembly', cat: 'Plumbing', status: 'Active', fav: false, usedIn: [] },
+            { id: 5, partNo: 'ASM-005', drwNo: '3D-5035', rev: 'Rev A', desc: 'Side Panel Cladding Sub-Assembly – Left Hand', type: 'Assembly', cat: 'Cladding', status: 'Active', fav: false, usedIn: ['ASM-001'] },
+            { id: 6, partNo: 'ASM-006', drwNo: '3D-5036', rev: 'Rev A', desc: 'Side Panel Cladding Sub-Assembly – Right Hand', type: 'Assembly', cat: 'Cladding', status: 'Active', fav: false, usedIn: ['ASM-001'] },
+            { id: 7, partNo: 'ASM-007', drwNo: '3D-5040', rev: 'Rev C', desc: 'Roof Frame Weld Assembly – SATURN 22', type: 'Assembly', cat: 'Structural', status: 'Active', fav: false, usedIn: [] },
+            { id: 8, partNo: 'FRM-101', drwNo: '3D-5100', rev: 'Rev B', desc: 'Frame Kit JUPITER US 22DD Front Service Door', type: 'Part', cat: 'Door & Frame', status: 'Active', fav: true, usedIn: ['ASM-001', 'ASM-002', 'PB-011'] },
+            { id: 9, partNo: 'FRM-102', drwNo: '3D-5101', rev: 'Rev B', desc: 'Frame Kit JUPITER US 22DD Rear Panel', type: 'Part', cat: 'Door & Frame', status: 'Active', fav: false, usedIn: ['ASM-001'] },
+            { id: 10, partNo: 'FRM-103', drwNo: '3D-5102', rev: 'Rev B', desc: 'Frame Kit JUPITER US 22DD Front Service Door – Twin BC', type: 'Part', cat: 'Door & Frame', status: 'Under Review', fav: true, usedIn: ['ASM-002', 'PB-011', 'PB-012'] },
+            { id: 11, partNo: 'FRM-104', drwNo: '3D-5103', rev: 'Rev A', desc: 'Frame Kit SATURN 22 Side Entry Door', type: 'Part', cat: 'Door & Frame', status: 'Active', fav: false, usedIn: ['ASM-007'] },
+            { id: 12, partNo: 'BRK-201', drwNo: '3D-4201', rev: 'Rev A', desc: 'Front Mounting Bracket – Heavy Duty Weld', type: 'Part', cat: 'Structural', status: 'Active', fav: false, usedIn: ['ASM-001', 'PB-011', 'ASM-007'] },
+            { id: 13, partNo: 'BRK-202', drwNo: '3D-4202', rev: 'Rev B', desc: 'Side Bracket Weld – Left Hand', type: 'Part', cat: 'Structural', status: 'Active', fav: false, usedIn: ['ASM-001', 'ASM-005'] },
+            { id: 14, partNo: 'BRK-203', drwNo: '3D-4203', rev: 'Rev B', desc: 'Side Bracket Weld – Right Hand', type: 'Part', cat: 'Structural', status: 'Active', fav: false, usedIn: ['ASM-001', 'ASM-006'] },
+            { id: 15, partNo: 'BRK-204', drwNo: '3D-4204', rev: 'Rev B', desc: 'Rear Weld Bracket Reinforced – JUPITER', type: 'Part', cat: 'Structural', status: 'Under Review', fav: false, usedIn: ['ASM-001'] },
+            { id: 16, partNo: 'DOR-301', drwNo: '3D-5200', rev: 'Rev A', desc: 'Door Hinge Set – Stainless 316 (Pair)', type: 'Part', cat: 'Hardware', status: 'Active', fav: false, usedIn: ['ASM-002', 'FRM-103'] },
+            { id: 17, partNo: 'DOR-302', drwNo: '3D-5201', rev: 'Rev A', desc: 'Door Latch Assembly – TWIN BC Deadbolt', type: 'Part', cat: 'Hardware', status: 'Active', fav: true, usedIn: ['ASM-002'] },
+            { id: 18, partNo: 'DOR-303', drwNo: '3D-5202', rev: 'Rev A', desc: 'Door Seal Rubber Extrusion – 22DD Profile', type: 'Part', cat: 'Hardware', status: 'Active', fav: false, usedIn: ['ASM-002', 'FRM-103'] },
+            { id: 19, partNo: 'ELC-301', drwNo: '3D-6001', rev: 'Rev B', desc: '24V DC Power Supply Module – 10A', type: 'Part', cat: 'Electrical', status: 'Active', fav: false, usedIn: ['ASM-003', 'PB-015'] },
+            { id: 20, partNo: 'ELC-302', drwNo: '3D-6002', rev: 'Rev A', desc: 'PLC Controller Unit – Smart Toilet Interface', type: 'Part', cat: 'Electrical', status: 'Active', fav: false, usedIn: ['ASM-003'] },
+            { id: 21, partNo: 'ELC-303', drwNo: '3D-6010', rev: 'Rev A', desc: 'LED Lighting Strip – Internal 500mm 24V', type: 'Part', cat: 'Electrical', status: 'Obsolete', fav: false, usedIn: [] },
+            { id: 22, partNo: 'PLM-401', drwNo: '3D-7001', rev: 'Rev A', desc: 'Flush Valve Assembly – 6L Dual Flush', type: 'Part', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004', 'PB-008'] },
+            { id: 23, partNo: 'PLM-402', drwNo: '3D-7002', rev: 'Rev B', desc: 'Water Inlet Valve – 15mm BSP Float', type: 'Part', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004'] },
+            { id: 24, partNo: 'PLM-403', drwNo: '3D-7010', rev: 'Rev A', desc: 'Waste Pan Assembly – Stainless 316', type: 'Part', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004', 'PB-008'] },
+            { id: 25, partNo: 'PB-008', drwNo: '3D-8008', rev: 'Rev A', desc: 'Plumbing Sub-Assembly Pre-Build – Flush & Fill', type: 'Pre-Build', cat: 'Plumbing', status: 'Active', fav: false, usedIn: ['ASM-004'] },
+            { id: 26, partNo: 'PB-011', drwNo: '3D-8011', rev: 'Rev B', desc: 'Frame & Door Pre-Build Kit – JUPITER 22DD', type: 'Pre-Build', cat: 'Door & Frame', status: 'Active', fav: true, usedIn: ['ASM-001', 'ASM-002'] },
+            { id: 27, partNo: 'PB-012', drwNo: '3D-8012', rev: 'Rev A', desc: 'Twin BC Door Pre-Build – Front Service Entry', type: 'Pre-Build', cat: 'Door & Frame', status: 'Under Review', fav: false, usedIn: ['ASM-002'] },
+            { id: 28, partNo: 'PB-015', drwNo: '3D-8015', rev: 'Rev A', desc: 'Control Cabinet Pre-Build – 24V JUPITER', type: 'Pre-Build', cat: 'Electrical', status: 'Under Review', fav: false, usedIn: ['ASM-003'] },
         ];
 
         /* ── STATE ── */
@@ -444,12 +416,29 @@
         }
 
         function clearAll() {
+
             document.getElementById('q').value = '';
-            ['exact', 'favs', 'adv-ex', 'adv-fav'].forEach(id => document.getElementById(id).checked = false);
-            ['f-stat', 'f-grp', 'f-sup'].forEach(id => document.getElementById(id).selectedIndex = 0);
-            ['f-mfr', 'f-coo', 'f-loc', 'f-drw', 'f-ui'].forEach(id => document.getElementById(id).value = '');
-            afObj = {}; filtered = catT === 'prebuilds' ? DATA.filter(p => p.type === 'Pre-Build') : [...DATA];
-            renderTags(); page = 1; render();
+
+            ['exact', 'favs', 'adv-ex', 'adv-fav']
+                .forEach(id => document.getElementById(id).checked = false);
+
+            ['f-stat', 'f-grp']
+                .forEach(id => document.getElementById(id).selectedIndex = 0);
+
+            ['f-drw', 'f-ui']
+                .forEach(id => document.getElementById(id).value = '');
+
+            afObj = {};
+
+            filtered = catT === 'prebuilds'
+                ? DATA.filter(p => p.type === 'Pre-Build')
+                : [...DATA];
+
+            renderTags();
+
+            page = 1;
+
+            render();
         }
 
         /* ── SORT ── */
@@ -494,12 +483,22 @@
           <td><span class="eic" id="ei${p.id}">▶</span></td>
           <td class="pno">${hl(p.partNo, q)}${p.fav ? ' <span style="color:var(--yellow);font-size:10px;">★</span>' : ''}</td>
           <td class="dc">${hl(p.desc, q)}</td>
-          <td><span class="drw">${hl(p.drwNo, q)}</span><span class="rev">${p.rev}</span></td>
+          <td>
+                <span class="drw">${hl(p.drwNo, q)}</span>
+
+                <div class="rev-wrap">
+                    <span class="rev">${p.rev}</span>
+
+                    <span class="rev-current">
+                        Current Approved Revision
+                    </span>
+                </div>
+            </td>
           <td><span class="tb-a ${tc}">${p.type}</span></td>
           <td style="font-size:12px;color:var(--muted);">${p.cat}</td>
           <td><div class="wupips">${pips}<span class="pnum">${wu}</span></div></td>
           <td><span class="st ${sc}">${p.status}</span></td>
-          <td onclick="event.stopPropagation()"><td onclick="event.stopPropagation()">
+          <td onclick="event.stopPropagation()">
 
 <div class="ra">
 
@@ -515,7 +514,7 @@
     </button>
 
     <button class="ib"
-        title="Export"
+        title="Download Drawing"
         onclick="exportPart(
         '${p.partNo}'
     )">
@@ -537,7 +536,7 @@
 
 </div>
 
-</td></td>
+</td> 
         </tr>
         <tr class="wuex" id="wx${p.id}">
           <td colspan="9"><div class="wup" id="wp${p.id}">${buildWU(p)}</div></td>
@@ -552,8 +551,8 @@
         function buildWU(p) {
             const list = p.usedIn;
             const head = `<div class="wuh"><span class="wut">⬡ Where Used — ${p.partNo}</span><span class="wus">${list.length} assembl${list.length === 1 ? 'y' : 'ies'}/pre-build${list.length === 1 ? '' : 's'}</span></div>`;
-            if (!list.length) return head + `<div class="wu-nil">Not currently referenced in any assembly or pre-build.</div>
-        <div class="ecn-note d-none">ℹ Phase 2 – ECN impact tracing will link here once this part is used in an assembly.</div>`;
+            if (!list.length) return head + `<div class="wu-nil">Not linked to any assembly or pre-build.</div>
+        `;
             const cards = list.map(no => {
                 const f = DATA.find(x => x.partNo === no);
                 if (!f) return `<div class="wuc"><div class="wucn">${no}</div><div class="wucname">—</div></div>`;
@@ -568,7 +567,7 @@
         </div>`;
             }).join('');
             return head + `<div class="wucards">${cards}</div>
-        <div class="ecn-note d-none">ℹ Phase 2 – ECN changes to <strong>${p.partNo}</strong> will automatically flag all ${list.length} linked assembl${list.length === 1 ? 'y' : 'ies'} for impact review.</div>`;
+        `;
         }
 
         /* ── EXPAND ── */
@@ -603,328 +602,519 @@
 
         render();
     </script>
+
+
     <!-- VIEW DRAWING MODAL -->
-<div class="modal-overlay" id="drawingModal" onclick="closeDrawingModal()">
+    <div class="modal-overlay" id="drawingModal" onclick="closeDrawingModal()">
 
-    <div class="modal drawing-modal" onclick="event.stopPropagation()">
+        <div class="modal drawing-modal" onclick="event.stopPropagation()">
 
-        <div class="modal-header p-0 m-0 align-items-center">
+            <div class="modal-header p-0 m-0 align-items-center">
 
-            <div>
-                <h5 class="mb-1">Drawing Preview</h5>
+                <div>
+                    <h5 class="mb-1">Drawing Preview</h5>
 
-                <div class="drawing-subtitle">
-                    View drawing file & revision details
-                </div>
-            </div>
-
-            <button class="modal-close mb-2" onclick="closeDrawingModal()">✕</button>
-
-        </div>
-
-        <div class="pt-3">
-
-            <!-- DRAWING INFO -->
-            <div class="drawing-top-info">
-
-                <div class="drawing-info-box">
-                    <span>Part No.</span>
-                    <strong id="drawPartNo">FRM-101</strong>
+                    <div class="drawing-subtitle">
+                        View drawing file & revision details
+                    </div>
                 </div>
 
-                <div class="drawing-info-box">
-                    <span>Drawing No.</span>
-                    <strong id="drawNo">3D-5100</strong>
-                </div>
-
-                <div class="drawing-info-box">
-                    <span>Revision</span>
-                    <strong id="drawRev">1-B</strong>
-                </div>
+                <button class="modal-close mb-2" onclick="closeDrawingModal()">✕</button>
 
             </div>
 
-            <!-- PDF PREVIEW -->
-            <div class="drawing-preview-box">
+            <div class="pt-3">
 
-                <div class="drawing-preview-toolbar">
+                <!-- DRAWING INFO -->
+                <div class="drawing-top-info">
 
-                    <div class="drawing-name" id="drawTitle">
-                        Frame Kit JUPITER US 22DD Front Service Door
+                    <div class="drawing-info-box">
+                        <span>Part No.</span>
+                        <strong id="drawPartNo">FRM-101</strong>
                     </div>
 
-                    <button class="btn-ghost btn-sm"
-                        onclick="downloadSamplePDF()">
-                        <i class="fa fa-download"></i> Download PDF
+                    <div class="drawing-info-box">
+                        <span>Drawing No.</span>
+                        <strong id="drawNo">3D-5100</strong>
+                    </div>
+
+                    <div class="drawing-info-box">
+                        <span>Revision</span>
+                        <strong id="drawRev">Rev B</strong>
+                    </div>
+
+                </div>
+
+                <!-- PDF PREVIEW -->
+                <div class="drawing-preview-box">
+
+                    <div class="drawing-preview-toolbar">
+
+                        <div class="drawing-name" id="drawTitle">
+                            Frame Kit JUPITER US 22DD Front Service Door
+                        </div>
+
+                        <button class="btn-ghost btn-sm" onclick="downloadSamplePDF()">
+                            <i class="fa fa-download"></i> Download PDF
+                        </button>
+
+                    </div>
+
+                    <iframe src="https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
+                        class="drawing-pdf-frame">
+                    </iframe>
+
+                </div>
+
+                <div class="modal-footer-btns mt-4">
+
+                    <button class="btn-ghost-sm" onclick="closeDrawingModal()">
+                        Close
+                    </button>
+
+                    <button class="btn-primary-sm" onclick="downloadSamplePDF()">
+                        <i class="fa fa-download"></i> Download Drawing
                     </button>
 
                 </div>
 
-                <iframe
-                    src="https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
-                    class="drawing-pdf-frame">
-                </iframe>
-
-            </div>
-
-            <div class="modal-footer-btns mt-4">
-
-                <button class="btn-ghost-sm" onclick="closeDrawingModal()">
-                    Close
-                </button>
-
-                <button class="btn-primary-sm"
-                    onclick="downloadSamplePDF()">
-                    <i class="fa fa-download"></i> Export Drawing
-                </button>
-
             </div>
 
         </div>
 
     </div>
 
-</div>
+    <!-- EDIT PART MODAL -->
+    <div class="modal-overlay" id="editPartModal" onclick="closeEditPartModal()">
 
-<!-- EDIT PART MODAL -->
-<div class="modal-overlay" id="editPartModal" onclick="closeEditPartModal()">
+        <div class="modal edit-part-modal" onclick="event.stopPropagation()">
 
-    <div class="modal edit-part-modal" onclick="event.stopPropagation()">
+            <div class="modal-header p-0 m-0 align-items-center">
 
-        <div class="modal-header p-0 m-0 align-items-center">
+                <div>
+                    <h5 class="mb-1">Edit Part Information</h5>
 
-            <div>
-                <h5 class="mb-1">Edit Part Details</h5>
-
-                <div class="drawing-subtitle">
-                    Update part metadata, revision & status
-                </div>
-            </div>
-
-            <button class="modal-close mb-2" onclick="closeEditPartModal()">✕</button>
-
-        </div>
-
-        <div class="pt-3">
-
-            <div class="row g-3">
-
-                <div class="col-md-6">
-                    <label class="form-label">Part Number</label>
-                    <input type="text" class="form-control" id="editPartNo">
+                    <div class="drawing-subtitle">
+                        Update part metadata, revision & status
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Drawing Number</label>
-                    <input type="text" class="form-control" id="editDrawingNo">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-control" rows="3" id="editDescription"></textarea>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Revision</label>
-                    <input type="text" class="form-control" id="editRevision">
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Group</label>
-
-                    <select class="form-select" id="editGroup">
-                        <option>Door & Frame</option>
-                        <option>Structural</option>
-                        <option>Electrical</option>
-                        <option>Plumbing</option>
-                        <option>Cladding</option>
-                        <option>Hardware</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <label class="form-label">Status</label>
-
-                    <select class="form-select" id="editStatus">
-                        <option>Active</option>
-                        <option>Under Review</option>
-                        <option>Obsolete</option>
-                    </select>
-                </div>
+                <button class="modal-close mb-2" onclick="closeEditPartModal()">✕</button>
 
             </div>
 
-            <div class="modal-footer-btns mt-4">
+            <div class="pt-3">
 
-                <button class="btn-ghost-sm" onclick="closeEditPartModal()">
-                    Cancel
-                </button>
+                <div class="row g-3">
 
-                <button class="btn-primary-sm"
-                    onclick="savePartChanges()">
-                    Save Changes
-                </button>
+                    <div class="col-md-6">
+                        <label class="form-label">Part Number</label>
+                        <input type="text" class="form-control" id="editPartNo">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Drawing Number</label>
+                        <input type="text" class="form-control" id="editDrawingNo">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" rows="3" id="editDescription"></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Revision</label>
+                        <input type="text" class="form-control" id="editRevision">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Group</label>
+
+                        <select class="form-select" id="editGroup">
+                            <option>Door & Frame</option>
+                            <option>Structural</option>
+                            <option>Electrical</option>
+                            <option>Plumbing</option>
+                            <option>Cladding</option>
+                            <option>Hardware</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Status</label>
+
+                        <select class="form-select" id="editStatus">
+                            <option>Active</option>
+                            <option>Under Review</option>
+                            <option>Obsolete</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer-btns mt-4">
+
+                    <button class="btn-ghost-sm" onclick="closeEditPartModal()">
+                        Cancel
+                    </button>
+
+                    <button class="btn-primary-sm" onclick="savePartChanges()">
+                        Save Changes
+                    </button>
+
+                </div>
 
             </div>
 
         </div>
 
     </div>
+    <style>
+        /* PART ACTION MODALS */
+        .drawing-modal,
+        .edit-part-modal {
+            width: min(950px, 95%);
+        }
 
-</div>
-<style>
-    /* PART ACTION MODALS */
-.drawing-modal,
-.edit-part-modal{
-    width:min(950px,95%);
-}
+        .drawing-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
 
-.drawing-subtitle{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:4px;
-}
+        .drawing-top-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 18px;
+        }
 
-.drawing-top-info{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-    margin-bottom:18px;
-}
+        .drawing-info-box {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
 
-.drawing-info-box{
-    padding:16px;
-    border-radius:16px;
-    background:rgba(255,255,255,.03);
-    border:1px solid rgba(255,255,255,.06);
-}
+        .drawing-info-box span {
+            display: block;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
 
-.drawing-info-box span{
-    display:block;
-    font-size:11px;
-    color:var(--muted);
-    margin-bottom:6px;
-    text-transform:uppercase;
-}
+        .drawing-preview-box {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: #08141a;
+        }
 
-.drawing-preview-box{
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,.08);
-    background:#08141a;
-}
+        .drawing-preview-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
 
-.drawing-preview-toolbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:14px 18px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-}
+        .drawing-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
 
-.drawing-name{
-    font-size:14px;
-    font-weight:600;
-}
+        .drawing-pdf-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+            background: #fff;
+        }
 
-.drawing-pdf-frame{
-    width:100%;
-    height:420px;
-    border:none;
-    background:#fff;
-}
+        @media(max-width:768px) {
 
-@media(max-width:768px){
+            .drawing-top-info {
+                grid-template-columns: 1fr;
+            }
 
-    .drawing-top-info{
-        grid-template-columns:1fr;
-    }
+            .drawing-pdf-frame {
+                height: 300px;
+            }
 
-    .drawing-pdf-frame{
-        height:300px;
-    }
+        }
+    </style>
+    <script>
 
-}
-</style>
-<script>
+        function openDrawingModal(partNo, desc, drawNo, rev) {
 
-    function openDrawingModal(partNo,desc,drawNo,rev){
-    
-        document.getElementById('drawingModal').classList.add('open');
-    
-        document.getElementById('drawPartNo').innerText = partNo;
-        document.getElementById('drawTitle').innerText = desc;
-        document.getElementById('drawNo').innerText = drawNo;
-        document.getElementById('drawRev').innerText = rev;
-    }
-    
-    function closeDrawingModal(){
-        document.getElementById('drawingModal').classList.remove('open');
-    }
-    
-    function exportPart(partNo){
-    
-        const content = `
-    PART EXPORT REPORT
+            document.getElementById('drawingModal').classList.add('open');
+
+            document.getElementById('drawPartNo').innerText = partNo;
+            document.getElementById('drawTitle').innerText = desc;
+            document.getElementById('drawNo').innerText = drawNo;
+            document.getElementById('drawRev').innerText = rev;
+        }
+
+        function closeDrawingModal() {
+            document.getElementById('drawingModal').classList.remove('open');
+        }
+
+        function exportPart(partNo) {
+
+            const content = `
+            Drawing PDF Download
     
     Part Number : ${partNo}
     Export Date : ${new Date().toLocaleString()}
     
     Generated from Drawing Manager System.
         `;
-    
-        const blob = new Blob([content], {type:'text/plain'});
-    
-        const link = document.createElement('a');
-    
-        link.href = URL.createObjectURL(blob);
-    
-        link.download = partNo + '-export.txt';
-    
-        link.click();
-    
-        showToast('✓ Export downloaded successfully','success');
-    }
-    
-    function downloadSamplePDF(){
-    
-        const link = document.createElement('a');
-    
-        link.href = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
-    
-        link.download = 'sample-drawing.pdf';
-    
-        link.target = '_blank';
-    
-        link.click();
-    
-        showToast('✓ Drawing download started','success');
-    }
-    
-    function openEditPartModal(partNo,desc,drawNo,rev,group,status){
-    
-        document.getElementById('editPartModal').classList.add('open');
-    
-        document.getElementById('editPartNo').value = partNo;
-        document.getElementById('editDescription').value = desc;
-        document.getElementById('editDrawingNo').value = drawNo;
-        document.getElementById('editRevision').value = rev;
-        document.getElementById('editGroup').value = group;
-        document.getElementById('editStatus').value = status;
-    }
-    
-    function closeEditPartModal(){
-        document.getElementById('editPartModal').classList.remove('open');
-    }
-    
-    function savePartChanges(){
-    
-        closeEditPartModal();
-    
-        showToast('✓ Part details updated successfully','success');
-    }
-    
-    </script>
+
+            const blob = new Blob([content], { type: 'text/plain' });
+
+            const link = document.createElement('a');
+
+            link.href = URL.createObjectURL(blob);
+
+            link.download = partNo + '-export.txt';
+
+            link.click();
+
+            showToast('✓ Export downloaded successfully', 'success');
+        }
+
+        function downloadSamplePDF() {
+
+            const link = document.createElement('a');
+
+            link.href = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
+
+            link.download = 'sample-drawing.pdf';
+
+            link.target = '_blank';
+
+            link.click();
+
+            showToast('✓ Drawing download started', 'success');
+        }
+
+        function openEditPartModal(partNo, desc, drawNo, rev, group, status) {
+
+            document.getElementById('editPartModal').classList.add('open');
+
+            document.getElementById('editPartNo').value = partNo;
+            document.getElementById('editDescription').value = desc;
+            document.getElementById('editDrawingNo').value = drawNo;
+            document.getElementById('editRevision').value = rev;
+            document.getElementById('editGroup').value = group;
+            document.getElementById('editStatus').value = status;
+        }
+
+        function closeEditPartModal() {
+            document.getElementById('editPartModal').classList.remove('open');
+        }
+
+        function savePartChanges() {
+
+            closeEditPartModal();
+
+            showToast('✓ Part details updated successfully', 'success');
+        }
+
+    </script> 
+
+
+<!-- CUSTOM MODAL -->
+<div id="partModal"
+    style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:99999;
+    overflow:auto;
+    padding:40px 15px;
+">
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-xl-8 col-lg-9">
+
+                <!-- MODAL CARD -->
+                <div class="card border-0 shadow-lg rounded-4">
+
+                    <!-- HEADER -->
+                    <div class="card-header bg-white border-bottom p-4 d-flex justify-content-between align-items-start">
+
+                        <div>
+                            <h4 class="fw-bold mb-1">
+                                Create New Part
+                            </h4>
+
+                            <p class="text-muted mb-0 small">
+                                Create a lightweight linked part record.
+                            </p>
+                        </div>
+
+                        <button class="btn-close"
+                            onclick="closePartModal()">
+                        </button>
+
+                    </div>
+
+                    <!-- BODY -->
+                    <div class="card-body p-4"> 
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">
+                                    Part Number
+                                </label>
+
+                                <input type="text"
+                                    class="form-control"
+                                    placeholder="EXL-PART-001">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">
+                                    Part Name
+                                </label>
+
+                                <input type="text"
+                                    class="form-control"
+                                    placeholder="Control Panel Bracket">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">
+                                    Linked Drawing
+                                </label>
+
+                                <select class="form-select">
+                                    <option>Select Drawing</option>
+                                    <option>DRW-031 - Control Panel Layout</option>
+                                    <option>DRW-044 - Pipe Assembly</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">
+                                    Linked Request
+                                </label>
+
+                                <select class="form-select">
+                                    <option>Select Request</option>
+                                    <option>REQ-031</option>
+                                    <option>REQ-044</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">
+                                    Revision
+                                </label>
+
+                                <input type="text"
+                                    class="form-control"
+                                    placeholder="Rev A">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">
+                                    Status
+                                </label>
+
+                                <select class="form-select">
+                                    <option>Draft</option>
+                                    <option>Released</option>
+                                    <option>In Review</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">
+                                    Owner
+                                </label>
+
+                                <select class="form-select">
+                                    <option>Engineering</option>
+                                    <option>Production</option>
+                                    <option>Procurement</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    Notes
+                                </label>
+
+                                <textarea class="form-control"
+                                    rows="4"
+                                    placeholder="Add optional notes..."></textarea>
+                            </div>
+
+                        </div>
+
+                        <!-- SCOPE NOTE -->
+                        <div class="bg-light border rounded-4 p-3 mt-4">
+
+                            <h6 class="fw-bold text-primary mb-3">
+                                <i class="fa fa-info-circle"></i>
+                                Simplified Part Record
+                            </h6>
+
+                            <ul class="mb-0 text-muted small">
+                                <li>Linked to drawings & requests</li>
+                                <li>Engineering reference tracking</li>
+                                <li>No stock management</li>
+                                <li>No ERP administration</li>
+                                <li>No procurement workflows</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FOOTER -->
+                    <div class="modal-footer">
+
+                        <button class="btn btn-light me-2"
+                            onclick="closePartModal()">
+                            Cancel
+                        </button>
+
+                        <button class="btn btn-primary">
+                            <i class="fa fa-save"></i>
+                            Create Part
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function openPartModal(){
+    document.getElementById('partModal').style.display = 'block';
+}
+
+function closePartModal(){
+    document.getElementById('partModal').style.display = 'none';
+}
+</script>
+  
+<div class="toast" id="toast"></div>
+<script src="style.js"></script>
+<div id="sidebar-overlay"></div>
+<script src="assets/script.js"></script>
 </body>
 
 </html>

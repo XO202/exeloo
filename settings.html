@@ -35,46 +35,41 @@
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">
         <i class="fa fa-home"></i>
-        <span>Dashboard</span>
-        <span class="nav-badge">14</span>
+        <span>Dashboard</span> 
       </a>
       <a href="requests.html" class="nav-item">
         <i class="fa fa-address-book"></i>
-        <span>Requests</span>
+        <span>Drawing Requests</span>
         <span class="nav-badge">14</span>
       </a>
       <a href="files.html" class="nav-item">
         <i class="fa fa-file"></i>
-        <span>Drawings</span>
+        <span>Drawing Records</span>
       </a>
       <a href="approvals.html" class="nav-item">
         <i class="fa fa-calendar"></i>
-        <span>Approvals</span>
-        <span class="nav-badge urgent">5</span>
+        <span>Drawing Approvals</span> 
       </a>
       <a href="simpro.html" class="nav-item">
-        <i class="fa fa-refresh"></i>
+        <i class="fa fa-calendar"></i>
         <span>simPRO Sync</span>
       </a>
       <a href="parts.html" class="nav-item">
           <i class="fa fa-hourglass-half"></i>
-          <span>Parts</span>
+          <span>Parts Catalogue</span>
       </a>
       <a href="users.html" class="nav-item">
         <i class="fa fa-users"></i>
         <span>Team</span>
       </a>
-
+  
       <a href="role.html" class="nav-item">
         <i class="fa fa-user-secret"></i>
         <span>Role</span>
       </a>
       <div class="nav-divider"></div>
-
-      <a href="reports.html" class="nav-item">
-        <i class="fa fa-file-pdf-o"></i>
-        <span>Reports</span>
-      </a>
+  
+     
       <a href="settings.html" class="nav-item active">
         <i class="fa fa-cogs"></i>
         <span>Settings</span>
@@ -101,7 +96,7 @@
           <i class="fa fa-bars"></i>
         </button>
         <h1 class="page-title">Settings</h1>
-        <span class="page-subtitle">Manage your workspace configuration</span>
+        <span class="page-subtitle">Manage your system preferences</span>
       </div>
       <div class="topbar-right">
         <button class="btn-ghost" onclick="showToast('Changes discarded', 'warning')">Discard Changes</button>
@@ -126,9 +121,7 @@
               <i class="fa fa-refresh"></i> simPRO Sync
             </a>
             <div class="settings-nav-divider"></div>
-            <a class="settings-nav-item" onclick="switchTab('team', this)">
-              <i class="fa fa-users"></i> Team Members
-            </a>
+           
             <a class="settings-nav-item" onclick="switchTab('drawings', this)">
               <i class="fa fa-file"></i> Drawing Defaults
             </a>
@@ -136,9 +129,7 @@
             <a class="settings-nav-item" onclick="switchTab('security', this)">
               <i class="fa fa-lock"></i> Security
             </a>
-            <a class="settings-nav-item" onclick="switchTab('appearance', this)">
-              <i class="fa fa-paint-brush"></i> Appearance
-            </a>
+             
           </div>
         </div>
 
@@ -215,14 +206,7 @@
                   </div>
                   <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
                 </div>
-                <div class="toggle-row">
-                  <div class="toggle-info">
-                    <div class="toggle-title">Auto-assign requests by workload</div>
-                    <div class="toggle-desc">New requests are distributed to the team member with the fewest open items
-                    </div>
-                  </div>
-                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
+            
                 <div class="toggle-row">
                   <div class="toggle-info">
                     <div class="toggle-title">Require comment when sending for rework</div>
@@ -309,13 +293,7 @@
                   </div>
                   <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
                 </div>
-                <div class="toggle-row">
-                  <div class="toggle-info">
-                    <div class="toggle-title">Weekly summary report</div>
-                    <div class="toggle-desc">Send a performance digest every Monday morning</div>
-                  </div>
-                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
+                
               </div>
             </div>
 
@@ -392,255 +370,17 @@
                     <button class="btn-ghost" onclick="showToast('API key revealed', 'info')">Show</button>
                   </div>
                 </div>
-                <div class="field-row">
-                  <div>
-                    <div class="field-label">Company ID</div>
-                    <div class="field-hint">Your simPRO company identifier</div>
-                  </div>
-                  <input class="field-input mono-input" type="text" value="0" style="max-width:120px;">
-                </div>
-                <div class="field-row">
-                  <div>
-                    <div class="field-label">Sync Frequency</div>
-                    <div class="field-hint">How often to push approved drawings</div>
-                  </div>
-                  <select class="field-select">
-                    <option>Every 15 minutes</option>
-                    <option selected>Every 30 minutes</option>
-                    <option>Every hour</option>
-                    <option>Manual only</option>
-                  </select>
-                </div>
-                <div class="toggle-row">
-                  <div class="toggle-info">
-                    <div class="toggle-title">Auto-retry on failure</div>
-                    <div class="toggle-desc">Automatically attempt to re-push failed records up to 3 times</div>
-                  </div>
-                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                </div>
-                <div class="toggle-row">
-                  <div class="toggle-info">
-                    <div class="toggle-title">Sync in test mode</div>
-                    <div class="toggle-desc">Validate records without writing to simPRO (sandbox mode)</div>
-                  </div>
-                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
+               
                 <div style="margin-top:16px;display:flex;gap:10px;">
-                  <button class="btn-primary" onclick="showToast('🔄 Test connection running…', 'info')">Test
-                    Connection</button>
-                  <button class="btn-ghost" onclick="showToast('🔄 Manual sync triggered', 'info')">Sync Now</button>
+              
+                  <button class="btn-ghost" onclick="showToast('🔄 Manual sync triggered', 'info')">Sync Retry</button>
                 </div>
               </div>
             </div>
 
-            <div class="settings-panel">
-              <div class="settings-panel-head">
-                <div>
-                  <div class="settings-panel-title">Sync Log</div>
-                  <div class="settings-panel-sub">Recent push history</div>
-                </div>
-              </div>
-              <div class="settings-panel-body" style="padding:0;">
-                <table style="width:100%;border-collapse:collapse;">
-                  <thead>
-                    <tr>
-                      <th
-                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
-                        Time</th>
-                      <th
-                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
-                        Records</th>
-                      <th
-                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
-                        Result</th>
-                      <th
-                        style="padding:9px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);background:rgba(0,0,0,.025);border-bottom:1px solid var(--border);text-align:left;">
-                        Details</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td
-                        style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);border-bottom:1px solid var(--border);">
-                        Today 06:30</td>
-                      <td style="padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);">18</td>
-                      <td style="padding:11px 16px;border-bottom:1px solid var(--border);"><span
-                          class="pill pill-success">Success</span></td>
-                      <td
-                        style="padding:11px 16px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid var(--border);">
-                        All records pushed</td>
-                    </tr>
-                    <tr>
-                      <td
-                        style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);border-bottom:1px solid var(--border);">
-                        Today 06:00</td>
-                      <td style="padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);">3</td>
-                      <td style="padding:11px 16px;border-bottom:1px solid var(--border);"><span
-                          class="pill pill-failed">Failed</span></td>
-                      <td
-                        style="padding:11px 16px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid var(--border);">
-                        P-2031, P-2028, P-2019 — timeout</td>
-                    </tr>
-                    <tr>
-                      <td
-                        style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);border-bottom:1px solid var(--border);">
-                        Yesterday 22:30</td>
-                      <td style="padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);">5</td>
-                      <td style="padding:11px 16px;border-bottom:1px solid var(--border);"><span
-                          class="pill pill-success">Success</span></td>
-                      <td
-                        style="padding:11px 16px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid var(--border);">
-                        All records pushed</td>
-                    </tr>
-                    <tr>
-                      <td style="padding:11px 16px;font-size:12px;font-family:var(--mono);color:var(--text-secondary);">
-                        May 05 06:30</td>
-                      <td style="padding:11px 16px;font-size:12.5px;">12</td>
-                      <td style="padding:11px 16px;"><span class="pill pill-success">Success</span></td>
-                      <td style="padding:11px 16px;font-size:12px;color:var(--text-secondary);">All records pushed</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
 
           </div><!-- /tab-simpro -->
-
-
-          <!-- ════════════════════════════
-               TEAM MEMBERS
-          ════════════════════════════ -->
-          <div class="settings-section" id="tab-team">
-
-            <div class="settings-panel">
-              <div class="settings-panel-head">
-                <div>
-                  <div class="settings-panel-title">Team Members</div>
-                  <div class="settings-panel-sub">Manage users and roles</div>
-                </div>
-                <button class="btn-primary" onclick="showToast('Invite sent', 'success')">+ Invite Member</button>
-              </div>
-              <div style="overflow-x:auto;">
-                <table class="member-table">
-                  <thead>
-                    <tr>
-                      <th>Member</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                      <th>Last Active</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div style="display:flex;align-items:center;gap:9px;">
-                          <span class="m-avatar av-teal">JD</span>
-                          <div>
-                            <div style="font-weight:600;">James Doyle</div>
-                            <div style="font-size:11px;color:var(--text-secondary);">Administrator</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-size:12px;color:var(--text-secondary);">james.doyle@exeloo.com</td>
-                      <td><span class="pill" style="background:rgba(8,93,106,.1);color:var(--theme);">Admin</span></td>
-                      <td><span class="pill pill-success">Active</span></td>
-                      <td style="font-size:12px;color:var(--text-secondary);">Now</td>
-                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;" disabled>You</button></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div style="display:flex;align-items:center;gap:9px;">
-                          <span class="m-avatar av-orange">MD</span>
-                          <div>
-                            <div style="font-weight:600;">Mike Donovan</div>
-                            <div style="font-size:11px;color:var(--text-secondary);">Senior Drafter</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-size:12px;color:var(--text-secondary);">m.donovan@exeloo.com</td>
-                      <td><span class="pill pill-blue">Reviewer</span></td>
-                      <td><span class="pill pill-success">Active</span></td>
-                      <td style="font-size:12px;color:var(--text-secondary);">2h ago</td>
-                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
-                          onclick="showToast('Edit Mike Donovan', 'info')">Edit</button></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div style="display:flex;align-items:center;gap:9px;">
-                          <span class="m-avatar av-teal">SL</span>
-                          <div>
-                            <div style="font-weight:600;">Sarah Lennox</div>
-                            <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-size:12px;color:var(--text-secondary);">s.lennox@exeloo.com</td>
-                      <td><span class="pill pill-gray">Drafter</span></td>
-                      <td><span class="pill pill-success">Active</span></td>
-                      <td style="font-size:12px;color:var(--text-secondary);">Today 8:45</td>
-                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
-                          onclick="showToast('Edit Sarah Lennox', 'info')">Edit</button></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div style="display:flex;align-items:center;gap:9px;">
-                          <span class="m-avatar av-purple">JM</span>
-                          <div>
-                            <div style="font-weight:600;">Jordan M.</div>
-                            <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-size:12px;color:var(--text-secondary);">jordan.m@exeloo.com</td>
-                      <td><span class="pill pill-gray">Drafter</span></td>
-                      <td><span class="pill pill-success">Active</span></td>
-                      <td style="font-size:12px;color:var(--text-secondary);">Yesterday</td>
-                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
-                          onclick="showToast('Edit Jordan M.', 'info')">Edit</button></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div style="display:flex;align-items:center;gap:9px;">
-                          <span class="m-avatar av-green">SK</span>
-                          <div>
-                            <div style="font-weight:600;">Sam K.</div>
-                            <div style="font-size:11px;color:var(--text-secondary);">Drafter</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-size:12px;color:var(--text-secondary);">sam.k@exeloo.com</td>
-                      <td><span class="pill pill-gray">Drafter</span></td>
-                      <td><span class="pill pill-success">Active</span></td>
-                      <td style="font-size:12px;color:var(--text-secondary);">May 5</td>
-                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
-                          onclick="showToast('Edit Sam K.', 'info')">Edit</button></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div style="display:flex;align-items:center;gap:9px;">
-                          <span class="m-avatar av-red">PR</span>
-                          <div>
-                            <div style="font-weight:600;">Priya R.</div>
-                            <div style="font-size:11px;color:var(--text-secondary);">Junior Drafter</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-size:12px;color:var(--text-secondary);">priya.r@exeloo.com</td>
-                      <td><span class="pill pill-gray">Drafter</span></td>
-                      <td><span class="pill pill-pending">Invited</span></td>
-                      <td style="font-size:12px;color:var(--text-secondary);">—</td>
-                      <td><button class="btn-ghost" style="padding:4px 10px;font-size:11px;"
-                          onclick="showToast('Resent invite to Priya R.', 'success')">Resend</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div><!-- /tab-team -->
-
+ 
 
           <!-- ════════════════════════════
                DRAWING DEFAULTS
@@ -719,7 +459,7 @@
                     <div class="field-hint">How new revisions are numbered</div>
                   </div>
                   <select class="field-select" style="max-width:200px;">
-                    <option>Rev 1, Rev 2, Rev 3…</option>
+                    <option>Rev A, Rev B, Rev C…</option>
                     <option>A, B, C…</option>
                     <option selected>v1.0, v1.1, v2.0…</option>
                   </select>
@@ -810,105 +550,11 @@
               </div>
             </div>
 
-            <div class="settings-panel">
-              <div class="settings-panel-head">
-                <div>
-                  <div class="settings-panel-title">Audit & Compliance</div>
-                  <div class="settings-panel-sub">Logging and data retention</div>
-                </div>
-              </div>
-              <div class="settings-panel-body pt-0">
-                <div class="toggle-row">
-                  <div class="toggle-info">
-                    <div class="toggle-title">Full audit logging</div>
-                    <div class="toggle-desc">Record every action taken by any user in the system</div>
-                  </div>
-                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                </div>
-                <div class="field-row">
-                  <div>
-                    <div class="field-label">Log retention period</div>
-                    <div class="field-hint">How long activity logs are kept before purging</div>
-                  </div>
-                  <select class="field-select" style="max-width:180px;">
-                    <option>30 days</option>
-                    <option>90 days</option>
-                    <option selected>1 year</option>
-                    <option>Indefinite</option>
-                  </select>
-                </div>
-                <div style="margin-top:10px;">
-                  <button class="btn-ghost" onclick="showToast('Audit log export started', 'info')"><i
-                      class="fa fa-download"></i> Export Audit Log</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="danger-zone">
-              <div class="danger-zone-title">⚠ Danger Zone</div>
-              <div class="danger-zone-desc">These actions are irreversible. Please be absolutely certain before
-                proceeding.</div>
-              <div style="display:flex;flex-wrap:wrap;gap:10px;">
-                <button class="btn btn-danger" onclick="showToast('All sessions terminated', 'warning')">Sign out all
-                  users</button>
-                <button class="btn btn-danger"
-                  onclick="showToast('Contact support to delete workspace', 'warning')">Delete
-                  Workspace</button>
-              </div>
-            </div>
+          
+ 
 
           </div><!-- /tab-security -->
-
-
-          <!-- ════════════════════════════
-               APPEARANCE
-          ════════════════════════════ -->
-          <div class="settings-section" id="tab-appearance">
-
-            <div class="settings-panel">
-              <div class="settings-panel-head">
-                <div>
-                  <div class="settings-panel-title">Logo &amp; Company Identity</div>
-                  <div class="settings-panel-sub">Shown in the sidebar and on exported reports</div>
-                </div>
-              </div>
-              <div class="settings-panel-body pt-0">
-                <div class="field-row">
-                  <div>
-                    <div class="field-label">Company Logo</div>
-                    <div class="field-hint">PNG or SVG, max 1 MB. Recommended: 160×40px</div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:12px;">
-                    <div
-                      style="width:100px;height:36px;border:1px dashed var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;background:var(--bg);">
-                      <img src="assets/logo.png" alt="" style="max-width:90px;max-height:30px;object-fit:contain;"
-                        onerror="this.style.display='none';this.nextSibling.style.display='block'">
-                      <span style="font-size:10px;color:var(--text-muted);display:none;">No logo</span>
-                    </div>
-                    <div class="position-relative">
-                      <input type="file" class="fileupload_input">
-                      <button class="btn-ghost" onclick="showToast('Upload logo dialog opened', 'info')">Change
-                        Logo</button>
-                    </div>
-
-                    <button class="btn-ghost" onclick="showToast('Logo removed', 'warning')">Remove</button>
-                  </div>
-                </div>
-                <div class="field-row">
-                  <div>
-                    <div class="field-label">Favicon</div>
-                    <div class="field-hint">32×32px ICO or PNG, shown in browser tab</div>
-                  </div>
-                  <div class="position-relative">
-                    <input type="file" class="fileupload_input">
-                    <button class="btn-ghost w-100" onclick="showToast('Upload favicon dialog opened', 'info')">Upload
-                      Favicon</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /tab-appearance -->
+ 
 
         </div><!-- /settings content -->
       </div><!-- /settings-layout -->

@@ -39,22 +39,20 @@
   <nav class="sidebar-nav">
     <a href="index.html" class="nav-item">
       <i class="fa fa-home"></i>
-      <span>Dashboard</span>
-      <span class="nav-badge">14</span>
+      <span>Dashboard</span> 
     </a>
     <a href="requests.html" class="nav-item">
       <i class="fa fa-address-book"></i>
-      <span>Requests</span>
+      <span>Drawing Requests</span>
       <span class="nav-badge">14</span>
     </a>
     <a href="files.html" class="nav-item">
       <i class="fa fa-file"></i>
-      <span>Drawings</span>
+      <span>Drawing Records</span>
     </a>
     <a href="approvals.html" class="nav-item active">
       <i class="fa fa-calendar"></i>
-      <span>Approvals</span>
-      <span class="nav-badge urgent">5</span>
+      <span>Drawing Approvals</span> 
     </a>
     <a href="simpro.html" class="nav-item">
       <i class="fa fa-calendar"></i>
@@ -62,7 +60,7 @@
     </a>
     <a href="parts.html" class="nav-item">
         <i class="fa fa-hourglass-half"></i>
-        <span>Parts</span>
+        <span>Parts Catalogue</span>
     </a>
     <a href="users.html" class="nav-item">
       <i class="fa fa-users"></i>
@@ -75,10 +73,7 @@
     </a>
     <div class="nav-divider"></div>
 
-    <a href="reports.html" class="nav-item">
-      <i class="fa fa-file-pdf-o"></i>
-        <span>Reports</span>
-    </a>
+   
     <a href="settings.html" class="nav-item">
       <i class="fa fa-cogs"></i>
       <span>Settings</span>
@@ -107,8 +102,8 @@
       <button class="mobile-menu-btn" id="mobileMenuBtn">
         <i class="fa fa-bars"></i>
       </button>
-      <h1 class="page-title">Approvals</h1>
-      <span class="page-subtitle">5 awaiting your action · 2 overdue · Last updated 3 min ago</span>
+      <h1 class="page-title">Drawing Approvals</h1>
+      <span class="page-subtitle">5 drawings awaiting review · 2 overdue revisions · Last updated 3 min ago</span>
     </div>
     <div class="topbar-right">
       <button class="btn-icon" title="Notifications">
@@ -121,8 +116,8 @@
         <span class="search-icon">⌕</span>
         <input class="search-input" placeholder="Search approvals…" type="text" oninput="searchApprovals(this.value)">
       </div>
-      <button class="btn-primary" onclick="openApproveAllModal()">
-        <i class="fa fa-check"></i> Approve (5)
+      <button class="btn-primary" onclick="openAssignReviewerModal()">
+        <i class="fa fa-check"></i> Assign Reviewer
       </button>
     </div>
   </header>
@@ -143,7 +138,7 @@
       <i class="fa fa-clock-o"></i>
       <div class="ap-alert-text">
         <strong>3 requests assigned to you are waiting</strong>
-        <span>Average wait time is 2.1 days — review and take action now.</span>
+        <span>Awaiting review action — review and take action now.</span>
       </div>
       <i class="fa fa-chevron-right" style="opacity:.5"></i>
     </div>
@@ -158,33 +153,33 @@
       </div>
       <div class="ap-stat s-approved" onclick="filterChip('approved')">
         <div class="ap-stat-val">23</div>
-        <div class="ap-stat-label">Approved (30d)</div>
-        <div class="ap-stat-sub">↑ 4 from last period</div>
+        <div class="ap-stat-label">Recently Approved</div>
+        <div class="ap-stat-sub"></div>
         <i class="fa fa-check-circle ap-stat-icon"></i>
       </div>
       <div class="ap-stat s-rework" onclick="filterChip('rework')">
         <div class="ap-stat-val">4</div>
-        <div class="ap-stat-label">Returned for Rework</div>
+        <div class="ap-stat-label">Requires Revision</div>
         <div class="ap-stat-sub">2 resubmitted</div>
         <i class="fa fa-undo ap-stat-icon"></i>
       </div>
       <div class="ap-stat s-overdue" onclick="filterChip('overdue')">
         <div class="ap-stat-val">2</div>
         <div class="ap-stat-label">Overdue</div>
-        <div class="ap-stat-sub">↑ 2 since yesterday</div>
+        <div class="ap-stat-sub">2 awaiting review action</div>
         <i class="fa fa-exclamation-circle ap-stat-icon"></i>
       </div>
     </div>
 
     <!-- ── MY APPROVAL QUEUE ── -->
     <div class="ap-section-header">
-      <div class="ap-section-title">My Approval Queue</div>
+      <div class="ap-section-title">My Review Queue</div>
       <div class="ap-section-right">
         <div class="ap-filter-row" style="margin:0">
           <button class="chip active"    id="chip-all"      onclick="filterChip('all')">All</button>
           <button class="chip"           id="chip-mine"     onclick="filterChip('mine')">Assigned to Me</button>
           <button class="chip"           id="chip-overdue"  onclick="filterChip('overdue')">Overdue</button>
-          <button class="chip"           id="chip-pending"  onclick="filterChip('pending')">Pending</button>
+          <button class="chip"           id="chip-pending"  onclick="filterChip('pending')">Awaiting Review</button>
           <button class="chip"           id="chip-rework"   onclick="filterChip('rework')">Rework</button>
           <button class="chip"           id="chip-approved" onclick="filterChip('approved')">Approved</button>
         </div>
@@ -202,8 +197,7 @@
       <i class="fa fa-check-square-o"></i>
       <span id="bulkCount">0 selected</span>
       <div class="bulk-actions">
-        <button class="btn-badge approve" onclick="bulkApprove()"><i class="fa fa-check"></i> Approve Selected</button>
-        <button class="btn-badge rework"  onclick="bulkRework()"><i class="fa fa-undo"></i> Send for Rework</button>
+         <button class="btn-badge rework"  onclick="bulkRework()"><i class="fa fa-undo"></i> Returned for Revision</button>
         <button class="btn-badge" onclick="clearBulk()"><i class="fa fa-times"></i> Clear</button>
       </div>
     </div>
@@ -219,15 +213,15 @@
         </div>
         <div class="ap-card-body">
           <div class="ap-card-top">
-            <span class="ap-req-id">#REQ-031</span>
+            <span class="ap-req-id">#DR-031</span>
             <span class="badge" style="background:rgba(240,68,56,.1);color:var(--red);font-size:9px;padding:2px 8px">OVERDUE</span>
             <span class="badge" style="background:rgba(240,68,56,.1);color:var(--red);font-size:9px;padding:2px 8px">URGENT</span>
           </div>
-          <div class="ap-card-title">Control Panel Layout — Rev 3</div>
+          <div class="ap-card-title">Control Panel Layout — Rev C</div>
           <div class="ap-card-meta">
             <div class="ap-meta-item"><i class="fa fa-user"></i> Submitted by <strong>Sarah Lennox</strong></div>
             <div class="ap-meta-item"><i class="fa fa-folder-o"></i> <strong>Electrical / Control Panels</strong></div>
-            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>v3.0</strong></div>
+            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>Rev C.0</strong></div>
             <div class="ap-meta-item"><i class="fa fa-tag"></i> Part <strong class="part-no">P-2031</strong></div>
           </div>
           <div class="ap-wf-mini">
@@ -245,7 +239,7 @@
             <button class="btn-ghost tbl-act-btn approve" onclick="event.stopPropagation();quickApprove('c1')"><i class="fa fa-check"></i> Approve</button>
             <button class="btn-ghost tbl-act-btn rework"  onclick="event.stopPropagation();quickRework('c1')"><i class="fa fa-undo"></i> Rework</button>
           </div>
-          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c1')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Full Review</button>
+          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c1')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Open Review</button>
         </div>
       </div>
 
@@ -257,14 +251,14 @@
         </div>
         <div class="ap-card-body">
           <div class="ap-card-top">
-            <span class="ap-req-id">#REQ-029</span>
+            <span class="ap-req-id">#DR-029</span>
             <span class="badge" style="background:rgba(240,68,56,.1);color:var(--red);font-size:9px;padding:2px 8px">OVERDUE</span>
           </div>
-          <div class="ap-card-title">Frame Weld Specification — Rev 2</div>
+          <div class="ap-card-title">Frame Weld Specification — Rev B</div>
           <div class="ap-card-meta">
             <div class="ap-meta-item"><i class="fa fa-user"></i> Submitted by <strong>James Doyle</strong></div>
             <div class="ap-meta-item"><i class="fa fa-folder-o"></i> <strong>Mechanical / Frame &amp; Structure</strong></div>
-            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>v2.1</strong></div>
+            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>Rev B.1</strong></div>
             <div class="ap-meta-item"><i class="fa fa-tag"></i> Part <strong class="part-no">P-2029</strong></div>
           </div>
           <div class="ap-wf-mini">
@@ -282,7 +276,7 @@
             <button class="btn-ghost tbl-act-btn approve" onclick="event.stopPropagation();quickApprove('c2')"><i class="fa fa-check"></i> Approve</button>
             <button class="btn-ghost tbl-act-btn rework"  onclick="event.stopPropagation();quickRework('c2')"><i class="fa fa-undo"></i> Rework</button>
           </div>
-          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c2')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Full Review</button>
+          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c2')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Open Review</button>
         </div>
       </div>
 
@@ -294,14 +288,14 @@
         </div>
         <div class="ap-card-body">
           <div class="ap-card-top">
-            <span class="ap-req-id">#REQ-034</span>
+            <span class="ap-req-id">#DR-034</span>
             <span class="badge" style="background:var(--orange-light);color:var(--orange);font-size:9px;padding:2px 8px">TODAY</span>
           </div>
-          <div class="ap-card-title">Safety Valve Drawing — Rev 2</div>
+          <div class="ap-card-title">Safety Valve Drawing — Rev B</div>
           <div class="ap-card-meta">
             <div class="ap-meta-item"><i class="fa fa-user"></i> Submitted by <strong>Tom Kovacs</strong></div>
             <div class="ap-meta-item"><i class="fa fa-folder-o"></i> <strong>Mechanical / Pump Assemblies</strong></div>
-            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>v2.0</strong></div>
+            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>Rev B.0</strong></div>
             <div class="ap-meta-item"><i class="fa fa-tag"></i> Part <strong class="part-no">P-2034</strong></div>
           </div>
           <div class="ap-wf-mini">
@@ -319,7 +313,7 @@
             <button class="btn-ghost tbl-act-btn approve" onclick="event.stopPropagation();quickApprove('c3')"><i class="fa fa-check"></i> Approve</button>
             <button class="btn-ghost tbl-act-btn rework"  onclick="event.stopPropagation();quickRework('c3')"><i class="fa fa-undo"></i> Rework</button>
           </div>
-          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c3')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Full Review</button>
+          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c3')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Open Review</button>
         </div>
       </div>
 
@@ -331,13 +325,13 @@
         </div>
         <div class="ap-card-body">
           <div class="ap-card-top">
-            <span class="ap-req-id">#REQ-038</span>
+            <span class="ap-req-id">#DR-038</span>
           </div>
           <div class="ap-card-title">Pipe Layout Rev C — Engineering Submission</div>
           <div class="ap-card-meta">
             <div class="ap-meta-item"><i class="fa fa-user"></i> Submitted by <strong>Sarah Lennox</strong></div>
             <div class="ap-meta-item"><i class="fa fa-folder-o"></i> <strong>Mechanical / Pipe Layouts</strong></div>
-            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>v1.2</strong></div>
+            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>Rev A.2</strong></div>
             <div class="ap-meta-item"><i class="fa fa-tag"></i> Part <strong class="part-no">P-2043</strong></div>
           </div>
           <div class="ap-wf-mini">
@@ -355,7 +349,7 @@
             <button class="btn-ghost tbl-act-btn approve" onclick="event.stopPropagation();quickApprove('c4')"><i class="fa fa-check"></i> Approve</button>
             <button class="btn-ghost tbl-act-btn rework"  onclick="event.stopPropagation();quickRework('c4')"><i class="fa fa-undo"></i> Rework</button>
           </div>
-          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c4')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Full Review</button>
+          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c4')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Open Review</button>
         </div>
       </div>
 
@@ -367,13 +361,13 @@
         </div>
         <div class="ap-card-body">
           <div class="ap-card-top">
-            <span class="ap-req-id">#REQ-036</span>
+            <span class="ap-req-id">#DR-036</span>
           </div>
           <div class="ap-card-title">Motor Housing Drawing — Initial Submission</div>
           <div class="ap-card-meta">
             <div class="ap-meta-item"><i class="fa fa-user"></i> Submitted by <strong>Mike Donovan</strong></div>
             <div class="ap-meta-item"><i class="fa fa-folder-o"></i> <strong>Mechanical / Pump Assemblies</strong></div>
-            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>v1.0</strong></div>
+            <div class="ap-meta-item"><i class="fa fa-code-fork"></i> Version <strong>Rev A.0</strong></div>
             <div class="ap-meta-item"><i class="fa fa-tag"></i> Part <strong class="part-no">P-2042</strong></div>
           </div>
           <div class="ap-wf-mini">
@@ -391,7 +385,7 @@
             <button class="btn-ghost tbl-act-btn approve" onclick="event.stopPropagation();quickApprove('c5')"><i class="fa fa-check"></i> Approve</button>
             <button class="btn-ghost tbl-act-btn rework"  onclick="event.stopPropagation();quickRework('c5')"><i class="fa fa-undo"></i> Rework</button>
           </div>
-          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c5')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Full Review</button>
+          <button class="btn-ghost tbl-act-btn" onclick="event.stopPropagation();openDetail('c5')" style="width:100%;text-align:center"><i class="fa fa-expand"></i> Open Review</button>
         </div>
       </div>
 
@@ -401,14 +395,14 @@
     <!-- ── ALL APPROVALS TABLE ── -->
     <div class="ap-table-wrap">
       <div class="ap-table-header">
-        <div class="ap-table-title">All Approval Records</div>
+        <div class="ap-table-title">Approval History</div>
         <div class="ap-table-controls">
           <select class="filter-select" onchange="showToast('Filter: '+this.value,'info')">
             <option>All Statuses</option>
-            <option>Pending</option>
+            <option>Awaiting Review</option>
             <option>Approved</option>
             <option>Rework</option>
-            <option>Rejected</option>
+            <option>Returned</option>
           </select>
           <select class="filter-select" onchange="showToast('Filter: '+this.value,'info')">
             <option>All Assignees</option>
@@ -440,8 +434,8 @@
 
             <tr class="overdue-row" onclick="openDetail('c1')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-031</td>
-              <td style="font-weight:600;color:var(--text);min-width:200px">Control Panel Layout Rev 3</td>
+              <td class="req-id">#DR-031</td>
+              <td style="font-weight:600;color:var(--text);min-width:200px">Control Panel Layout Rev C</td>
               <td><div class="asn-chip"><div class="asn-av av-blue">SL</div> Sarah Lennox</div></td>
               <td><div class="asn-chip"><div class="asn-av av-orange">MD</div> Mike Donovan</div></td>
               <td><span class="badge" style="background:var(--red-light);color:var(--red)"><span class="badge-dot" style="background:var(--red)"></span>Overdue</span></td>
@@ -458,8 +452,8 @@
 
             <tr class="overdue-row" onclick="openDetail('c2')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-029</td>
-              <td style="font-weight:600;color:var(--text);min-width:200px">Frame Weld Specification Rev 2</td>
+              <td class="req-id">#DR-029</td>
+              <td style="font-weight:600;color:var(--text);min-width:200px">Frame Weld Specification Rev B</td>
               <td><div class="asn-chip"><div class="asn-av av-theme">JD</div> James Doyle</div></td>
               <td><div class="asn-chip"><div class="asn-av av-theme">JD</div> James Doyle</div></td>
               <td><span class="badge" style="background:var(--red-light);color:var(--red)"><span class="badge-dot" style="background:var(--red)"></span>Overdue</span></td>
@@ -476,11 +470,11 @@
 
             <tr onclick="openDetail('c3')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-034</td>
-              <td style="font-weight:600;color:var(--text)">Safety Valve Drawing Rev 2</td>
+              <td class="req-id">#DR-034</td>
+              <td style="font-weight:600;color:var(--text)">Safety Valve Drawing Rev B</td>
               <td><div class="asn-chip"><div class="asn-av av-green">TK</div> Tom Kovacs</div></td>
               <td><div class="asn-chip"><div class="asn-av av-theme">JD</div> James Doyle</div></td>
-              <td><span class="badge" style="background:var(--orange-light);color:var(--orange)"><span class="badge-dot" style="background:var(--orange)"></span>Pending</span></td>
+              <td><span class="badge" style="background:var(--orange-light);color:var(--orange)"><span class="badge-dot" style="background:var(--orange)"></span>Awaiting Review</span></td>
               <td class="part-no">P-2034</td>
               <td class="due-cell today">May 01</td>
               <td>
@@ -494,11 +488,11 @@
 
             <tr onclick="openDetail('c4')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-038</td>
+              <td class="req-id">#DR-038</td>
               <td style="font-weight:600;color:var(--text)">Pipe Layout Rev C</td>
               <td><div class="asn-chip"><div class="asn-av av-blue">SL</div> Sarah Lennox</div></td>
               <td><div class="asn-chip"><div class="asn-av av-theme">JD</div> James Doyle</div></td>
-              <td><span class="badge" style="background:var(--orange-light);color:var(--orange)"><span class="badge-dot" style="background:var(--orange)"></span>Pending</span></td>
+              <td><span class="badge" style="background:var(--orange-light);color:var(--orange)"><span class="badge-dot" style="background:var(--orange)"></span>Awaiting Review</span></td>
               <td class="part-no">P-2043</td>
               <td class="due-cell soon">May 03</td>
               <td>
@@ -512,11 +506,11 @@
 
             <tr onclick="openDetail('c5')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-036</td>
+              <td class="req-id">#DR-036</td>
               <td style="font-weight:600;color:var(--text)">Motor Housing Drawing</td>
               <td><div class="asn-chip"><div class="asn-av av-orange">MD</div> Mike Donovan</div></td>
               <td><div class="asn-chip"><div class="asn-av av-theme">JD</div> James Doyle</div></td>
-              <td><span class="badge" style="background:var(--orange-light);color:var(--orange)"><span class="badge-dot" style="background:var(--orange)"></span>Pending</span></td>
+              <td><span class="badge" style="background:var(--orange-light);color:var(--orange)"><span class="badge-dot" style="background:var(--orange)"></span>Awaiting Review</span></td>
               <td class="part-no">P-2042</td>
               <td class="due-cell soon">May 05</td>
               <td>
@@ -530,7 +524,7 @@
 
             <tr onclick="showToast('Opening REQ-027…','info')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-027</td>
+              <td class="req-id">#DR-027</td>
               <td style="font-weight:600;color:var(--text);opacity:.7">Gearbox Assembly Final</td>
               <td><div class="asn-chip"><div class="asn-av av-green">TK</div> Tom Kovacs</div></td>
               <td><div class="asn-chip"><div class="asn-av av-green">TK</div> Tom Kovacs</div></td>
@@ -547,7 +541,7 @@
 
             <tr onclick="showToast('Opening REQ-030…','info')">
               <td onclick="event.stopPropagation()"><input type="checkbox" onchange="tblChk(this)"></td>
-              <td class="req-id">#REQ-030</td>
+              <td class="req-id">#DR-030</td>
               <td style="font-weight:600;color:var(--text);opacity:.7">Inlet Pipe Diagram</td>
               <td><div class="asn-chip"><div class="asn-av av-blue">SL</div> Sarah Lennox</div></td>
               <td><div class="asn-chip"><div class="asn-av av-orange">MD</div> Mike Donovan</div></td>
@@ -589,8 +583,8 @@
 
     <div class="dp-header">
       <div class="dp-header-body">
-        <div class="dp-req-id" id="dpReqId">#REQ-031</div>
-        <div class="dp-title"  id="dpTitle">Control Panel Layout — Rev 3</div>
+        <div class="dp-req-id" id="dpReqId">#DR-031</div>
+        <div class="dp-title"  id="dpTitle">Control Panel Layout — Rev C</div>
       </div>
       <button class="dp-close" onclick="closeDetail()">✕</button>
     </div>
@@ -668,7 +662,7 @@
           </div>
           <div class="dp-meta-item">
             <div class="dp-meta-key">Version</div>
-            <div class="dp-meta-val">v3.0 (current)</div>
+            <div class="dp-meta-val">Rev C.0 (current)</div>
           </div>
           <div class="dp-meta-item">
             <div class="dp-meta-key">simPRO</div>
@@ -682,7 +676,7 @@
 
         <div style="margin-bottom:12px">
           <div class="approval-note-label" style="margin-bottom:7px">Description</div>
-          <div class="approval-note">Control Panel layout drawing for the new production line unit. Includes terminal block positions, cable routing, and earthing points. Rev 3 corrects dimensional discrepancy noted in Rev 2 review.</div>
+          <div class="approval-note">Control Panel layout drawing for the new production line unit. Includes terminal block positions, cable routing, and earthing points. Rev C corrects dimensional discrepancy noted in Rev B review.</div>
         </div>
 
         <div style="margin-bottom:12px">
@@ -700,7 +694,7 @@
           <div class="dp-file-icon fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
           <div class="dp-file-info">
             <div class="dp-file-name">ControlPanel_Layout_v3.pdf</div>
-            <div class="dp-file-meta">Rev 3 · Uploaded May 01 · 1.9 MB · <strong style="color:var(--theme)">Current</strong></div>
+            <div class="dp-file-meta">Rev C · Uploaded May 01 · 1.9 MB · <strong style="color:var(--theme)">Current</strong></div>
           </div>
           <div class="dp-file-acts">
             <button class="btn-badge view" onclick="showToast('Opening file…','info')">View</button>
@@ -711,7 +705,7 @@
           <div class="dp-file-icon fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
           <div class="dp-file-info">
             <div class="dp-file-name">ControlPanel_Layout_v2.pdf</div>
-            <div class="dp-file-meta">Rev 2 · Uploaded Apr 28 · 1.7 MB</div>
+            <div class="dp-file-meta">Rev B · Uploaded Apr 28 · 1.7 MB</div>
           </div>
           <div class="dp-file-acts">
             <button class="btn-badge" onclick="showToast('Opening v2…','info')">View</button>
@@ -721,7 +715,7 @@
           <div class="dp-file-icon fi-pdf"><i class="fa fa-file-pdf-o"></i></div>
           <div class="dp-file-info">
             <div class="dp-file-name">ControlPanel_Layout_v1.pdf</div>
-            <div class="dp-file-meta">Rev 1 · Uploaded Apr 25 · 1.5 MB</div>
+            <div class="dp-file-meta">Rev A · Uploaded Apr 25 · 1.5 MB</div>
           </div>
           <div class="dp-file-acts">
             <button class="btn-badge" onclick="showToast('Opening v1…','info')">View</button>
@@ -759,7 +753,7 @@
           <div class="dp-c-av" style="background:var(--purple)">JD</div>
           <div class="dp-c-body">
             <span class="dp-c-author">James Doyle <span class="dp-c-time">May 01 · 9:10am</span></span>
-            <div class="dp-c-text">Rev 3 uploaded — Section C corrected. Tolerance now ±0.5mm. Mike please review and approve at your earliest.</div>
+            <div class="dp-c-text">Rev C uploaded — Section C corrected. Tolerance now ±0.5mm. Mike please review and approve at your earliest.</div>
           </div>
         </div>
         <div class="dp-c-input-row">
@@ -775,7 +769,7 @@
           <div class="dp-tl-item">
             <div class="dp-tl-dot orange"><i class="fa fa-eye"></i></div>
             <div class="dp-tl-time">May 01, 2026 · 8:45am</div>
-            <div class="dp-tl-event">Rev 3 submitted for review</div>
+            <div class="dp-tl-event">Rev C submitted for review</div>
             <div class="dp-tl-note">Sarah Lennox uploaded ControlPanel_Layout_v3.pdf</div>
           </div>
           <div class="dp-tl-item">
@@ -787,20 +781,20 @@
           <div class="dp-tl-item">
             <div class="dp-tl-dot blue"><i class="fa fa-eye"></i></div>
             <div class="dp-tl-time">Apr 28, 2026 · 3:30pm</div>
-            <div class="dp-tl-event">Rev 2 submitted for review</div>
+            <div class="dp-tl-event">Rev B submitted for review</div>
             <div class="dp-tl-note">Sarah Lennox uploaded ControlPanel_Layout_v2.pdf</div>
           </div>
           <div class="dp-tl-item">
             <div class="dp-tl-dot blue"><i class="fa fa-paper-plane"></i></div>
             <div class="dp-tl-time">Apr 25, 2026 · 11:00am</div>
-            <div class="dp-tl-event">Initial submission by James Doyle</div>
+            <div class="dp-tl-event">Initial Drawing Submission by James Doyle</div>
             <div class="dp-tl-note">Request created and assigned to Mike Donovan for review.</div>
           </div>
           <div class="dp-tl-item">
             <div class="dp-tl-dot" style="background:var(--border-dark)"><i class="fa fa-plus" style="color:var(--text-muted)"></i></div>
             <div class="dp-tl-time">Apr 24, 2026 · 4:00pm</div>
-            <div class="dp-tl-event">Request created as Draft</div>
-            <div class="dp-tl-note">James Doyle created #REQ-031 Control Panel Layout.</div>
+            <div class="dp-tl-event">Drawing Revision Created</div>
+            <div class="dp-tl-note">James Doyle created #DR-031 Control Panel Layout.</div>
           </div>
         </div>
       </div>
@@ -812,12 +806,12 @@
       <div class="dp-decision-label">Make a Decision</div>
       <div class="dp-decision-row">
         <button class="dp-dec-btn dec-approve" onclick="approveFromPanel()"><i class="fa fa-check"></i> Approve</button>
-        <button class="dp-dec-btn dec-rework"  onclick="reworkFromPanel()"><i class="fa fa-undo"></i> Send for Rework</button>
-        <button class="dp-dec-btn dec-reject"  onclick="rejectFromPanel()"><i class="fa fa-times"></i> Reject</button>
+        <button class="dp-dec-btn dec-rework"  onclick="reworkFromPanel()"><i class="fa fa-undo"></i> Returned for Revision</button>
+        <button class="dp-dec-btn dec-reject"  onclick="rejectFromPanel()"><i class="fa fa-times"></i> Revision Required</button>
       </div>
       <div class="dp-note-row">
         <input class="dp-note-input" type="text" placeholder="Add decision note (optional)…" id="decisionNote">
-        <button class="dp-dec-btn dec-forward" style="max-width:140px" onclick="forwardApproval()"><i class="fa fa-forward"></i> Forward</button>
+        <button class="dp-dec-btn dec-forward" style="max-width:140px" onclick="forwardApproval()"><i class="fa fa-forward"></i> Assign Reviewer</button>
       </div>
     </div>
 
@@ -832,7 +826,7 @@
   <div class="modal" onclick="event.stopPropagation()" style="max-width:480px;min-width:440px">
     <div class="modal-header p-0 m-0" style="padding-bottom:15px;border-bottom:1px solid var(--border);margin-bottom:20px">
       <span class="modal-title" style="font-size:16px;font-weight:700;color:var(--text)">
-        <i class="fa fa-check-circle" style="color:var(--green);margin-right:8px"></i>Approve All Pending
+        <i class="fa fa-check-circle" style="color:var(--green);margin-right:8px"></i>Assign Reviewer
       </span>
       <button class="modal-close" onclick="closeApproveAllModal()" style="font-size:20px;background:none;border:none;cursor:pointer;color:var(--text-dim)">✕</button>
     </div>
@@ -842,22 +836,22 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
       <div class="task-row">
-        <div class="task-title">#REQ-031 Control Panel Layout Rev 3</div>
+        <div class="task-title">#DR-031 Control Panel Layout Rev C</div>
         <span class="badge" style="background:var(--red-light);color:var(--red);font-size:9px">OVERDUE</span>
       </div>
       <div class="task-row">
-        <div class="task-title">#REQ-029 Frame Weld Specification Rev 2</div>
+        <div class="task-title">#DR-029 Frame Weld Specification Rev B</div>
         <span class="badge" style="background:var(--red-light);color:var(--red);font-size:9px">OVERDUE</span>
       </div>
       <div class="task-row">
-        <div class="task-title">#REQ-034 Safety Valve Drawing Rev 2</div>
+        <div class="task-title">#DR-034 Safety Valve Drawing Rev B</div>
         <span class="badge" style="background:var(--orange-light);color:var(--orange);font-size:9px">TODAY</span>
       </div>
       <div class="task-row">
-        <div class="task-title">#REQ-038 Pipe Layout Rev C</div>
+        <div class="task-title">#DR-038 Pipe Layout Rev C</div>
       </div>
       <div class="task-row">
-        <div class="task-title">#REQ-036 Motor Housing Drawing</div>
+        <div class="task-title">#DR-036 Motor Housing Drawing</div>
       </div>
     </div>
     <div class="form-group">
@@ -866,7 +860,7 @@
     </div>
     <div class="modal-actions">
       <button class="btn-ghost" onclick="closeApproveAllModal()">Cancel</button>
-      <button class="btn-primary" onclick="confirmApproveAll()" style="background:var(--green)"><i class="fa fa-check"></i> Confirm Approve All</button>
+      <button class="btn-primary" onclick="confirmApproveAll()" style="background:var(--green)"><i class="fa fa-check"></i> Assign Reviewer</button>
     </div>
   </div>
 </div>
@@ -944,7 +938,7 @@ function quickApprove(id) {
     const btns = card.querySelector('.ap-card-btns');
     if (btns) btns.innerHTML = '<span style="font-size:12px;color:var(--green);font-weight:700"><i class="fa fa-check-circle"></i> Approved</span>';
     const timeBadge = card.querySelector('.ap-time-badge');
-    if (timeBadge) { timeBadge.className = 'ap-time-badge'; timeBadge.textContent = 'Approved just now'; }
+    if (timeBadge) { timeBadge.className = 'ap-time-badge'; timeBadge.textContent = 'Released for Production'; }
   }
   showToast('✓ ' + id.toUpperCase() + ' approved successfully', 'success');
 }
@@ -1001,11 +995,11 @@ function bulkRework() {
 
 /* ── Detail panel ── */
 const DETAIL_DATA = {
-  c1: { reqId: '#REQ-031', title: 'Control Panel Layout — Rev 3' },
-  c2: { reqId: '#REQ-029', title: 'Frame Weld Specification — Rev 2' },
-  c3: { reqId: '#REQ-034', title: 'Safety Valve Drawing — Rev 2' },
-  c4: { reqId: '#REQ-038', title: 'Pipe Layout Rev C' },
-  c5: { reqId: '#REQ-036', title: 'Motor Housing Drawing' },
+  c1: { reqId: '#DR-031', title: 'Control Panel Layout — Rev C' },
+  c2: { reqId: '#DR-029', title: 'Frame Weld Specification — Rev B' },
+  c3: { reqId: '#DR-034', title: 'Safety Valve Drawing — Rev B' },
+  c4: { reqId: '#DR-038', title: 'Pipe Layout Rev C' },
+  c5: { reqId: '#DR-036', title: 'Motor Housing Drawing' },
 };
 
 let _curDetail = null;
@@ -1046,13 +1040,13 @@ function reworkFromPanel() {
   closeDetail();
 }
 function rejectFromPanel() {
-  if (confirm('Reject this request? This cannot be undone.')) {
+  if (confirm('Return this request? This cannot be undone.')) {
     showToast('✕ Request rejected', 'warning');
     closeDetail();
   }
 }
 function forwardApproval() {
-  showToast('Forwarded to next approver', 'info');
+  showToast('Escalated to next approver', 'info');
   closeDetail();
 }
 
@@ -1065,7 +1059,7 @@ function addComment() {
 }
 
 /* ── Approve All modal ── */
-function openApproveAllModal()  { document.getElementById('approveAllModal').classList.add('open'); }
+function openAssignReviewerModal()  { document.getElementById('approveAllModal').classList.add('open'); }
 function closeApproveAllModal() { document.getElementById('approveAllModal').classList.remove('open'); }
 function confirmApproveAll() {
   showToast('✓ All 5 requests approved successfully', 'success');

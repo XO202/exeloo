@@ -32,46 +32,41 @@
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item active">
         <i class="fa fa-home"></i>
-        <span>Dashboard</span>
-        <span class="nav-badge">14</span>
+        <span>Dashboard</span> 
       </a>
       <a href="requests.html" class="nav-item">
         <i class="fa fa-address-book"></i>
-        <span>Requests</span>
+        <span>Drawing Requests</span>
         <span class="nav-badge">14</span>
       </a>
       <a href="files.html" class="nav-item">
         <i class="fa fa-file"></i>
-        <span>Drawings</span>
+        <span>Drawing Records</span>
       </a>
       <a href="approvals.html" class="nav-item">
         <i class="fa fa-calendar"></i>
-        <span>Approvals</span>
-        <span class="nav-badge urgent">5</span>
+        <span>Drawing Approvals</span> 
       </a>
       <a href="simpro.html" class="nav-item">
         <i class="fa fa-calendar"></i>
         <span>simPRO Sync</span>
       </a>
       <a href="parts.html" class="nav-item">
-        <i class="fa fa-hourglass-half"></i>
-        <span>Parts</span>
+          <i class="fa fa-hourglass-half"></i>
+          <span>Parts Catalogue</span>
       </a>
       <a href="users.html" class="nav-item">
         <i class="fa fa-users"></i>
         <span>Team</span>
       </a>
-
+  
       <a href="role.html" class="nav-item">
         <i class="fa fa-user-secret"></i>
         <span>Role</span>
       </a>
       <div class="nav-divider"></div>
-
-      <a href="reports.html" class="nav-item">
-        <i class="fa fa-file-pdf-o"></i>
-        <span>Reports</span>
-      </a>
+  
+     
       <a href="settings.html" class="nav-item">
         <i class="fa fa-cogs"></i>
         <span>Settings</span>
@@ -95,7 +90,7 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn">
           <i class="fa fa-bars"></i>
         </button>
-        <h1 class="page-title">Business Overview</h1>
+        <h1 class="page-title">Workflow Overview</h1>
         <span class="page-subtitle">Last updated: 2 minutes ago</span>
       </div>
       <div class="topbar-right">
@@ -108,7 +103,7 @@
         </button>
         <div class="search-wrap">
           <span class="search-icon">⌕</span>
-          <input class="search-input" id="search-input" placeholder="Search by part number, request, or drawing…"
+          <input class="search-input" id="search-input" placeholder="Search by Request ID, Part Number or Drawing Description"
             type="text">
         </div>
         <button class="btn-primary" id="new-req-btn">+ New Request</button>
@@ -122,7 +117,7 @@
         <div class="alert-card urgent clickable" onclick="openModal('alert-overdue')">
           <div class="alert-icon">⚠️</div>
           <div class="alert-body">
-            <strong>5 requests overdue</strong>
+            <strong>5 requests pending review</strong>
             <span>Awaiting action for 3+ days — click to review</span>
           </div>
           <svg class="alert-arrow" viewBox="0 0 20 20" fill="currentColor">
@@ -134,7 +129,7 @@
         <div class="alert-card warning clickable" onclick="openModal('alert-sync')">
           <div class="alert-icon">🔄</div>
           <div class="alert-body">
-            <strong>3 simPRO sync failures</strong>
+            <strong>3 sync issues detected</strong>
             <span>Part numbers failed to push — retry available</span>
           </div>
           <svg class="alert-arrow" viewBox="0 0 20 20" fill="currentColor">
@@ -166,7 +161,7 @@
                 <!-- LEFT: BAR CHART -->
                 <div class="col-md-8 analytics-card large border-right">
 
-                  <h5 class="panel-title panel-header p-0 pb-3 mb-0">Requests by Stage</h5>
+                  <h5 class="panel-title panel-header p-0 pb-3 mb-0">Workflow Status</h5>
                   <canvas id="stageChart"></canvas>
                 </div>
 
@@ -177,8 +172,7 @@
                   <div class="donut-wrap">
                     <canvas id="syncChart"></canvas>
                     <div class="donut-center">
-                      <span>Total</span>
-                      <strong>23</strong>
+                      <span>Sync Health</span> 
                     </div>
                   </div>
 
@@ -194,7 +188,7 @@
           <!-- RIGHT: STATUS LIST -->
           <div class="col-md-4">
             <div class="panel analytics-card">
-              <h5 class="panel-title panel-header p-0 pb-3 mb-0">Request Status</h5>
+              <h5 class="panel-title panel-header p-0 pb-3 mb-0">Current Workflow Queue</h5>
 
               <div class="status-row">
                 <div class="status-left">
@@ -356,7 +350,7 @@
             <div class="stage-top">
               <span class="stage-label">In Review</span>
               <span class="stage-count">5</span>
-              <span class="stuck-badge">2 Stuck</span>
+              <span class="stuck-badge">2 Awaiting Review</span>
             </div>
             <div class="stage-bar">
               <div class="stage-fill review" style="width:33%"></div>
@@ -367,6 +361,7 @@
                 <span class="item-name">Control Panel Layout</span>
                 <span class="item-owner stuck-owner">⏱ 4d</span>
               </div>
+              
               <div class="stage-item stuck-item">
                 <span class="item-id">#REQ-029</span>
                 <span class="item-name">Frame Weld Spec</span>
@@ -463,25 +458,20 @@
           <div class="stat-accent-bar"></div>
           <span class="metric-value">45</span>
           <span class="metric-label">Total Active Requests</span>
-          <span class="metric-delta positive">↑ 3 this week</span>
+          <span class="metric-delta positive"> Active workflow items</span>
         </div>
         <div class="stat-card metric-card clickable" onclick="openModal('metric-overdue')">
           <div class="stat-accent-bar" style="background:#F5A623"></div>
           <span class="metric-value red">5</span>
           <span class="metric-label">Overdue</span>
-          <span class="metric-delta negative">↑ 2 from last week</span>
+          <span class="metric-delta negative">Requires attention</span>
         </div>
-        <div class="stat-card metric-card clickable" onclick="openModal('metric-avgtime')">
-          <div class="stat-accent-bar" style="background:#4A9EFF"></div>
-          <span class="metric-value">3.2d</span>
-          <span class="metric-label">Avg. Approval Time</span>
-          <span class="metric-delta positive">↓ 0.4d improvement</span>
-        </div>
+        
         <div class="stat-card metric-card clickable" onclick="openModal('metric-completed')">
           <div class="stat-accent-bar" style="background:#E74C3C"></div>
           <span class="metric-value">23</span>
-          <span class="metric-label">Completed (30 days)</span>
-          <span class="metric-delta positive">↑ 5 from prior period</span>
+          <span class="metric-label">Recently Approved</span>
+          <span class="metric-delta positive">Latest approved revisions</span>
         </div>
         <div class="stat-card metric-card clickable" onclick="openModal('metric-sync')">
           <div class="stat-accent-bar" style="background:#A78BFA"></div>
@@ -511,10 +501,7 @@
                   <span class="action-meta">Waiting on: <strong>Mike D.</strong> · 4 days</span>
                 </div>
                 <div class="action-buttons">
-                  <button class="btn-badge approve"
-                    onclick="event.stopPropagation(); doApprove('REQ-031')">Approve</button>
-                  <button class="btn-badge rework"
-                    onclick="event.stopPropagation(); doRework('REQ-031')">Rework</button>
+                  <button class="btn-badge view" onclick="event.stopPropagation(); openRequest('REQ-030')">View</button>
                 </div>
               </div>
               <div class="action-item clickable" onclick="openRequest('REQ-029')">
@@ -525,24 +512,20 @@
                   <span class="action-meta">Waiting on: <strong>You</strong> · 3 days</span>
                 </div>
                 <div class="action-buttons">
-                  <button class="btn-badge approve"
-                    onclick="event.stopPropagation(); doApprove('REQ-029')">Approve</button>
-                  <button class="btn-badge rework"
-                    onclick="event.stopPropagation(); doRework('REQ-029')">Rework</button>
+                  <button class="btn-badge view" onclick="event.stopPropagation(); openRequest('REQ-030')">View</button>
                 </div>
               </div>
               <div class="action-item clickable" onclick="openRequest('REQ-034')">
                 <div class="action-status submitted">Submitted</div>
                 <div class="action-detail">
                   <span class="action-id">#REQ-034 · P-2031 </span>
-                  <span class="action-name">Safety Valve Drawing Rev 2</span>
+                  <span class="action-name">Safety Valve Drawing <small class="revision-badge">
+                    Rev 2 - Current Approved Revision
+                  </small></span>
                   <span class="action-meta">Submitted by: <strong>Tom K.</strong> · Today</span>
                 </div>
                 <div class="action-buttons">
-                  <button class="btn-badge approve"
-                    onclick="event.stopPropagation(); doApprove('REQ-034')">Approve</button>
-                  <button class="btn-badge rework"
-                    onclick="event.stopPropagation(); doRework('REQ-034')">Rework</button>
+                  <button class="btn-badge view" onclick="event.stopPropagation(); openRequest('REQ-030')">View</button>
                 </div>
               </div>
               <div class="action-item clickable" onclick="openRequest('REQ-030')">
@@ -560,14 +543,14 @@
                 <div class="action-status submitted">Submitted</div>
                 <div class="action-detail">
                   <span class="action-id">#REQ-034 · P-2031 </span>
-                  <span class="action-name">Safety Valve Drawing Rev 2</span>
+                  <span class="action-name">Safety Valve Drawing <small class="revision-badge">
+                    Rev 2 - Current Approved Revision
+                  </small>
+                  </span>
                   <span class="action-meta">Submitted by: <strong>Tom K.</strong> · Today</span>
                 </div>
                 <div class="action-buttons">
-                  <button class="btn-badge approve"
-                    onclick="event.stopPropagation(); doApprove('REQ-034')">Approve</button>
-                  <button class="btn-badge rework"
-                    onclick="event.stopPropagation(); doRework('REQ-034')">Rework</button>
+                  <button class="btn-badge view" onclick="event.stopPropagation(); openRequest('REQ-030')">View</button>
                 </div>
               </div>
               <div class="action-item clickable" onclick="openRequest('REQ-038')">
@@ -578,8 +561,7 @@
                   <span class="action-meta">Created by: <strong>James D.</strong> · 2 days ago</span>
                 </div>
                 <div class="action-buttons">
-                  <button class="btn-badge view"
-                    onclick="event.stopPropagation(); openRequest('REQ-038')">Submit</button>
+                  <button class="btn-badge view" onclick="event.stopPropagation(); openRequest('REQ-030')">View</button>
                 </div>
               </div>
 
@@ -601,7 +583,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>Tom K.</strong> approved <a href="#">#REQ-027 Gearbox
                         Assembly</a></span>
-                    <span class="activity-time">10 min ago</span>
+                    <span class="activity-time">Today</span>
                   </div>
                   <span class="activity-tag approved-tag">Approved</span>
                 </div>
@@ -610,7 +592,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>Mike D.</strong> sent <a href="#">#REQ-030 Inlet Pipe</a> for
                       rework</span>
-                    <span class="activity-time">1 hr ago</span>
+                    <span class="activity-time">Yesterday</span>
                   </div>
                   <span class="activity-tag rework-tag">Rework</span>
                 </div>
@@ -619,7 +601,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>Sarah L.</strong> uploaded Rev 3 to <a href="#">#REQ-041 Pump
                         Assembly</a></span>
-                    <span class="activity-time">2 hr ago</span>
+                    <span class="activity-time">Yesterday</span>
                   </div>
                   <span class="activity-tag draft-tag">Draft</span>
                 </div>
@@ -628,7 +610,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>James D.</strong> created <a href="#">#REQ-041 Pump Assembly
                         v2</a></span>
-                    <span class="activity-time">3 hr ago</span>
+                    <span class="activity-time">Today</span>
                   </div>
                   <span class="activity-tag draft-tag">New</span>
                 </div>
@@ -637,7 +619,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>simPRO</strong> synced part #P-2041 for <a
                         href="#">#REQ-025</a></span>
-                    <span class="activity-time">5 hr ago</span>
+                    <span class="activity-time">Yesterday</span>
                   </div>
                   <span class="activity-tag sync-tag">Synced</span>
                 </div>
@@ -646,7 +628,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>Sarah L.</strong> uploaded Rev 3 to <a href="#">#REQ-041 Pump
                         Assembly</a></span>
-                    <span class="activity-time">2 hr ago</span>
+                    <span class="activity-time">Yesterday</span>
                   </div>
                   <span class="activity-tag draft-tag">Draft</span>
                 </div>
@@ -655,7 +637,7 @@
                   <div class="activity-body">
                     <span class="activity-text"><strong>simPRO</strong> sync FAILED for part #P-2039 on <a
                         href="#">#REQ-023</a></span>
-                    <span class="activity-time">6 hr ago</span>
+                    <span class="activity-time">Yesterday</span>
                   </div>
                   <span class="activity-tag failed-tag">Failed</span>
                 </div>
@@ -742,7 +724,7 @@
           <!-- TEAM WORKLOAD -->
           <div class="panel">
             <div class="panel-header">
-              <h3 class="panel-title">Team Workload</h3>
+              <h3 class="panel-title">Assigned Team Members</h3>
               <a href="#" class="panel-link-sm">Manage team →</a>
             </div>
             <div class="panel-body">
@@ -753,11 +735,8 @@
                     <span class="member-name">James Doyle</span>
                     <span class="member-role">Lead Engineer</span>
                   </div>
-                  <div class="member-load">
-                    <div class="load-bar">
-                      <div class="load-fill" style="width:72%"></div>
-                    </div>
-                    <span class="load-count">6 active</span>
+                  <div class="member-load"> 
+                    <span class="load-count">Assigned Requests: 2</span>
                   </div>
                 </div>
                 <div class="team-member clickable" onclick="openModal('team-SL')">
@@ -766,11 +745,8 @@
                     <span class="member-name">Sarah Lennox</span>
                     <span class="member-role">Designer</span>
                   </div>
-                  <div class="member-load">
-                    <div class="load-bar">
-                      <div class="load-fill high" style="width:90%"></div>
-                    </div>
-                    <span class="load-count load-high">9 active</span>
+                  <div class="member-load"> 
+                    <span class="load-count">Assigned Requests: 5</span>
                   </div>
                 </div>
                 <div class="team-member clickable" onclick="openModal('team-MD')">
@@ -779,11 +755,8 @@
                     <span class="member-name">Mike Donovan</span>
                     <span class="member-role">Reviewer</span>
                   </div>
-                  <div class="member-load">
-                    <div class="load-bar">
-                      <div class="load-fill" style="width:50%"></div>
-                    </div>
-                    <span class="load-count">4 active</span>
+                  <div class="member-load"> 
+                    <span class="load-count">Assigned Requests: 1</span>
                   </div>
                 </div>
                 <div class="team-member clickable" onclick="openModal('team-TK')">
@@ -792,11 +765,8 @@
                     <span class="member-name">Tom Kovacs</span>
                     <span class="member-role">Approver</span>
                   </div>
-                  <div class="member-load">
-                    <div class="load-bar">
-                      <div class="load-fill" style="width:35%"></div>
-                    </div>
-                    <span class="load-count">3 active</span>
+                  <div class="member-load"> 
+                    <span class="load-count">Assigned Requests: 6</span>
                   </div>
                 </div>
               </div>
@@ -817,7 +787,7 @@
                   </div>
                   <div class="deadline-info">
                     <span class="deadline-id">#REQ-031 Control Panel Layout</span>
-                    <span class="deadline-status">⏱ Overdue by 3 days</span>
+                    <span class="deadline-status">Pending Review</span>
                   </div>
                 </div>
                 <div class="deadline-item clickable" onclick="openRequest('REQ-029')">
@@ -882,6 +852,7 @@
                   <option>Tom Kovacs</option>
                 </select>
               </div>
+              <a href="#" class="small btn btn-success">Download Latest Approved PDF</a>
               <button class="btn-primary small">+ New Request</button>
             </div>
           </div>
@@ -892,6 +863,7 @@
                   <th>Request ID</th>
                   <th>Title</th>
                   <th>Status</th>
+                  <th>Revision</th>
                   <th>Assignee</th>
                   <th>Part Number</th>
                   <th>simPRO</th>
@@ -906,6 +878,11 @@
                   <td class="req-title">Control Panel Layout</td>
                   <td><span class="status-pill review">In Review</span></td>
                   <td>
+                    <span class="rev-pill current">
+                    Rev B - Current
+                    </span>
+                    </td>
+                  <td>
                     <div class="assignee-chip"><span class="chip-av orange">MD</span> Mike D.</div>
                   </td>
                   <td class="part-num">P-2031</td>
@@ -914,14 +891,21 @@
                   <td class="updated">2 hr ago</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-031')">Open</button>
-                    <button class="btn-xs approve-xs"
-                      onclick="event.stopPropagation(); doApprove('REQ-031')">Approve</button>
+                     
+                      <button class="btn-sm btn btn-success">
+                        PDF
+                        </button>
                   </td>
                 </tr>
                 <tr class="table-row clickable overdue-row" onclick="openRequest('REQ-029')">
                   <td class="req-id">#REQ-029</td>
                   <td class="req-title">Frame Weld Specification</td>
                   <td><span class="status-pill review">In Review</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev B - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av purple">JD</span> James D.</div>
                   </td>
@@ -931,14 +915,21 @@
                   <td class="updated">1 hr ago</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-029')">Open</button>
-                    <button class="btn-xs approve-xs"
-                      onclick="event.stopPropagation(); doApprove('REQ-029')">Approve</button>
+                     
+                      <button class="btn-sm btn btn-success">
+                        PDF
+                        </button>
                   </td>
                 </tr>
                 <tr class="table-row clickable" onclick="openRequest('REQ-041')">
                   <td class="req-id">#REQ-041</td>
                   <td class="req-title">Pump Assembly v2</td>
                   <td><span class="status-pill draft">Draft</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev A - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av blue">SL</span> Sarah L.</div>
                   </td>
@@ -948,12 +939,20 @@
                   <td class="updated">2 hr ago</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-041')">Open</button>
+                    <button class="btn-sm btn btn-success">
+                      PDF
+                      </button>
                   </td>
                 </tr>
                 <tr class="table-row clickable" onclick="openRequest('REQ-038')">
                   <td class="req-id">#REQ-038</td>
                   <td class="req-title">Pipe Layout Rev C</td>
                   <td><span class="status-pill submitted">Submitted</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev B - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av purple">JD</span> James D.</div>
                   </td>
@@ -963,14 +962,21 @@
                   <td class="updated">Yesterday</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-038')">Open</button>
-                    <button class="btn-xs approve-xs"
-                      onclick="event.stopPropagation(); doApprove('REQ-038')">Approve</button>
+                     
+                      <button class="btn-sm btn btn-success">
+                        PDF
+                        </button>
                   </td>
                 </tr>
                 <tr class="table-row clickable" onclick="openRequest('REQ-036')">
                   <td class="req-id">#REQ-036</td>
                   <td class="req-title">Motor Housing Drawing</td>
                   <td><span class="status-pill submitted">Submitted</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev C - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av blue">SL</span> Sarah L.</div>
                   </td>
@@ -980,12 +986,20 @@
                   <td class="updated">Yesterday</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-036')">Open</button>
+                    <button class="btn-sm btn btn-success">
+                      PDF
+                      </button>
                   </td>
                 </tr>
                 <tr class="table-row clickable" onclick="openRequest('REQ-030')">
                   <td class="req-id">#REQ-030</td>
                   <td class="req-title">Inlet Pipe Diagram</td>
                   <td><span class="status-pill rework">Rework</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev B - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av blue">SL</span> Sarah L.</div>
                   </td>
@@ -995,14 +1009,23 @@
                   <td class="updated">Yesterday</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-030')">Open</button>
+                    <button class="btn-sm btn btn-success">
+                      PDF
+                      </button>
                     <button class="btn-xs retry-xs" onclick="event.stopPropagation(); retrySync('REQ-030')">Retry
                       Sync</button>
+                     
                   </td>
                 </tr>
                 <tr class="table-row clickable" onclick="openRequest('REQ-027')">
                   <td class="req-id">#REQ-027</td>
                   <td class="req-title">Gearbox Assembly</td>
                   <td><span class="status-pill approved-pill">Approved</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev C - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av green">TK</span> Tom K.</div>
                   </td>
@@ -1012,13 +1035,22 @@
                   <td class="updated">10 min ago</td>
                   <td class="actions-cell">
                     <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-027')">Open</button>
+                    <button class="btn-sm btn btn-success">
+                      PDF
+                      </button>
                     <a href="#" class="btn-xs simpro-xs" onclick="event.stopPropagation()">simPRO ↗</a>
+                    
                   </td>
                 </tr>
                 <tr class="table-row clickable muted-row" onclick="openRequest('REQ-024')">
                   <td class="req-id">#REQ-024</td>
                   <td class="req-title">Drive Shaft Spec</td>
                   <td><span class="status-pill completed-pill">Completed</span></td>
+                  <td>
+                    <span class="rev-pill current">
+                    Rev C - Current
+                    </span>
+                    </td>
                   <td>
                     <div class="assignee-chip"><span class="chip-av green">TK</span> Tom K.</div>
                   </td>
@@ -1027,8 +1059,12 @@
                   <td class="due-date">Apr 25</td>
                   <td class="updated">Apr 25</td>
                   <td class="actions-cell">
-                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-024')">View</button>
+                    <button class="btn-xs" onclick="event.stopPropagation(); openRequest('REQ-024')">View</button> 
+                     <button class="btn-sm btn btn-success">
+                      PDF
+                      </button>
                     <a href="#" class="btn-xs simpro-xs" onclick="event.stopPropagation()">simPRO ↗</a>
+                  
                   </td>
                 </tr>
               </tbody>
@@ -1133,7 +1169,7 @@
         </div>
         <div class="modal-right">
 
-          <div class="modal-meta-card">
+          <div class="modal-meta-card p-2">
             <div class="meta-row">
               <span class="meta-key">Status</span>
               <span class="meta-val"><span class="status-pill review">In Review</span></span>
@@ -1165,11 +1201,11 @@
               <span class="meta-val"><a href="#" class="ext-link">View in simPRO ↗</a></span>
             </div>
           </div>
-
+          <a href="#" class="btn-sm btn btn-success">Download Latest Approved PDF</a>
           <div class="modal-actions">
             <button class="btn-action approve-btn" onclick="doApprove('REQ-031')">✓ Approve</button>
             <button class="btn-action rework-btn" onclick="doRework('REQ-031')">↩ Send for Rework</button>
-            <button class="btn-action neutral-btn">← Return to Draft</button>
+            <button class="btn-action neutral-btn">  Revision Update</button>
           </div>
 
           <div class="modal-section">
@@ -1178,7 +1214,7 @@
               <div class="rev-row active-rev">
                 <span class="rev-ver">Rev 3</span>
                 <span class="rev-info">Uploaded May 01 by Sarah L.</span>
-                <span class="rev-current">Current</span>
+                <span class="rev-current w-50px">Current Approved Revision</span>
               </div>
               <div class="rev-row">
                 <span class="rev-ver">Rev 2</span>

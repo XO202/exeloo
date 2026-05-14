@@ -174,7 +174,7 @@ nav {
 
 .search-wrap {
   position: relative;
-  width: 180px;
+  width: 320px;
 }
 
 .search-icon {
@@ -1483,7 +1483,7 @@ textarea {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 9px 12px;
   border-radius: 7px;
   color: #94A3B8;
@@ -1951,7 +1951,7 @@ textarea {
 .stage-items {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0px;
 }
 
 .stage-item {
@@ -2750,8 +2750,7 @@ textarea {
 .requests-table th {
   text-align: left;
   font-size: 11.5px;
-  font-weight: 700;
-  color: var(--text-muted);
+  font-weight: 700; 
   text-transform: uppercase;
   letter-spacing: .5px;
   padding: 10px 14px;
@@ -3363,7 +3362,7 @@ textarea {
 
 .btn-action {
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px ;
   border-radius: 8px;
   font-size: 13.5px;
   font-weight: 700;
@@ -8699,4 +8698,105 @@ textarea {
       grid-template-columns:1fr 1fr;
   }
 
+}
+.rev-label {
+  font-size: 8px;
+  font-weight: bold;
+  color: #28a745;
+}
+.revision-badge {
+  background: #e4fae6;
+  display: inline-block;
+  color: #15a34a;
+  padding: 2px 8px;
+  border-radius: 11px;
+  font-size: 10px;
+}
+.rev-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  white-space: nowrap;
+}
+.rev-pill.current {
+  background: var(--green-light);
+  color: var(--green);
+}
+.btn-sm {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid var(--border); 
+  cursor: pointer;
+  font-family: var(--font);
+  margin-right: 4px;
+  transition: background .12s, border-color .12s;
+  text-decoration: none;
+  display: inline-block;
+}
+.w-50px {
+  width: 50px;
+}
+.compare-strip{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:10px 0;
+  position:relative;
+}
+
+.compare-strip::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+  height:1px;
+  background:rgba(255,255,255,0.06);
+  z-index:1;
+}
+
+.compare-btn{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 14px;
+  border-radius:999px;
+  border:1px solid rgba(71,184,201,0.22);
+  background:rgba(71,184,201,0.08);
+  color:#47b8c9;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.2px;
+  cursor:pointer;
+  transition:all .25s ease;
+  backdrop-filter:blur(10px); 
+}
+
+.compare-btn i{
+  font-size:11px;
+  opacity:.9;
+}
+ 
+
+.compare-btn:active{
+  transform:scale(.98);
+}
+
+.rev-wrap{
+  display:flex; 
+  gap:2px;
+  margin-top:4px;
+}
+
+.rev-current{
+  font-size:10px; 
+  opacity:.9;
 }
